@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "F:\\北科-碩一上課程\\軟體工程\\GitRepositoryAnalysisSystem\\src\\main\\webapp\\frontEnd",
+            "outputPath": "~{PathToProject}\\GitRepositoryAnalysisSystem\\src\\main\\webapp\\frontEnd",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
