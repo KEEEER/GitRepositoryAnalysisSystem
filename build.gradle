@@ -10,13 +10,13 @@ compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
 sourceCompatibility = 1.8
-
 buildscript {
     repositories {
         jcenter()
     }
 
     dependencies {
+
         classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
     }
 }
@@ -25,7 +25,12 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
+
+    // https://mvnrepository.com/artifact/org.json/json
+    compile group: 'org.json', name: 'json', version: '20201115'
+
     providedCompile "javax.servlet:javax.servlet-api:3.1.0"
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'junit', name: 'junit', version: '4.12'
