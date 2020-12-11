@@ -7,27 +7,46 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GithubRepositoryAccessor {
     private InputStream is;
     private InputStreamReader isr;
     private HttpsURLConnection httpsConnection;
-    
+    private Map<String, String> properties;
+
+    public GithubRepositoryAccessor(){
+        properties = new HashMap<>();
+    }
+
     public JSONArray httpsGet(String url) throws IOException {
         httpsConnection = getConnection(url);
+        setConnectionProperty(httpsConnection);
         BufferedReader reader = getJSONUsingHttpsGet(httpsConnection);
         String completeContent = getCompleteContentString(reader);
+        System.out.println(completeContent);
+        if(completeContent.charAt(0) != '[') completeContent = "[" + completeContent + "]";
         JSONArray jsonArray = new JSONArray(completeContent);
         closeAllConnection();
         return jsonArray;
+    }
+
+    public void addHTTPSGetProperty(String property, String value){
+        this.properties.put(property, value);
     }
 
     private HttpsURLConnection getConnection(String url) throws IOException {
         URL requestUrl = new URL(url);
         return (HttpsURLConnection) requestUrl.openConnection();
     }
-    
-    private BufferedReader  getJSONUsingHttpsGet(HttpsURLConnection httpsConnection) throws IOException {
+
+    private void setConnectionProperty(HttpsURLConnection conn){
+        for(String property : this.properties.keySet())
+            conn.setRequestProperty(property, this.properties.get(property));
+    }
+
+    private BufferedReader getJSONUsingHttpsGet(HttpsURLConnection httpsConnection) throws IOException {
         is = httpsConnection.getInputStream();
         isr = new InputStreamReader(is);
         return new BufferedReader(isr);

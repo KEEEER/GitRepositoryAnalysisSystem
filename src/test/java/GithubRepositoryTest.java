@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public class GithubRepositoryTest {
-    private List<String> urls = new ArrayList<>();
+    List<String> urls = new ArrayList<>();
     @Before
     public void setUp(){
         urls.add("https://github.com/octocat/boysenberry-repo-1");
@@ -26,13 +26,14 @@ public class GithubRepositoryTest {
 
     @Test
     public void AccessPersonalPublicRepositoryTest() throws IOException {
-        String apiUrl = "https://api.github.com/users/octocat/repos";
+        String apiUrl = "https://api.github.com/users/KEEEER/repos";
         GithubRepositoryAccessor accessor = new GithubRepositoryAccessor();
         JSONArray jsonArray = accessor.httpsGet(apiUrl);
         List<String> personalPublicRepository = new ArrayList<>();
         for (Object object : jsonArray) {
             JSONObject jsonObject = (JSONObject) object;
             personalPublicRepository.add(jsonObject.get("html_url").toString());
+            System.out.println(jsonObject.get("open_issues_count").toString());
         }
         Assert.assertTrue(
                 urls.size() == personalPublicRepository.size() &&
@@ -41,4 +42,17 @@ public class GithubRepositoryTest {
         );
     }
 
+    @Test
+    public void GithubGetIssueTest() throws IOException {
+        String apiUrl = " https://api.github.com/search/issues?q=repo:octokit/octopoller.rb%20is:issue%20is:closed";
+        String totalCount = "";
+        GithubRepositoryAccessor accessor = new GithubRepositoryAccessor();
+        JSONArray jsonArray = accessor.httpsGet(apiUrl);
+        for(Object object : jsonArray){
+            JSONObject jsonObject = (JSONObject) object;
+            totalCount = String.valueOf(jsonObject.get("total_count"));
+        }
+        Assert.assertEquals(3, Integer.parseInt(totalCount));
+    }
+    
 }
