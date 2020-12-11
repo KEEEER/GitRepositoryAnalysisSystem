@@ -1,9 +1,11 @@
+package usecase;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import service.GithubRepositoryAccessor;
+import usecase.GithubRepositoryAccessor;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

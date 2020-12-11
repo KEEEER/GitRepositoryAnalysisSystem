@@ -1,4 +1,4 @@
-package service;
+package usecase;
 
 import org.json.JSONArray;
 import javax.net.ssl.HttpsURLConnection;
