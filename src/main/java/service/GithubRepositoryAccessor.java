@@ -22,10 +22,10 @@ public class GithubRepositoryAccessor {
 
     public JSONArray httpsGet(String url) throws IOException {
         httpsConnection = getConnection(url);
+        httpsConnection.setRequestMethod("GET");
         setConnectionProperty(httpsConnection);
         BufferedReader reader = getJSONUsingHttpsGet(httpsConnection);
         String completeContent = getCompleteContentString(reader);
-        System.out.println(completeContent);
         if(completeContent.charAt(0) != '[') completeContent = "[" + completeContent + "]";
         JSONArray jsonArray = new JSONArray(completeContent);
         closeAllConnection();
@@ -64,4 +64,6 @@ public class GithubRepositoryAccessor {
         isr.close();
         httpsConnection.disconnect();
     }
+
+
 }

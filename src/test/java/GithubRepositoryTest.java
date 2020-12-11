@@ -26,14 +26,13 @@ public class GithubRepositoryTest {
 
     @Test
     public void AccessPersonalPublicRepositoryTest() throws IOException {
-        String apiUrl = "https://api.github.com/users/KEEEER/repos";
+        String apiUrl = "https://api.github.com/users/octocat/repos";
         GithubRepositoryAccessor accessor = new GithubRepositoryAccessor();
         JSONArray jsonArray = accessor.httpsGet(apiUrl);
         List<String> personalPublicRepository = new ArrayList<>();
         for (Object object : jsonArray) {
             JSONObject jsonObject = (JSONObject) object;
             personalPublicRepository.add(jsonObject.get("html_url").toString());
-            System.out.println(jsonObject.get("open_issues_count").toString());
         }
         Assert.assertTrue(
                 urls.size() == personalPublicRepository.size() &&
@@ -43,7 +42,7 @@ public class GithubRepositoryTest {
     }
 
     @Test
-    public void GithubGetIssueTest() throws IOException {
+    public void GithubQueryIssueCountTest() throws IOException {
         String apiUrl = " https://api.github.com/search/issues?q=repo:octokit/octopoller.rb%20is:issue%20is:closed";
         String totalCount = "";
         GithubRepositoryAccessor accessor = new GithubRepositoryAccessor();
@@ -54,5 +53,18 @@ public class GithubRepositoryTest {
         }
         Assert.assertEquals(3, Integer.parseInt(totalCount));
     }
-    
+
+    @Test
+    public void GithubQueryCommitCountTest() throws IOException {
+        String apiUrl = "https://api.github.com/search/commits?q=repo:KEEEER/gphotos-python-download-REST+merge:false";
+        String totalCount = "";
+        GithubRepositoryAccessor accessor = new GithubRepositoryAccessor();
+        accessor.addHTTPSGetProperty("Accept", "application/vnd.github.cloak-preview+json");
+        JSONArray jsonArray = accessor.httpsGet(apiUrl);
+        for(Object object : jsonArray){
+            JSONObject jsonObject = (JSONObject) object;
+            totalCount = String.valueOf(jsonObject.get("total_count"));
+        }
+        Assert.assertEquals(6, Integer.parseInt(totalCount));
+    }
 }
