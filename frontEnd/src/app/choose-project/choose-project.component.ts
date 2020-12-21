@@ -13,12 +13,10 @@ export class ChooseProjectComponent implements OnInit {
   jobTitle = 'Wrestler';
   location = 'USA';
   selfIntroduction = 'ARE YOU SURE ABOUT THAT?';
-  projectName = 'WWE2020';
-  // tslint:disable-next-line:typedef
+  projectNames = ['WWE2020', 'WWE2019', 'WWE2018'];
   projectIntroduction = '專案內容敘述';
-  getName(){
-    return this.name;
-  }
+  // tslint:disable-next-line:typedef
+
 
 
   constructor() { }
