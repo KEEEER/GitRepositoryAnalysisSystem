@@ -19,25 +19,17 @@
     <div>Location: {{location}}</div>
     <div>self introduction:<br>{{selfIntroduction}}</div>
   </div>
-  <div class="col-5">
+  <div class="col-6">
     <table border="1">
-
-      <tr *ngFor="let projectName of projectNames">
-<!--              <a href="../choose-repository/choose-repository.component.html">-->
-        <div>{{projectName}}</div>
-        <div>{{projectIntroduction}}</div>
-<!--              </a>-->
-      </tr>
-
-      <tr>
-        <!--      <a href="">-->
-        <div>ADD NEW PROJECT</div>
-        <!--      </a>-->
-      </tr>
+      <td *ngFor="let repoName of repoNames">
+        {{repoName}}
+      </td>
+    </table>
+    <table border="1">
+      <td>ADD REPO</td>
+      <td>DELETE REPO</td>
+      <td>CHOOSE MUTI</td>
     </table>
   </div>
 </div>
-
-
 </body>
-</html>
