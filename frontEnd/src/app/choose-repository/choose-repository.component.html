@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <title></title>
-</head>
-<body>
+
 <div class="row" style="padding:10px 100px 10px 100px;">
   <div class="col-3">
     <img src="{{imgURL}}" width="100" height="150">
@@ -19,6 +11,7 @@
     <div>Location: {{location}}</div>
     <div>self introduction:<br>{{selfIntroduction}}</div>
   </div>
+
   <div class="col-6">
     <table border="1">
       <td *ngFor="let repoName of repoNames">
@@ -32,4 +25,4 @@
     </table>
   </div>
 </div>
-</body>
+

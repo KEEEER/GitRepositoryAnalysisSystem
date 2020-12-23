@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-choose-repository',
@@ -15,7 +15,8 @@ export class ChooseRepositoryComponent implements OnInit {
   selfIntroduction = 'ARE YOU SURE ABOUT THAT?';
   repoNames = ['REPO1', 'REPO2', 'REPO3'];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

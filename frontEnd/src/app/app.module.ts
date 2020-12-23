@@ -3,9 +3,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { ChooseProjectComponent } from './choose-project/choose-project.component';
-import {BrowserModule} from "@angular/platform-browser";
+import {BrowserModule} from '@angular/platform-browser';
 import { ChooseRepositoryComponent } from './choose-repository/choose-repository.component';
-import {LoginComponent} from './login/login.component'
+import {LoginComponent} from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
