@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-choose-project',
   templateUrl: './choose-project.component.html',
@@ -15,13 +16,16 @@ export class ChooseProjectComponent implements OnInit {
   selfIntroduction = 'ARE YOU SURE ABOUT THAT?';
   projectNames = ['WWE2020', 'WWE2019', 'WWE2018'];
   projectIntroduction = '專案內容敘述';
-  // tslint:disable-next-line:typedef
+
 
 
 
   constructor() { }
 
   ngOnInit(): void {
+    // if (window.location.hash === '#readMore') {
+    //   window.location.assign('abc');
+    // }
   }
 
 }
