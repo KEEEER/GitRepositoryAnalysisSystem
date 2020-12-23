@@ -5,6 +5,14 @@ import {ChooseProjectComponent} from './choose-project/choose-project.component'
 import {ChooseRepositoryComponent} from './choose-repository/choose-repository.component';
 import {LoginComponent} from './login/login.component';
 import {CommitTrendComponent} from './commit-trend/commit-trend.component';
+import {AnalysisComponent} from './analysis/analysis.component';
+import {AddProjectComponent} from './add-project/add-project.component';
+import {AddRepoComponent} from './add-repo/add-repo.component';
+import {AddProjectFromGithubComponent} from './add-project-from-github/add-project-from-github.component';
+import {AddRepoFromGithubComponent} from './add-repo-from-github/add-repo-from-github.component';
+import {CodeBaseComponent} from './code-base/code-base.component';
+import {IssueTrackComponent} from './issue-track/issue-track.component';
+
 
 
 const routes: Routes = [
@@ -12,7 +20,17 @@ const routes: Routes = [
   {path: 'admin', component: AdminComponent},
   {path: 'choose-project', component: ChooseProjectComponent},
   {path: 'choose-repository', component: ChooseRepositoryComponent},
-  {path: 'commit-trend', component: CommitTrendComponent}
+  {path: 'add-project', component: AddProjectComponent},
+  {path: 'add-repo', component: AddRepoComponent},
+  {path: 'add-project-from-github', component: AddProjectFromGithubComponent},
+  {path: 'add-repo-from-github', component: AddRepoFromGithubComponent},
+  {path: 'analysis', component: AnalysisComponent},
+  {path: 'commit-trend', component: CommitTrendComponent},
+  {path: 'code-base', component: CodeBaseComponent},
+  {path: 'issue-track', component: IssueTrackComponent},
+  {path: 'commit-log', component: CommitTrendComponent}
+
+
 
 
 
