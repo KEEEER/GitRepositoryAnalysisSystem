@@ -1,0 +1,43 @@
+<!-- <link rel="stylesheet" href="login.css"> -->
+<!-- <link rel="stylesheet" href="test.css"> -->
+<!DOCTYPE HTML>
+<html LANG="zh-TW">
+<header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    <!-- X-UA-Compatible+edge 什麼版本IE 就用什麼版本的標準模式： -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="signupstyle.css">
+    <title>GRAS_Login</title>
+    <!-- 可以用外部別人寫好的css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!--    icon取用教學:https://pjchender.blogspot.com/2015/04/font-awesomeicon.html-->
+
+</header>
+
+<body>
+    <img src="{{backgroudimgURL}}" width="100%" height="100%" sytle="background-size: cover;background-attachment: fixed;background-position: center;">
+
+    <form action="choose-repository" class="login">
+        <!-- 這個classname可以在css更改其樣式 -->
+        <h2>Sign up to GRAS</h2>
+        <i class="fas fa-user-circle fa-5x"></i>
+        <!-- User icon-->
+        <h3>使用者全名</h3>
+        <input type="text" name="FullNameofUser" placeholder="EX:朋魚雁" [(ngModel)]="UserInput">
+        <h3>帳號</h3>
+        <input type="text" name="Account" placeholder="EX:example@gmail.com" [(ngModel)]="accountInput">
+        <!-- placeholder顯示在輸入框內的提示 -->
+        <h3>密碼</h3>
+        <input type="password" name="Password" placeholder="請輸入密碼" [(ngModel)]="passwordInput">
+        <h3>密碼確認</h3>
+        <input type="password" name="TypePasswordAgain" placeholder="請再輸入一次密碼" [(ngModel)]="RetrypasswordInput">
+        <button type="submit">註冊</button>
+        <br>
+        <button type="submit">或使用Github帳號登入</button>
+    </form>
+</body>
+
+
+</html>

@@ -4,6 +4,7 @@ import {AdminComponent} from './admin/admin.component';
 import {ChooseProjectComponent} from './choose-project/choose-project.component';
 import {ChooseRepositoryComponent} from './choose-repository/choose-repository.component';
 import {LoginComponent} from './login/login.component';
+import {SignupComponent} from './signup/signup.component';
 import {CommitTrendComponent} from './commit-trend/commit-trend.component';
 import {AnalysisComponent} from './analysis/analysis.component';
 import {AddProjectComponent} from './add-project/add-project.component';
@@ -17,6 +18,8 @@ import {IssueTrackComponent} from './issue-track/issue-track.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
+  {path: 'LoginPage', component: LoginComponent},
+  {path: 'SignupPage', component: SignupComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'choose-project', component: ChooseProjectComponent},
   {path: 'choose-repository', component: ChooseRepositoryComponent},
@@ -29,6 +32,8 @@ const routes: Routes = [
   {path: 'code-base', component: CodeBaseComponent},
   {path: 'issue-track', component: IssueTrackComponent},
   {path: 'commit-log', component: CommitTrendComponent}
+
+
 
 
 

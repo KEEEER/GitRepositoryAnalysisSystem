@@ -9,25 +9,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="loginstyle.css">
     <title>GRAS_Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- 可以用外部別人寫好的css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!--    icon取用教學:https://pjchender.blogspot.com/2015/04/font-awesomeicon.html-->
+
 </header>
 
 <body>
-<img src="{{backgroudimgURL}}" width="100%" height="100%"  sytle = "background-size: cover;background-attachment: fixed;background-position: center;"  >
-    <!-- 這個classname可以在css更改其樣式 -->
-    <form action="" class="login">
-        <h2>Sign in to GRAS</h2>
-        <i class="fa fa-user-o" aria-hidden="true"></i>
-        <h2>帳號</h2>
-        <input type="text" placeholder="請輸入帳號">
-        <!-- placeholder顯示在輸入框內的提示 -->
-        <h2>密碼</h2>
-        <input type="password" placeholder="請輸入密碼">
-<!--        <button type="submit">登入</button><br>-->
-      <button  type="submit" (click)="login()">登入</button><br>
+<img src="{{backgroudimgURL}}" width="100%" height="100%"  sytle = "background-size: cover;background-attachment: fixed;background-position: center;">
 
-      <button type="submit">使用Github帳號登入</button>
+    <form action="choose-repository" class="login">    <!-- 這個classname可以在css更改其樣式 -->
+        <h2>Sign in to GRAS</h2>
+        <i class="fas fa-user-circle fa-5x" ></i> <!-- User icon-->
+        <h2>帳號</h2>
+          <input type="text" name = "account" placeholder="請輸入帳號" [(ngModel)]="accountInput" ><!-- placeholder顯示在輸入框內的提示 -->
+        <h2>密碼</h2>
+          <input type="password" name = "password" placeholder="請輸入密碼" [(ngModel)]="passwordInput">
+
+
+
+
+            <button  type="submit" >登入</button>
+            <button  type="submit" >註冊</button>
+            <br>
+            <button type="submit" >使用Github帳號登入</button>
     </form>
 </body>
 

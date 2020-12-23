@@ -18,6 +18,7 @@ import { AddRepoFromGithubComponent } from './add-repo-from-github/add-repo-from
 import { AddProjectFromGithubComponent } from './add-project-from-github/add-project-from-github.component';
 import { PersonalImformationComponent } from './personal-imformation/personal-imformation.component';
 import { RepoImformationComponent } from './repo-imformation/repo-imformation.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 
@@ -42,16 +43,12 @@ import { RepoImformationComponent } from './repo-imformation/repo-imformation.co
     AddProjectFromGithubComponent,
     PersonalImformationComponent,
     RepoImformationComponent,
-
-
-
-
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
