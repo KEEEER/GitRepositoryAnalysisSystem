@@ -25,22 +25,17 @@ public class AngularFilter implements Filter {
     public void destroy() {
         this.filterConfig = null;
     }
-
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String destination,angularRootPath,realPath;
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse=(HttpServletResponse)response;
         ServletContext context = httpRequest.getServletContext();
         destination =httpRequest.getServletPath();
-
-        realPath = Objects.requireNonNull(this.getClass().getClassLoader().getResource("../../frontEnd/index.html")).getPath();
-        realPath =  URLDecoder.decode(realPath,"utf-8");
+        realPath =context.getRealPath(destination);
         angularRootPath="";
-
         System.out.println(destination);
 
         System.out.println(realPath);
-
         File f = new File(realPath);
         if (f.exists()) {
             chain.doFilter(request, response);
@@ -60,10 +55,7 @@ public class AngularFilter implements Filter {
             }
         }
         f=null;
-        System.out.println("eo---------------------------------");
-
     }
-
     public void init(FilterConfig fConfig) throws ServletException {
         this.filterConfig=fConfig;
     }
