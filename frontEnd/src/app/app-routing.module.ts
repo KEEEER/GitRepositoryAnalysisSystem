@@ -4,12 +4,16 @@ import {AdminComponent} from './admin/admin.component';
 import {ChooseProjectComponent} from './choose-project/choose-project.component';
 import {ChooseRepositoryComponent} from './choose-repository/choose-repository.component';
 import {LoginComponent} from './login/login.component';
+import {CommitTrendComponent} from './commit-trend/commit-trend.component';
+
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
+  {path: '', component: LoginComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'choose-project', component: ChooseProjectComponent},
   {path: 'choose-repository', component: ChooseRepositoryComponent},
+  {path: 'commit-trend', component: CommitTrendComponent}
+
 
 
   // {path: '**', component: LoginComponent}

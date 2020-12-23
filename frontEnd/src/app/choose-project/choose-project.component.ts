@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-choose-project',
@@ -20,7 +20,8 @@ export class ChooseProjectComponent implements OnInit {
 
 
 
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     // if (window.location.hash === '#readMore') {
@@ -28,4 +29,8 @@ export class ChooseProjectComponent implements OnInit {
     // }
   }
 
+  // tslint:disable-next-line:typedef
+  choose_repo() {
+    this.router.navigateByUrl('choose-repository');
+  }
 }
