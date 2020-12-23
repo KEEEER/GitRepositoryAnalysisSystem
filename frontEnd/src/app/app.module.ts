@@ -19,6 +19,8 @@ import { AddProjectFromGithubComponent } from './add-project-from-github/add-pro
 import { PersonalImformationComponent } from './personal-imformation/personal-imformation.component';
 import { RepoImformationComponent } from './repo-imformation/repo-imformation.component';
 import { SignupComponent } from './signup/signup.component';
+import { HeaderComponent } from './header/header.component';
+
 
 
 
@@ -43,7 +45,9 @@ import { SignupComponent } from './signup/signup.component';
     AddProjectFromGithubComponent,
     PersonalImformationComponent,
     RepoImformationComponent,
-    SignupComponent
+    SignupComponent,
+    HeaderComponent,
+
   ],
   imports: [
     BrowserModule,
