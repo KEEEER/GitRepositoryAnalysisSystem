@@ -20,6 +20,7 @@ import { PersonalImformationComponent } from './personal-imformation/personal-im
 import { RepoImformationComponent } from './repo-imformation/repo-imformation.component';
 import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 
@@ -47,6 +48,7 @@ import { HeaderComponent } from './header/header.component';
     RepoImformationComponent,
     SignupComponent,
     HeaderComponent,
+    HomepageComponent,
 
   ],
   imports: [

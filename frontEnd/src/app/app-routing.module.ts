@@ -13,11 +13,12 @@ import {AddProjectFromGithubComponent} from './add-project-from-github/add-proje
 import {AddRepoFromGithubComponent} from './add-repo-from-github/add-repo-from-github.component';
 import {CodeBaseComponent} from './code-base/code-base.component';
 import {IssueTrackComponent} from './issue-track/issue-track.component';
-
+import {HomepageComponent} from './homepage/homepage.component';
 
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
+  {path: 'HomePage', component: HomepageComponent},
+  {path: '', component: HomepageComponent},
   {path: 'LoginPage', component: LoginComponent},
   {path: 'SignupPage', component: SignupComponent},
   {path: 'admin', component: AdminComponent},
@@ -31,7 +32,7 @@ const routes: Routes = [
   {path: 'commit-trend', component: CommitTrendComponent},
   {path: 'code-base', component: CodeBaseComponent},
   {path: 'issue-track', component: IssueTrackComponent},
-  {path: 'commit-log', component: CommitTrendComponent}
+  {path: 'commit-log', component: CommitTrendComponent},
 
 
 
