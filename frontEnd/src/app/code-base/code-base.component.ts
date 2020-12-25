@@ -9,6 +9,7 @@ export class CodeBaseComponent implements OnInit {
 
   constructor() { }
 
+
   ngOnInit(): void {
   }
 

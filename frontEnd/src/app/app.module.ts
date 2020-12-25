@@ -18,9 +18,12 @@ import { AddRepoFromGithubComponent } from './add-repo-from-github/add-repo-from
 import { AddProjectFromGithubComponent } from './add-project-from-github/add-project-from-github.component';
 import { PersonalImformationComponent } from './personal-imformation/personal-imformation.component';
 import { RepoImformationComponent } from './repo-imformation/repo-imformation.component';
-// import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
+
+//external module
+//import { HttpModule } from '@angular/http';
 
 
 
@@ -29,7 +32,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 
 
 @NgModule({
-  declarations: [
+  declarations: [ // 宣告跟 View 有關的元件
     AppComponent,
     AdminComponent,
     ChooseProjectComponent,
@@ -46,17 +49,17 @@ import { HomepageComponent } from './homepage/homepage.component';
     AddProjectFromGithubComponent,
     PersonalImformationComponent,
     RepoImformationComponent,
-    // SignupComponent,
+    SignupComponent,
     HeaderComponent,
     HomepageComponent,
 
   ],
-  imports: [
+  imports: [ // 宣告要匯入此模組的外部模組
     BrowserModule,
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [], // 宣告要註冊的服務元件
   bootstrap: [AppComponent]
 })
 
