@@ -116,10 +116,10 @@ public class GithubRepositoryTest {
         GithubRepositoryAccessor accessor = new GithubRepositoryAccessor();
         JSONObject jsonObject = (JSONObject) accessor.httpsGet(apiUrl).get(0);
         JSONObject commitStatsJsonObject = jsonObject.getJSONObject("stats");
-        int totalChanhes = commitStatsJsonObject.getInt("total");
+        int totalChanges = commitStatsJsonObject.getInt("total");
         int additions = commitStatsJsonObject.getInt("additions");
         int deletions = commitStatsJsonObject.getInt("deletions");
-        Assert.assertEquals(100, totalChanhes);
+        Assert.assertEquals(100, totalChanges);
         Assert.assertEquals(59, additions);
         Assert.assertEquals(41, deletions);
     }
