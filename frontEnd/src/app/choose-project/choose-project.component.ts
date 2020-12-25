@@ -27,4 +27,9 @@ export class ChooseProjectComponent implements OnInit {
   choose_repo() {
     this.router.navigateByUrl('choose-repository');
   }
+
+  // tslint:disable-next-line:typedef
+  goToAddProjectPage() {
+    this.router.navigateByUrl('add-project');
+  }
 }

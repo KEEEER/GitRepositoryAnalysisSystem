@@ -52,4 +52,8 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('choose-project');
   }
 
+  // tslint:disable-next-line:typedef
+  // toSignUpPage() {
+  //   this.router.navigateByUrl('SignupPage');
+  // }
 }

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-choose-repository',
@@ -15,10 +16,18 @@ export class ChooseRepositoryComponent implements OnInit {
   selfIntroduction = 'ARE YOU SURE ABOUT THAT?';
   repoNames = ['REPO1', 'REPO2', 'REPO3'];
 
-  constructor() {
-  }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line:typedef
+  goToAnalysisPage() {
+    this.router.navigateByUrl('analysis');
+  }
+
+  // tslint:disable-next-line:typedef
+  goToAddRepoPage() {
+    this.router.navigateByUrl('add-repo');
+  }
 }

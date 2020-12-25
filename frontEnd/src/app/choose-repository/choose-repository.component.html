@@ -1,18 +1,30 @@
 <app-header></app-header>
 <div class="row" style="padding:10px 100px 10px 100px;">
-  <app-personal-imformation></app-personal-imformation>
+  <div class="col-4">
+    <app-personal-imformation></app-personal-imformation>
+  </div>
 
-  <div class="col-5">
-    <table border="1">
-      <td *ngFor="let repoName of repoNames">
-        {{repoName}}
-      </td>
-    </table>
-    <table border="1">
-      <td>ADD REPO</td>
-      <td>DELETE REPO</td>
-      <td>CHOOSE MUTI</td>
-    </table>
+
+  <div class="col-8">
+    <div class="highlights">
+      <section *ngFor="let repoName of repoNames">
+        <div class="content">
+
+          <button (click)="goToAnalysisPage()">
+            <div>{{repoName}}</div>
+
+          </button>
+        </div>
+      </section>
+
+
+
+
+    </div>
+    <button (click)="goToAddRepoPage()"><div>ADD REPO</div></button>
+<!--    <button (click)="goToDeleteRepoPage()"><div>DELETE REPO</div></button>-->
+<!--    <button (click)="chooseMuti()"><div>CHOOSE MUTI</div></button>-->
+
   </div>
 </div>
 

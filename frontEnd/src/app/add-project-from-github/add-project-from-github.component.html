@@ -1,3 +1,16 @@
-<p>add-project-from-github works!</p>
 <app-header></app-header>
-<app-personal-imformation></app-personal-imformation>
+<div class="row" style="padding:10px 100px 10px 100px;">
+  <div class="col-4">
+    <app-personal-imformation></app-personal-imformation>
+  </div>
+  <div class="col-8">
+    <div>CHOOSE YOUR REPO</div>
+    <table>
+      <tr *ngFor="let ProjectName of ProjectNames">
+        <button>{{ProjectName}}</button>
+      </tr>
+    </table>
+    <button (click)="goToChooseProject()">CREATE PROJECT</button>
+  </div>
+
+</div>
