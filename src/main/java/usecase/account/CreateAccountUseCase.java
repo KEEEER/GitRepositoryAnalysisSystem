@@ -16,6 +16,6 @@ public class CreateAccountUseCase {
         Account admin = new Account(account, password);
         output.setId(admin.getId());
         output.setAccount(admin);
-        accountRepository.addAccount(admin);
+        accountRepository.createAccount(admin);
     }
 }

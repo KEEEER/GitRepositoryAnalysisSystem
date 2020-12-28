@@ -14,6 +14,12 @@ public class Account {
         this.account = account;
     }
 
+    public Account(String id, String account, String password) {
+        this.id =id;
+        this.password = password;
+        this.account = account;
+    }
+
     public String getName() {
         return name;
     }

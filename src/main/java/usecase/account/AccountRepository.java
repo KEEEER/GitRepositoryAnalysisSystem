@@ -2,11 +2,14 @@ package usecase.account;
 
 import domain.Account;
 
-import java.util.Optional;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public interface AccountRepository {
-    void addAccount(Account account);
+    void createAccount(Account account);
     Account getAccountById(String id);
+    boolean verifyAccount(Account account);
+
 
 
 }

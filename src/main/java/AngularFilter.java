@@ -33,9 +33,6 @@ public class AngularFilter implements Filter {
         destination =httpRequest.getServletPath();
         realPath =context.getRealPath(destination);
         angularRootPath="";
-        System.out.println(destination);
-
-        System.out.println(realPath);
         File f = new File(realPath);
         if (f.exists()) {
             chain.doFilter(request, response);
