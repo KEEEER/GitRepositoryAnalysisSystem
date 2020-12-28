@@ -21,9 +21,7 @@ import { RepoImformationComponent } from './repo-imformation/repo-imformation.co
 import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
-
-//external module
-//import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -58,6 +56,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [], // 宣告要註冊的服務元件
   bootstrap: [AppComponent]
