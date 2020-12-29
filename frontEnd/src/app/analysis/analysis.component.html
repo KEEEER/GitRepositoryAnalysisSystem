@@ -1,26 +1,30 @@
 <app-header></app-header>
 <div class="row" style="padding:10px 100px 10px 100px;">
-  <app-repo-imformation></app-repo-imformation>
+  <div class="col-4">
+    <app-repo-imformation></app-repo-imformation>
+  </div>
 
-  <div>TEAM ANALYSIS</div>
-  <div class="col-3">
+
+<!--  <div>TEAM ANALYSIS</div>-->
+  <div class="col-8">
+    <br>
     <table>
       <tr>
         <td>
-          <button
-          >COMMIT TREND</button>
+          <div><button class="myButton"(click)="goToCommitTrendPage()">COMMIT TREND</button></div>
         </td>
         <td>
-          <button>CODE BASE</button>
+          <div><button class="myButton" (click)="goToCodeBasePage()">CODE BASE</button></div>
+
         </td>
       </tr>
       <tr>
 
         <td>
-          <button>ISSUE TRACK</button>
+          <div><button  class="myButton"(click)="goToIssueTrackPage()">ISSUE TRACK</button></div>
         </td>
         <td>
-          <button>COMMIT LOG</button>
+          <div><button  class="myButton"(click)="goToCommitLogPage()">COMMIT LOG</button></div>
         </td>
       </tr>
     </table>

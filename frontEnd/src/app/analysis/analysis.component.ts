@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-analysis',
   templateUrl: './analysis.component.html',
@@ -13,9 +13,28 @@ export class AnalysisComponent implements OnInit {
   location = 'Japan';
   repoIntroduction = 'Web Ui Design Team';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line:typedef
+  goToCommitTrendPage() {
+    this.router.navigateByUrl('commit-trend');
+  }
+
+  // tslint:disable-next-line:typedef
+  goToCodeBasePage() {
+    this.router.navigateByUrl('code-base');
+  }
+
+  // tslint:disable-next-line:typedef
+  goToIssueTrackPage() {
+    this.router.navigateByUrl('issue-track');
+  }
+
+  // tslint:disable-next-line:typedef
+  goToCommitLogPage() {
+    this.router.navigateByUrl('commit-log');
+  }
 }
