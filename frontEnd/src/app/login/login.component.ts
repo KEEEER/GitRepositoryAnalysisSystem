@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   accountInput: any;
   passwordInput: any;
   datas: any;
+  badRequest:any;
   constructor(private router: Router, private loginService: LoginService) {
    }
 
@@ -37,8 +38,17 @@ export class LoginComponent implements OnInit {
         this.datas = request;
         if (this.datas.redirect){
           this.redirectTo(this.datas.redirect);
+          console.log(this.datas.redirect)
+
+        }
+        else{
+          this.badRequest = "帳號或密碼錯誤";
         }
       }
     );
+  }
+
+  RoutetoSignup(){
+    this.redirectTo("signup");
   }
 }

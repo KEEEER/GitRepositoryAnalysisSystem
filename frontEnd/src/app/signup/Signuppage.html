@@ -17,24 +17,25 @@
 </header>
 
 <body>
-    <img src="../../assets/images/SignInUpBackground.jpg" width="100%" height="100%" sytle="background-size: cover;background-attachment: fixed;background-position: center;">
+    <img src="./assets/images/SignInUpBackground.jpg" width="100%" height="100%" sytle="background-size: cover;background-attachment: fixed;background-position: center;">
 
     <form action="choose-repository" class="login">
         <!-- 這個classname可以在css更改其樣式 -->
         <h2>Sign up to GRAS</h2>
         <i class="fas fa-user-circle fa-5x"></i>
         <!-- User icon-->
-        <h3>使用者全名</h3>
+        <h4>使用者全名</h4>
         <input type="text" name="FullNameofUser" placeholder="EX:朋魚雁" [(ngModel)]="UserInput">
-        <h3>帳號</h3>
+        <h4>帳號</h4>
         <input type="text" name="Account" placeholder="EX:example@gmail.com" [(ngModel)]="accountInput">
         <!-- placeholder顯示在輸入框內的提示 -->
-        <h3>密碼</h3>
+        <h4>密碼</h4>
         <input type="password" name="Password" placeholder="請輸入密碼" [(ngModel)]="passwordInput">
-        <h3>密碼確認</h3>
+        <h4>密碼確認</h4>
         <input type="password" name="TypePasswordAgain" placeholder="請再輸入一次密碼" [(ngModel)]="RetrypasswordInput">
-        <button type="submit">註冊</button>
-        <br>
+        <button type="submit" (click)="SignUpCheck()">註冊</button>
+        <h3  style="color:red; " >{{badRequest}}</h3>
+        <button type="submit" (click)="RoutetoLoginPage()" >已有帳號?點選登入</button>
         <button type="submit">或使用Github帳號登入</button>
     </form>
 </body>

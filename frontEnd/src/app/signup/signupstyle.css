@@ -24,8 +24,9 @@ body {
     margin: 20px auto;
 }
 
-h3 {
-   margin: 10px auto;
+h4 {
+   margin: 5px auto;
+   padding: 5px;
 }
 input[type="text"],
 input[type="password"] {
@@ -41,7 +42,7 @@ input[type="password"] {
 button {
     border: 0;
     padding: 6px 12px;
-    margin: 20px auto;
+    margin: 10px auto;
     font-size: 18px;
     font-family: "微軟正黑體", sans-serif;
     background: rgb(48, 48, 48);

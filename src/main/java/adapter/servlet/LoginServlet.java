@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         boolean isAccountValid = accountRepository.verifyAccount(account);
         if (isAccountValid){
             jsonObject.append("valid", "true");
-            jsonObject.append("redirect", "choose-repository");
+            jsonObject.append("redirect", "homepage");
         }
         else{
             jsonObject.append("valid", "false");

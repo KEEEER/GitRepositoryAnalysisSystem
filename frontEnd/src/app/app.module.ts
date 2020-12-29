@@ -22,6 +22,8 @@ import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProjectoverviewComponent } from './projectoverview/projectoverview.component';
+
 
 
 
@@ -50,6 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     HeaderComponent,
     HomepageComponent,
+    ProjectoverviewComponent,
 
   ],
   imports: [ // 宣告要匯入此模組的外部模組

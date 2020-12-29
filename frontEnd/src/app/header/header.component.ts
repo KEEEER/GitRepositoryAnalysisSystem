@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  baseurl = "../../";
+  homepageurl = "homepage";
+  ProjectCreatwpageurl = "createproject";
+  ProjectOverviewpageurl = "projectoverview";
+  Logoutpageurl = "LoginPage";
+
+
   Username = "";
   constructor() { }
 
