@@ -3,38 +3,26 @@ package adapter.gitrepository;
 import usecase.gitrepository.CreateGitRepositoryInput;
 
 public class CreateGitRepositoryInputImpl implements CreateGitRepositoryInput {
-    private String name;
-    private String owner;
-    private String url;
+    private String ownerName;
+    private String repoName;
 
     @Override
-    public void setName(String name) {
-        this.name = name;
+    public String getOwnerName() {
+        return ownerName;
     }
 
     @Override
-    public String getName() {
-        return this.name;
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
     @Override
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public String getRepoName() {
+        return repoName;
     }
 
     @Override
-    public String getOwner() {
-        return this.owner;
+    public void setRepoName(String repoName) {
+        this.repoName = repoName;
     }
-
-    @Override
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    @Override
-    public String getUrl() {
-        return url;
-    }
-
 }

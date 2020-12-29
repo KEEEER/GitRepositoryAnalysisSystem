@@ -18,7 +18,7 @@ public class GitRepositoryRepositoryImpl implements GitRepositoryRepository {
         gitRepositories = new ArrayList<>();
     }
     public GitRepository getGitRepositoryById(String id){
-        final String query = "SELECT name, url FROM gitrepository WHERE id=?";
+        final String query = "SELECT reponame, ownername FROM gitrepository WHERE id=?";
         GitRepository gitRepository;
         try{
             conn = Database.getConnection();
@@ -30,8 +30,8 @@ public class GitRepositoryRepositoryImpl implements GitRepositoryRepository {
             resultSet.next();
             gitRepository = new GitRepository(
                     id,
-                    resultSet.getString("name"),
-                    resultSet.getString("url")
+                    resultSet.getString("reponame"),
+                    resultSet.getString("ownername")
             );
             return gitRepository;
         }catch(Exception e){
@@ -42,14 +42,14 @@ public class GitRepositoryRepositoryImpl implements GitRepositoryRepository {
 
     public void createGitRepository(GitRepository gitRepository) {
         gitRepositories.add(gitRepository);
-        final String insert = " INSERT INTO gitrepository(id, name, url) VALUES(?,?,?) ";
+        final String insert = " INSERT INTO gitrepository(id, reponame, ownername) VALUES(?,?,?) ";
         try {
             conn = Database.getConnection();
             assert conn != null;
             PreparedStatement preparedStatement = conn.prepareStatement(insert);
             preparedStatement.setString (1,gitRepository.getId());
-            preparedStatement.setString (2, gitRepository.getName());
-            preparedStatement.setString (3, gitRepository.getUrl());
+            preparedStatement.setString (2, gitRepository.getRepoName());
+            preparedStatement.setString (3, gitRepository.getOwnerName());
             preparedStatement.execute();
             conn.close();
         }catch (Exception e){
