@@ -11,9 +11,12 @@ public class CreateAccountUseCase {
 
     }
     public void execute(CreateAccountInput input, CreateAccountOutput output) {
-        String account = input.getAccount();
-        String password = input.getPassword();
-        Account admin = new Account(account, password);
+
+        Account admin = new Account(
+                input.getName(),
+                input.getAccount(),
+                input.getPassword()
+        );
         output.setId(admin.getId());
         output.setAccount(admin);
         accountRepository.createAccount(admin);

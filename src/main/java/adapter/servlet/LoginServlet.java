@@ -1,5 +1,6 @@
 package adapter.servlet;
-import adapter.AccountRepositoryImpl;
+
+import adapter.account.AccountRepositoryImpl;
 import domain.Account;
 import org.json.JSONObject;
 import usecase.account.AccountRepository;

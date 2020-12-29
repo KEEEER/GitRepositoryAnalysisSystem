@@ -1,4 +1,4 @@
-package adapter;
+package adapter.gitrepository;
 
 import usecase.gitrepository.CreateGitRepositoryInput;
 

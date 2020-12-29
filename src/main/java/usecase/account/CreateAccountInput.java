@@ -5,4 +5,6 @@ public interface CreateAccountInput {
     String getAccount();
     void setPassword(String password);
     String getPassword();
+    void setName(String name);
+    String getName();
 }
