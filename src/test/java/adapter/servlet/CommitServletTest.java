@@ -30,7 +30,7 @@ public class CommitServletTest {
 
     @Test
     public void GetPersonalCommitsStatsTest() throws IOException {
-        commitServlet.doGet(request, response);
+        commitServlet.doPost(request, response);
         JSONArray jsonArray = (JSONArray) request.getAttribute("personal_commits_stats");
         Assert.assertEquals("Spaceghost", jsonArray.getJSONObject(0).getString("user_name"));
         Assert.assertEquals(1, jsonArray.getJSONObject(0).getInt("total_deletions"));
@@ -40,7 +40,7 @@ public class CommitServletTest {
 
     @Test
     public void GetTotalCommitsStatsTest() throws IOException {
-        commitServlet.doGet(request, response);
+        commitServlet.doPost(request, response);
         JSONObject jsonObject = (JSONObject) request.getAttribute("total_commits_stats");
         Assert.assertEquals(1, jsonObject.getInt("total_deletions"));
         Assert.assertEquals(1, jsonObject.getInt("total_additions"));

@@ -3,14 +3,17 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import usecase.GithubRepositoryAccessor;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@WebServlet(urlPatterns = "/commitServlet", name = "commitServlet")
 public class CommitServlet extends HttpServlet {
     private JSONArray getPersonalStatsJsonArray(String owner, String repo) throws IOException {
         String apiUrl = "https://api.github.com/repos/" + owner + "/" + repo + "/stats/contributors";
@@ -98,7 +101,12 @@ public class CommitServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         JSONObject repoInfoJsonObject = (JSONObject) request.getAttribute("repoInfo");
         String owner = repoInfoJsonObject.getString("owner");
         String repo = repoInfoJsonObject.getString("repo");
@@ -106,10 +114,13 @@ public class CommitServlet extends HttpServlet {
         JSONObject totalStatsJsonObject = getTotalStatsJsonObject(personalStatsJsonArray);
         request.setAttribute("personal_commits_stats", personalStatsJsonArray);
         request.setAttribute("total_commits_stats", totalStatsJsonObject);
-    }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response){
-
+        JSONArray result = new JSONArray();
+        result.put(totalStatsJsonObject);
+        result.putAll(personalStatsJsonArray);
+        response.setContentType("text/json");
+        PrintWriter out = response.getWriter();
+        out.println(result) ;
+        out.close();
     }
 }
