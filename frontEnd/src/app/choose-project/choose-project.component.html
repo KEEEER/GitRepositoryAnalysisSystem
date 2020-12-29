@@ -6,22 +6,28 @@
 
 
   <div class="col-8">
-    <div class="highlights">
+    <div>
+      <table>
         <section *ngFor="let projectName of projectNames">
-          <div class="content">
+          <tr>
+            <div>
 
-              <button (click)="choose_repo()">
+              <button class="myButton" (click)="choose_repo()">
                 <div>{{projectName}}</div>
-                <div>{{projectIntroduction}}</div>
+                <div>({{projectIntroduction}})</div>
               </button>
-          </div>
+            </div>
+          </tr>
+
         </section>
+      </table>
 
 
 
 
-    </div>
-          <button (click)="goToAddProjectPage()"><div>ADD NEW PROJECT</div></button>
+
+    </div >
+          <div><button class="myButton" (click)="goToAddProjectPage()">ADD NEW PROJECT</button></div>
 
 
 
