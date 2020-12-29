@@ -1,4 +1,4 @@
-package adapter;
+package adapter.account;
 
 import domain.Account;
 import usecase.account.CreateAccountOutput;

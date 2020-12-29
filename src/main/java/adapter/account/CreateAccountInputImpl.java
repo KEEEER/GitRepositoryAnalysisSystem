@@ -1,8 +1,9 @@
-package adapter;
+package adapter.account;
 
 import usecase.account.CreateAccountInput;
 
 public class CreateAccountInputImpl implements CreateAccountInput {
+    private String name;
     private String account;
     private String password;
 
@@ -20,5 +21,13 @@ public class CreateAccountInputImpl implements CreateAccountInput {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
