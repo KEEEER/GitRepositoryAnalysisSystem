@@ -1,5 +1,4 @@
 package adapter.servlet;
-
 import adapter.account.AccountRepositoryImpl;
 import domain.Account;
 import org.json.JSONObject;
