@@ -8,6 +8,7 @@ import java.sql.SQLException;
 public interface AccountRepository {
     void createAccount(Account account);
     Account getAccountById(String id);
+    Account getAccountByAccountAndPassword(Account account);
     void updateAccountOwnProject(Account account);
     boolean verifyAccount(Account account);
     void deleteAccount(String id);

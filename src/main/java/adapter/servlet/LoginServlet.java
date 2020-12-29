@@ -30,9 +30,11 @@ public class LoginServlet extends HttpServlet {
                 requestBody.getString("password")
         );
         boolean isAccountValid = accountRepository.verifyAccount(account);
+        account = accountRepository.getAccountByAccountAndPassword(account);
         if (isAccountValid){
             jsonObject.append("valid", "true");
-            jsonObject.append("redirect", "choose-repository");
+            jsonObject.append("userName", account.getName());
+            jsonObject.append("redirect", "homepage");
         }
         else{
             jsonObject.append("valid", "false");
