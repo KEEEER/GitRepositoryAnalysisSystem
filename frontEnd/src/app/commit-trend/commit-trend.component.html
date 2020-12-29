@@ -1,9 +1,24 @@
 <app-header></app-header>
+<br>
+<br>
 <div class="row" style="padding:10px 100px 10px 100px;">
   <div class="col-4">
     <app-repo-imformation></app-repo-imformation>
   </div>
   <div class="col-8">
+  <div>{{repoName}}<br>{{commitCounts}}&nbsp;commit&nbsp;&nbsp;/&nbsp;&nbsp;{{commitAdd}}&nbsp;++&nbsp;&nbsp;/&nbsp;&nbsp;{{commitRemove}}&nbsp;--</div>
+
+    <div style="display: block;width: 80%;">
+
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+
   </div>
 
 </div>

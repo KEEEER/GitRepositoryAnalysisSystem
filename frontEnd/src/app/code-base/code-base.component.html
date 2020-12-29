@@ -4,7 +4,17 @@
     <app-repo-imformation></app-repo-imformation>
   </div>
   <div class="col-8">
+
+    <div style="display: block;width: 80%;">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+
   </div>
 </div>
 
-<p>code-base works!</p>
