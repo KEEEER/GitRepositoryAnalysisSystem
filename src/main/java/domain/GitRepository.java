@@ -4,25 +4,31 @@ import java.util.UUID;
 
 public class GitRepository {
     private String id;
-    private String name;
-    private String url;
+    private String repoName;
+    private String ownerName;
 
-    public GitRepository(String name, String url) {
+    public GitRepository(String repoName, String ownerName) {
         this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.url = url;
+        this.repoName = repoName;
+        this.ownerName = ownerName;
+    }
+
+    public GitRepository(String id, String repoName, String ownerName) {
+        this.id = id;
+        this.repoName = repoName;
+        this.ownerName = ownerName;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getRepoName() {
+        return repoName;
     }
 
-    public String getUrl() {
-        return url;
+    public String getOwnerName() {
+        return ownerName;
     }
 
 }

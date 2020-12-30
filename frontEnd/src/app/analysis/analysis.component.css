@@ -1,0 +1,23 @@
+.myButton {
+  background-color: #ffffff;
+  border-radius:28px;
+  border:1px solid #312a2a;
+  display:inline-block;
+  cursor:pointer;
+  /*字color*/
+  color: #000000;
+  width:300px;
+  height:300px;
+  font-family:Arial;
+  font-size:17px;
+  /*padding:150px 150px;*/
+  text-decoration:none;
+  text-shadow:0px 1px 0px #2f6627;
+}
+.myButton:hover {
+  background-color: #5191b1;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
+}

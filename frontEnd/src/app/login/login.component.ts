@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   passwordInput: any;
   datas: any;
   badRequest:any;
+  Username:any;
   constructor(private router: Router, private loginService: LoginService) {
    }
 
@@ -37,9 +38,12 @@ export class LoginComponent implements OnInit {
       request => {
         this.datas = request;
         if (this.datas.redirect){
-          this.redirectTo(this.datas.redirect);
+          //this.redirectTo(this.datas.redirect);
+          //this.router.navigateByUrl(url.toString());
+          this.router.navigate([this.datas.redirect.toString(), { Username: this.datas.userName }]);
+          //this.redirectTo(this.datas.redirect);
           console.log(this.datas.redirect)
-
+          console.log(this.datas.userName)
         }
         else{
           this.badRequest = "帳號或密碼錯誤";

@@ -1,5 +1,5 @@
 package adapter.servlet;
-import adapter.AccountRepositoryImpl;
+import adapter.account.AccountRepositoryImpl;
 import domain.Account;
 import org.json.JSONObject;
 import usecase.account.AccountRepository;
@@ -30,8 +30,10 @@ public class LoginServlet extends HttpServlet {
                 requestBody.getString("password")
         );
         boolean isAccountValid = accountRepository.verifyAccount(account);
+        account = accountRepository.getAccountByAccountAndPassword(account);
         if (isAccountValid){
             jsonObject.append("valid", "true");
+            jsonObject.append("userName", account.getName());
             jsonObject.append("redirect", "homepage");
         }
         else{

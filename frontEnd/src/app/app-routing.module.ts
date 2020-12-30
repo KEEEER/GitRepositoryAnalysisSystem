@@ -19,7 +19,7 @@ import {ProjectoverviewComponent} from './projectoverview/projectoverview.compon
 const routes: Routes = [
   {path: 'homepage', component: HomepageComponent},
   {path: '', component: HomepageComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'LoginPage', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'choose-project', component: ChooseProjectComponent},
