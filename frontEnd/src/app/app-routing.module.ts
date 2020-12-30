@@ -14,7 +14,12 @@ import {AddRepoFromGithubComponent} from './add-repo-from-github/add-repo-from-g
 import {CodeBaseComponent} from './code-base/code-base.component';
 import {IssueTrackComponent} from './issue-track/issue-track.component';
 import {HomepageComponent} from './homepage/homepage.component';
+<<<<<<< HEAD
 import {ProjectoverviewComponent} from './projectoverview/projectoverview.component';
+=======
+import {CommitLogComponent} from "./commit-log/commit-log.component";
+
+>>>>>>> 12f946813635e794ff269eac8acfd3b34b6cb621
 
 const routes: Routes = [
   {path: 'homepage', component: HomepageComponent},
@@ -34,6 +39,7 @@ const routes: Routes = [
   {path: 'issue-track', component: IssueTrackComponent},
   {path: 'commit-log', component: CommitTrendComponent},
   {path: 'projectoverview', component: ProjectoverviewComponent},
+  // {path: '**', component: LoginComponent}
 
 
 ];

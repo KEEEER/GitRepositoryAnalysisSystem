@@ -4,6 +4,38 @@
     <app-repo-imformation></app-repo-imformation>
   </div>
   <div class="col-8">
+    <br>
+    <h2>COMMIT LOG</h2>
+    <table>
+      <tr class="tableHead">
+        <td>Description</td>
+        <td>Author</td>
+        <td>Commit</td>
+      </tr>
+      <tr>
+        <td>
+          <ng-container *ngFor="let Description of Descriptions">
+            <div class="mydiv">{{Description}}</div>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container *ngFor="let author of authors">
+            <div class="mydiv">{{author}}</div>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container *ngFor="let commit of commits">
+            <div class="mydiv">{{commit}}</div>
+          </ng-container>
+        </td>
+
+      </tr>
+    </table>
+    <br>
+    <br><br>
+    <br>
+
+
   </div>
 
 </div>
