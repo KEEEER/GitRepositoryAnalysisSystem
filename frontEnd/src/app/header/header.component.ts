@@ -7,14 +7,13 @@ import { Component, Input,OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Input() UserNametitle: string; //value from homepage
   @Input() myVar: number;
   homepageurl = "homepage";
   ProjectCreatwpageurl = "createproject";
   ProjectOverviewpageurl = "choose-project";
   Logoutpageurl = "LoginPage";
-  UserName = "Login"
 
-  Username = "";
   constructor() { }
 
   ngOnInit(): void {

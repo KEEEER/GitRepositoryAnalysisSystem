@@ -9,13 +9,15 @@ export class HomepageComponent implements OnInit {
 
   ProjectCreatpageurl = "createproject";
   ProjectOverviewpageurl = "choose-project";
+  childTitle = "";
   val:any;
   constructor(private router:Router, private activerouter:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
-        this.val = Inputvalue['Username'];
-        console.log(Inputvalue);
+
+        this.childTitle  = Inputvalue['Username'];
+        console.log(this.childTitle);
     });
   }
 
