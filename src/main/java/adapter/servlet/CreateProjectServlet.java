@@ -32,14 +32,22 @@ public class CreateProjectServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         JSONObject jsonObject = new JSONObject();
-        ProjectRepository projectRepository = new ProjectRepositoryImpl();
-        AccountRepository accountRepository = new AccountRepositoryImpl();
-
         JSONObject requestBody = new JSONObject(request.getReader().readLine());
 
         String userName = requestBody.getString("userId");
         String repoName = requestBody.getString("repoName");
+        String id = createProjectAndReturnId(userName, repoName);
 
+        jsonObject.put("projectId", id);
+
+        PrintWriter out = response.getWriter();
+        out.println(jsonObject) ;
+        out.close();
+    }
+
+    private String createProjectAndReturnId(String userName, String repoName){
+        ProjectRepository projectRepository = new ProjectRepositoryImpl();
+        AccountRepository accountRepository = new AccountRepositoryImpl();
         CreateProjectInput input = new CreateProjectInputImpl();
         CreateProjectOutput output = new CreateProjectOutputImpl();
         input.setName(repoName);
@@ -53,12 +61,7 @@ public class CreateProjectServlet extends HttpServlet {
         account.addProject(project.getId());
 
         accountRepository.updateAccountOwnProject(account);
-
-        jsonObject.put("projectId", id);
-
-        PrintWriter out = response.getWriter();
-        out.println(jsonObject) ;
-        out.close();
+        return output.getId();
     }
 
 }
