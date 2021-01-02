@@ -7,7 +7,14 @@
   </div>
   <div class="col-8">
     <h2>COMMIT TREND</h2>
-  <div>{{repoName}}<br>{{commitCounts}}&nbsp;commit&nbsp;&nbsp;/&nbsp;&nbsp;{{commitAdd}}&nbsp;++&nbsp;&nbsp;/&nbsp;&nbsp;{{commitRemove}}&nbsp;--</div>
+  <div>{{repoName}}<br>Total Commits: {{commitCounts}}</div>
+
+    <!--test-->
+
+    <button (click)="getCommitTrend()">Show Commit Trend</button>
+
+    <!--test-->
+
 
     <div style="display: block;width: 80%;">
 
