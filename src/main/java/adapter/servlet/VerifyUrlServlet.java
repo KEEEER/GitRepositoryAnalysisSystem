@@ -20,7 +20,7 @@ public class VerifyUrlServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        System.out.println("Hello VerifyUrlServlet ");
         JSONObject requestBody = new JSONObject(request.getReader().readLine());
         String needVerifyUrl = requestBody.getString("githubUrl");
         JSONObject returnJson = new JSONObject();

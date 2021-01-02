@@ -16,7 +16,7 @@ export class ChooseProjectComponent implements OnInit {
   datas: any;
   item:any;
   totalProject:any;
-
+  UserID = '';
   getTotalProjectInfo() {
     // const UserData = {
     //     userID:undefined,
@@ -52,6 +52,12 @@ export class ChooseProjectComponent implements OnInit {
     // if (window.location.hash === '#readMore') {
     //   window.location.assign('abc');
     // }
+
+
+    this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
+      this.UserID  = Inputvalue['userID'];
+      console.log(this.UserID);
+    });
   }
 
   // tslint:disable-next-line:typedef
