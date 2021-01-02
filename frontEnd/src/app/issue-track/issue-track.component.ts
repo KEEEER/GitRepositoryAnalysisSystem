@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IssueTrackService} from './issue-track.service';
 
 @Component({
@@ -8,16 +8,31 @@ import {IssueTrackService} from './issue-track.service';
 })
 export class IssueTrackComponent implements OnInit {
 
+  datas: any;
+  titles = ['title1', 'title2', 'title2'];
+  bodys = ['body1', 'body2', 'body3'];
+  startDates = ['startDate1', 'startDate', 'startDate'];
+  closeDates = ['closeDate1', 'closeDate', 'closeDate'];
 
-  constructor(private issueTrackService: IssueTrackService) { }
+
+
+  constructor(private issueTrackService: IssueTrackService) {}
 
   ngOnInit(): void {}
 
+
+
   // tslint:disable-next-line:typedef
-  getIssueTrack(){
+  getIssueTrack() {
     const issueTrackData = {
       owner: undefined,
       repo: undefined
     };
+    const data = JSON.stringify(issueTrackData);
+    this.issueTrackService.getIssueTrackService(data).subscribe(
+      request => {
+        this.datas = request;
+      }
+    );
   }
 }

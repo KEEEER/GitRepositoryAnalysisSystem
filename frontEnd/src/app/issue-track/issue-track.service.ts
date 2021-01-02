@@ -11,7 +11,7 @@ export class IssueTrackService {
   constructor(private httpClient: HttpClient) {}
 
   // tslint:disable-next-line:typedef
-  public getIssueTrack(body) {
+  public getIssueTrackService(body) {
     const headers = new HttpHeaders({
       'Content-Type': 'text/json'
     });

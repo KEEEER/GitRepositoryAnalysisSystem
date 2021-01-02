@@ -6,6 +6,40 @@
   <div class="col-8">
     <br>
     <h2>ISSUE TRACK</h2>
+    <table>
+      <tr class="tableHead">
+        <td>Title</td>
+        <td>Body</td>
+        <td>StartDate</td>
+        <td>CloseDate</td>
+
+      </tr>
+      <tr>
+        <td>
+          <ng-container *ngFor="let title of titles">
+            <div class="mydiv">{{title}}</div>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container *ngFor="let body of bodys">
+            <div class="mydiv">{{body}}</div>
+          </ng-container>
+        </td>
+
+        <td>
+          <ng-container *ngFor="let startDate of startDates">
+            <div class="mydiv">{{startDate}}</div>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container *ngFor="let closeDate of closeDates">
+            <div class="mydiv">{{closeDate}}</div>
+          </ng-container>
+        </td>
+
+      </tr>
+    </table>
+
 
 
   </div>
