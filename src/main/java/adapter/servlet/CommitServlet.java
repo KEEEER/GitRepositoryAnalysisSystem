@@ -1,5 +1,5 @@
 package adapter.servlet;
-import domain.Account;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import usecase.GithubRepositoryAccessor;
@@ -78,25 +78,30 @@ public class CommitServlet extends HttpServlet {
         int totalAdditions = 0;
         int totalDeletions = 0;
         int totalCommits = 0;
+        int linesCount = 0;
         JSONArray WeeksStatsForOutput = new JSONArray();
         for (Map.Entry<Integer, ArrayList<Integer>> statsEntry : weeksStatsMap.entrySet()) {
             ArrayList<Integer> statsInfo = statsEntry.getValue();
+
+            totalAdditions += statsInfo.get(0);
+            totalDeletions += statsInfo.get(1);
+            totalCommits += statsInfo.get(2);
+            linesCount = totalAdditions - totalDeletions;
+
             JSONObject oneWeekStatsForOutput = new JSONObject();
             oneWeekStatsForOutput.put("start_week", statsEntry.getKey());
             oneWeekStatsForOutput.put("additions", statsInfo.get(0));
             oneWeekStatsForOutput.put("deletions", statsInfo.get(1));
             oneWeekStatsForOutput.put("commits", statsInfo.get(2));
+            oneWeekStatsForOutput.put("lines_count", linesCount);
             WeeksStatsForOutput.put(oneWeekStatsForOutput);
-
-            totalAdditions += statsInfo.get(0);
-            totalDeletions += statsInfo.get(1);
-            totalCommits += statsInfo.get(2);
         }
 
         JSONObject totalStatsResult = new JSONObject();
         totalStatsResult.put("total_additions", totalAdditions);
         totalStatsResult.put("total_deletions", totalDeletions);
         totalStatsResult.put("total_commits", totalCommits);
+        totalStatsResult.put("lines_count", linesCount);
         totalStatsResult.put("weeks_stats", WeeksStatsForOutput);
         return totalStatsResult;
     }

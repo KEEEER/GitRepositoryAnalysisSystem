@@ -10,22 +10,19 @@ import {CodeBaseService} from './code-base.service';
 export class CodeBaseComponent implements OnInit {
 
   // 畫圖
+  datas: any;
   barChartOptions = {
     responsive: true
   };
   barChartType = 'line';
   barChartLegend = true;
 
-  barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  barChartLabels = [];
+  barChartDataIn = [];
   barChartData = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}
+    {data: this.barChartDataIn, label: 'Code lines'}
   ];
-  codeRemove = 4321;
-  codeAdd = 12345;
-
-  codeCounts = this.codeAdd - this.codeRemove;
-  repoName: any;
-
+  codeCounts: any;
 
   constructor(private codeBaseService: CodeBaseService) {}
 
@@ -33,11 +30,26 @@ export class CodeBaseComponent implements OnInit {
   ngOnInit(): void {}
 
   // tslint:disable-next-line:typedef
-  getCodeBase(){
+  getCodeBase() {
     const codebaseData = {
       owner: undefined,
       repo: undefined
     };
+    codebaseData.owner = 'python';
+    codebaseData.repo = 'cpython';
+    const data = JSON.stringify(codebaseData);
+    this.codeBaseService.getCodeBaseService(data).subscribe(
+      request => {
+        this.datas = request;
+        for (const temp of this.datas[0].weeks_stats) {
+          const s = new Date(+temp.start_week * 1000);
+          // clear?
+          this.barChartLabels.push(s.toLocaleDateString() );
+          this.barChartDataIn.push(+temp.lines_count.toString());
+        }
+        this.codeCounts = this.datas[0].lines_count;
+      }
+    );
   }
 
 }
