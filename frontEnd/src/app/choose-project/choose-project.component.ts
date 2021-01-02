@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router,ActivatedRoute} from '@angular/router';
 import {GetProjectInfoService} from './get-project-info.service';
 
 @Component({
@@ -17,46 +17,19 @@ export class ChooseProjectComponent implements OnInit {
   item:any;
   totalProject:any;
   UserID = '';
+
   getTotalProjectInfo() {
-    // const UserData = {
-    //     userID:undefined,
-    //   };
-    //   UserData.userID  = this.userID;
 
-    //   const data = JSON.stringify(UserData);
-
-    //   this.getProjectInfoService.getUserProjectData(data).subscribe(
-    //     request => {
-    //       this.datas = request;
-    //       if (this.datas.redirect){
-    //         this.totalProject = TotalProjectList.TotalProjectsInfo;
-    //         for (item in totalProject) {
-    //             this.projectNames.push(item.NumberofProject);
-    //             this.projectIntroduction.push(item.DescriptionofProject);
-    //             this.projectMemberNumbers.push(item.NumberofMembers);
-    //             this.Projectduration.push(item.durationofProject);
-    //         }
-    //       }
-    //       else{
-    //         console.log("Project of User is NULL");
-    //       }
-    //     }
-    //   );
   }
 
 
 
-  constructor(private router: Router ,  private getProjectInfoService: GetProjectInfoService) { }
+  constructor(private router: Router ,  private getProjectInfoService: GetProjectInfoService,private activerouter:ActivatedRoute) { }
 
   ngOnInit(): void {
-    // if (window.location.hash === '#readMore') {
-    //   window.location.assign('abc');
-    // }
-
-
     this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
-      this.UserID  = Inputvalue['userID'];
-      console.log(this.UserID);
+    this.UserID  = Inputvalue['userid'];
+    console.log(this.UserID);
     });
   }
 
