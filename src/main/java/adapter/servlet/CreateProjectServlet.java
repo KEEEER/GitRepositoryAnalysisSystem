@@ -34,9 +34,10 @@ public class CreateProjectServlet extends HttpServlet {
         JSONObject jsonObject = new JSONObject();
         JSONObject requestBody = new JSONObject(request.getReader().readLine());
 
-        String userId = requestBody.getString("userId");
-        String projectName = requestBody.getString("projectName");
-        String id = createProjectAndReturnId(userId, projectName);
+        String userId = String.valueOf(requestBody.get("userId"));
+        String projectName = String.valueOf(requestBody.get("projectName"));
+        String projectDescription = String.valueOf(requestBody.get("projectDescription"));
+        String id = createProjectAndReturnId(userId, projectName, projectDescription);
 
         jsonObject.put("projectId", id);
 
@@ -45,12 +46,13 @@ public class CreateProjectServlet extends HttpServlet {
         out.close();
     }
 
-    private String createProjectAndReturnId(String userId, String projectName){
+    private String createProjectAndReturnId(String userId, String projectName, String projectDescription){
         ProjectRepository projectRepository = new ProjectRepositoryImpl();
         AccountRepository accountRepository = new AccountRepositoryImpl();
         CreateProjectInput input = new CreateProjectInputImpl();
         CreateProjectOutput output = new CreateProjectOutputImpl();
         input.setName(projectName);
+        input.setDescription(projectDescription);
         CreateProjectUseCase createProjectUseCase = new CreateProjectUseCase(projectRepository);
         createProjectUseCase.execute(input, output);
         String id = output.getId();

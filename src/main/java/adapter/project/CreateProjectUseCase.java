@@ -13,7 +13,7 @@ public class CreateProjectUseCase {
     }
 
     public void execute(CreateProjectInput input, CreateProjectOutput output){
-        Project project = new Project(input.getName());
+        Project project = new Project(input.getName(), input.getDescription());
         projectRepository.createProject(project);
         output.setId(project.getId());
         output.setName(project.getName());

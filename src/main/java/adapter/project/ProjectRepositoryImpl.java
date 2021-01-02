@@ -30,9 +30,9 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     public void updateProject(Project project){
         if(!projects.contains(project)) projects.add(project);
         Project projectInDB = getProjectById(project.getId());
-        projectInDB = projectInDB == null ? new Project("empty") : projectInDB;
+        projectInDB = projectInDB == null ? new Project("empty", "empty") : projectInDB;
 
-        final String insert = " INSERT INTO project(id, name, repoid) VALUES(?,?,?) ";
+        final String insert = " INSERT INTO project(id, name, description, repoid) VALUES(?,?,?,?) ";
         conn = Database.getConnection();
         for(String url : project.getGitRepositories()){
             if(projectInDB.getGitRepositories().contains(url)) continue;
@@ -41,7 +41,8 @@ public class ProjectRepositoryImpl implements ProjectRepository {
                 PreparedStatement preparedStatement = conn.prepareStatement(insert);
                 preparedStatement.setString (1, project.getId());
                 preparedStatement.setString (2, project.getName());
-                preparedStatement.setString (3, url);
+                preparedStatement.setString (3, project.getDescription());
+                preparedStatement.setString (4, url);
                 preparedStatement.execute();
             }catch (Exception e){
                 e.printStackTrace();
@@ -64,7 +65,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     }
 
     public Project getProjectById(String id) {
-        final String query = "SELECT name, repoid FROM project WHERE id=?";
+        final String query = "SELECT name, repoid, description, starttime FROM project WHERE id=?";
         Project project;
         List<String> gitRepositories = new ArrayList<>();
         try{
@@ -76,6 +77,8 @@ public class ProjectRepositoryImpl implements ProjectRepository {
             resultSet = preparedStatement.executeQuery();
             if(!resultSet.first()) return null;
             String name = resultSet.getString("name");
+            String description = resultSet.getString("description");
+            String startTime = resultSet.getString("starttime");
             do{
                 gitRepositories.add(resultSet.getString("repoid"));
             }
@@ -83,6 +86,8 @@ public class ProjectRepositoryImpl implements ProjectRepository {
             project = new Project(
                     id,
                     name,
+                    description,
+                    startTime,
                     gitRepositories
             );
 
