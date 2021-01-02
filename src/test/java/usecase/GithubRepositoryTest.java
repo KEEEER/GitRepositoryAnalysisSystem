@@ -1,11 +1,16 @@
 package usecase;
 
+import adapter.gitrepository.GitRepositoryRepositoryImpl;
+import com.mysql.cj.xdevapi.JsonArray;
+import domain.GitRepository;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import usecase.GithubRepositoryAccessor;
+import usecase.gitrepository.GitRepositoryRepository;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -122,5 +127,30 @@ public class GithubRepositoryTest {
         Assert.assertEquals(100, totalChanges);
         Assert.assertEquals(59, additions);
         Assert.assertEquals(41, deletions);
+    }
+
+    @Test
+    public void RepoInformationTest() throws IOException {
+        JSONObject returnJson = new JSONObject();
+
+        String requestRepo = "keer";
+        GitRepositoryRepository gitRepositoryRepository = new GitRepositoryRepositoryImpl();
+        GitRepository gitRepository = gitRepositoryRepository.getGitRepositoryById(requestRepo);
+        gitRepository.getOwnerName();
+        String repoInfoUrl =
+                "https://api.github.com/repos/" +
+                        gitRepository.getOwnerName() + "/" +
+                        gitRepository.getRepoName();
+        String contributorsUrl = repoInfoUrl + "/contributors";
+        GithubRepositoryAccessor accessor = new GithubRepositoryAccessor();
+
+        JSONObject repoJson = (JSONObject) accessor.httpsGet(repoInfoUrl).get(0);
+        JSONArray contributorsJson  = accessor.httpsGet(contributorsUrl);
+
+        returnJson.put("description", repoJson.get("description"));
+        returnJson.put("contributorCount", contributorsJson.length());
+
+        Assert.assertEquals("GRAS", repoJson.get("description"));
+        Assert.assertEquals(4, contributorsJson.length());
     }
 }
