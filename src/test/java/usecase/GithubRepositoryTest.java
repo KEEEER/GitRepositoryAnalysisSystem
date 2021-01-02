@@ -152,6 +152,5 @@ public class GithubRepositoryTest {
 
         Assert.assertEquals("GRAS", repoJson.get("description"));
         Assert.assertEquals(4, contributorsJson.length());
-
     }
 }
