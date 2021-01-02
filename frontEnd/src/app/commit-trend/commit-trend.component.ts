@@ -39,6 +39,7 @@ export class CommitTrendComponent implements OnInit {
       this.owner = Inputvalue.owner;
       this.repo = Inputvalue.repoName;
     });
+    this.getCommitTrend();
   }
 
   // tslint:disable-next-line:typedef

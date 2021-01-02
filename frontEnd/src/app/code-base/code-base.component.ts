@@ -34,9 +34,8 @@ export class CodeBaseComponent implements OnInit {
     this.acrouter.queryParams.subscribe((Inputvalue: any) => {
       this.owner = Inputvalue.owner;
       this.repo = Inputvalue.repoName;
-
-      // console.log(this.repo);
     });
+    this.getCodeBase();
   }
 
   // tslint:disable-next-line:typedef

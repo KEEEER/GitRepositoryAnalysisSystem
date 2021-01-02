@@ -27,6 +27,7 @@ export class IssueTrackComponent implements OnInit {
       this.owner = Inputvalue.owner;
       this.repo = Inputvalue.repoName;
     });
+    this.getIssueTrack();
   }
 
 
