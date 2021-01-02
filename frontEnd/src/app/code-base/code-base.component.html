@@ -7,6 +7,7 @@
     <br>
     <h2>CODE BASE</h2>
     <div>{{repoName}}<br>{{codeCounts}}&nbsp;code&nbsp;&nbsp;/&nbsp;&nbsp;{{codeAdd}}&nbsp;++&nbsp;&nbsp;/&nbsp;&nbsp;{{codeRemove}}&nbsp;--</div>
+    <button (click)="getCodeBase()">Show Commit Trend</button>
     <div style="display: block;width: 80%;">
       <canvas baseChart
               [datasets]="barChartData"

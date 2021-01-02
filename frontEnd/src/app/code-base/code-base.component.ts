@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {CodeBaseService} from './code-base.service';
 
 
 @Component({
@@ -18,7 +19,6 @@ export class CodeBaseComponent implements OnInit {
   barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   barChartData = [
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}
-    // {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
   codeRemove = 4321;
   codeAdd = 12345;
@@ -27,11 +27,17 @@ export class CodeBaseComponent implements OnInit {
   repoName: any;
 
 
-  constructor() {
-  }
+  constructor(private codeBaseService: CodeBaseService) {}
 
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  // tslint:disable-next-line:typedef
+  getCodeBase(){
+    const codebaseData = {
+      owner: undefined,
+      repo: undefined
+    };
   }
 
 }

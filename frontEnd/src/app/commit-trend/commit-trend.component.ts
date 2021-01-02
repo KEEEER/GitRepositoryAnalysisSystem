@@ -27,11 +27,9 @@ export class CommitTrendComponent implements OnInit {
   commitCounts: any;
 
 
-  constructor(private commitTrendService: CommitTrendService) {
-  }
+  constructor(private commitTrendService: CommitTrendService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // tslint:disable-next-line:typedef
   getCommitTrend() {
