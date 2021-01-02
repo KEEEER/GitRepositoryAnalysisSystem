@@ -48,7 +48,7 @@ public class GithubRepositoryAccessor {
 
     private BufferedReader getJSONUsingHttpsGet(HttpsURLConnection httpsConnection) throws IOException {
         is = httpsConnection.getInputStream();
-        isr = new InputStreamReader(is);
+        isr = new InputStreamReader(is, "UTF-8");
         return new BufferedReader(isr);
     }
     
