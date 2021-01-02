@@ -35,9 +35,9 @@ public class CreateProjectServlet extends HttpServlet {
         JSONObject requestBody = new JSONObject(request.getReader().readLine());
 
         String userName = requestBody.getString("userId");
-        String repoName = requestBody.getString("repoName");
-        String id = createProjectAndReturnId(userName, repoName);
-
+        String projectName = requestBody.getString("projectName");
+        String id = createProjectAndReturnId(userName, projectName);
+        
         jsonObject.put("projectId", id);
 
         PrintWriter out = response.getWriter();
