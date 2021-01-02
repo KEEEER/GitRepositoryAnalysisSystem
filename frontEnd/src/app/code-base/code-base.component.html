@@ -6,8 +6,8 @@
   <div class="col-8">
     <br>
     <h2>CODE BASE</h2>
-    <div>{{repoName}}<br>{{codeCounts}}&nbsp;code&nbsp;&nbsp;/&nbsp;&nbsp;{{codeAdd}}&nbsp;++&nbsp;&nbsp;/&nbsp;&nbsp;{{codeRemove}}&nbsp;--</div>
-    <button (click)="getCodeBase()">Show Commit Trend</button>
+    <h4>Total Code lines:{{codeCounts}}</h4>
+    <button (click)="getCodeBase()">Show Code base</button>
     <div style="display: block;width: 80%;">
       <canvas baseChart
               [datasets]="barChartData"

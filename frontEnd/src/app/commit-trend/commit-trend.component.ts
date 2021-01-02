@@ -7,7 +7,7 @@ import {CommitTrendService} from './commit-trend.service';
   styleUrls: ['./commit-trend.component.css']
 })
 export class CommitTrendComponent implements OnInit {
-  repoName = 'WWE2020';
+
   // 畫圖
   datas: any;
   commitList: any;
@@ -38,8 +38,8 @@ export class CommitTrendComponent implements OnInit {
       repo: undefined
     };
 
-    commitData.owner = 'KEEEER';
-    commitData.repo = 'GitRepositoryAnalysisSystem';
+    commitData.owner = 'python';
+    commitData.repo = 'cpython';
     const data = JSON.stringify(commitData);
     this.commitTrendService.getCommit(data).subscribe(
       request => {

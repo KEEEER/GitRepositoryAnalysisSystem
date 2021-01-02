@@ -8,14 +8,14 @@ export class CodeBaseService {
 
   constructor(private httpClient: HttpClient) {}
   // tslint:disable-next-line:typedef
-  public getCodeBase(body) {
+  public getCodeBaseService(body) {
     const headers = new HttpHeaders({
       'Content-Type': 'text/json'
     });
     const options = {
       headers
     };
-    return this.httpClient.post<any>('/GitRepositoryAnalysisSystem/Servlet', body, options);
+    return this.httpClient.post<any>('/GitRepositoryAnalysisSystem/commitServlet', body, options);
 
   }
 }
