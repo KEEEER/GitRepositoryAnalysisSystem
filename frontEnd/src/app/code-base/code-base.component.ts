@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CodeBaseService} from './code-base.service';
-import {CommitTrendService} from "../commit-trend/commit-trend.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -25,17 +24,18 @@ export class CodeBaseComponent implements OnInit {
     {data: this.barChartDataIn, label: 'Code lines'}
   ];
   codeCounts: any;
-  owner = 'python';
+  owner: any;
   repo: any;
 
-  constructor(private codeBaseService: CodeBaseService, private acrouter: ActivatedRoute) {
-  }
+  constructor(private codeBaseService: CodeBaseService, private acrouter: ActivatedRoute) {}
 
 
   ngOnInit(): void {
     this.acrouter.queryParams.subscribe((Inputvalue: any) => {
+      this.owner = Inputvalue.owner;
       this.repo = Inputvalue.repoName;
-      console.log(this.repo);
+
+      // console.log(this.repo);
     });
   }
 

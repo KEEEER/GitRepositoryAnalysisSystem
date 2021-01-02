@@ -8,17 +8,20 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class ChooseRepositoryComponent implements OnInit {
 
-  repoNames = ['cpython', 'REPO2', 'REPO3'];
+  owner = 'KEEEER';
+  repoNames = ['GitRepositoryAnalysisSystem', 'REPO2', 'REPO3'];
 
 
-  constructor(private router: Router, private acrouter: ActivatedRoute) {}
+  constructor(private router: Router, private acrouter: ActivatedRoute) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   // tslint:disable-next-line:typedef
   goToAnalysisPage() {
     // this.router.navigateByUrl('analysis');
-    this.router.navigate(['analysis'], {queryParams: {repoName: this.repoNames[0]}});
+    this.router.navigate(['analysis'], {queryParams: {owner: this.owner, repoName: this.repoNames[0]}});
   }
 
   // tslint:disable-next-line:typedef

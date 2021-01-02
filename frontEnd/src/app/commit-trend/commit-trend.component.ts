@@ -26,7 +26,7 @@ export class CommitTrendComponent implements OnInit {
     // {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
   commitCounts: any;
-  owner = 'python';
+  owner: any;
   repo: any;
 
 
@@ -36,8 +36,8 @@ export class CommitTrendComponent implements OnInit {
 
   ngOnInit(): void {
     this.acrouter.queryParams.subscribe((Inputvalue: any) => {
+      this.owner = Inputvalue.owner;
       this.repo = Inputvalue.repoName;
-      console.log(this.repo);
     });
   }
 

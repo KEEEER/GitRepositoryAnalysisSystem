@@ -9,7 +9,9 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class AnalysisComponent implements OnInit {
   imgURL = 'https://assets.juksy.com/files/articles/53296/800x_100_w-5720399b28484.jpg';
   projectName = 'WWE2020';
-  repoName = '';
+  owner: any;
+  repoName: any;
+
   RepoMemberCounts = 50;
 
 
@@ -18,32 +20,26 @@ export class AnalysisComponent implements OnInit {
 
   ngOnInit(): void {
     this.acrouter.queryParams.subscribe((Inputvalue: any) => {
+      this.owner = Inputvalue.owner;
       this.repoName = Inputvalue.repoName;
-      console.log(this.repoName);
     });
   }
 
   // tslint:disable-next-line:typedef
   goToCommitTrendPage() {
     // this.router.navigateByUrl('commit-trend');
-    this.router.navigate(['commit-trend'], {queryParams: {repoName: this.repoName}});
+    this.router.navigate(['commit-trend'], {queryParams: {owner: this.owner, repoName: this.repoName}});
   }
 
   // tslint:disable-next-line:typedef
   goToCodeBasePage() {
     // this.router.navigateByUrl('code-base');
-    this.router.navigate(['code-base'], {queryParams: {repoName: this.repoName}});
+    this.router.navigate(['code-base'], {queryParams: {owner: this.owner, repoName: this.repoName}});
   }
 
   // tslint:disable-next-line:typedef
   goToIssueTrackPage() {
     // this.router.navigateByUrl('issue-track');
-    this.router.navigate(['issue-track'], {queryParams: {repoName: this.repoName}});
-  }
-
-  // tslint:disable-next-line:typedef
-  goToCommitLogPage() {
-    this.router.navigateByUrl('commit-log');
-
+    this.router.navigate(['issue-track'], {queryParams: {owner: this.owner, repoName: this.repoName}});
   }
 }

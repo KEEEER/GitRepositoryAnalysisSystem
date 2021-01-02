@@ -15,7 +15,8 @@ export class IssueTrackComponent implements OnInit {
   bodys = ['body1', 'body2', 'body3'];
   startDates = ['startDate1', 'startDate', 'startDate'];
   closeDates = ['closeDate1', 'closeDate', 'closeDate'];
-  owner = 'python';
+  States = ['State1', 'State2', 'State3'];
+  owner: any;
   repo: any;
 
 
@@ -23,8 +24,8 @@ export class IssueTrackComponent implements OnInit {
 
   ngOnInit(): void {
     this.acrouter.queryParams.subscribe((Inputvalue: any) => {
+      this.owner = Inputvalue.owner;
       this.repo = Inputvalue.repoName;
-      console.log(this.repo);
     });
   }
 
@@ -41,6 +42,14 @@ export class IssueTrackComponent implements OnInit {
     this.issueTrackService.getIssueTrackService(data).subscribe(
       request => {
         this.datas = request;
+        for (const temp of this.datas) {
+          this.titles.push(temp.title);
+          this.bodys.push(temp.body);
+          this.startDates.push(temp.created_at);
+          this.closeDates.push(temp.closed_at);
+          this.States.push(temp.state);
+
+        }
       }
     );
   }
