@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = "/verifyUrl", name = "LoginServlet")
+@WebServlet(urlPatterns = "/verifyUrl", name = "VerifyUrlServlet")
 public class VerifyUrlServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,7 +22,7 @@ public class VerifyUrlServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         JSONObject requestBody = new JSONObject(request.getReader().readLine());
-        String needVerifyUrl = requestBody.getString("GithubUrl");
+        String needVerifyUrl = requestBody.getString("githubUrl");
         JSONObject returnJson = new JSONObject();
 
         GithubRepositoryAccessor accessor = new GithubRepositoryAccessor();
