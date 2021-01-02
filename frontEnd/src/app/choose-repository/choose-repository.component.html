@@ -1,4 +1,5 @@
 <app-header></app-header>
+<br>
 <div class="row" style="padding:10px 100px 10px 100px;">
   <div class="col-4">
     <app-personal-imformation></app-personal-imformation>
@@ -8,24 +9,24 @@
   <div class="col-8">
     <div>
       <table>
-        <section *ngFor="let repoName of repoNames">
-
-          <td>
+        <tr>
+          <td *ngFor="let repoName of repoNames">
 
             <button class="myButton" (click)="goToAnalysisPage()">
               <div>{{repoName}}</div>
 
             </button>
-          <td>
-
-        </section>
+          </td>
+        </tr>
       </table>
 
 
     </div>
-    <button  (click)="goToAddRepoPage()">
+    <button class="myButton2" (click)="goToAddRepoPage()">
       <div>ADD REPO</div>
     </button>
+
+
     <!--    <button (click)="goToDeleteRepoPage()"><div>DELETE REPO</div></button>-->
     <!--    <button (click)="chooseMuti()"><div>CHOOSE MUTI</div></button>-->
 
