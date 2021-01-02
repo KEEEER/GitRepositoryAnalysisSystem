@@ -45,11 +45,16 @@
                                         </td>
                                         <td colspan="1" width="25%" style="text-align:right;">
                                             <h4 class="display-4">Add Github Repo Link : <br>
-                                              <input type="text" name="FullNameofUser" placeholder="Input Repo url:"><span class="  text-black display-4" href="#"></span>
-                                                <button type="submit">Add</button>
+                                              <input type="text" name="FullNameofUser" placeholder="Input Repo url:" [(ngModel)]="InputGitRepoUrl" ><span class="  text-black display-4" href="#"></span>
+                                              <button type="submit" (click)="CheckGitRepoUrlVaild()">Add</button>
                                             </h4>
+
                                             <h4>
-                                            顯示加入的Github Repo
+                                              <div>
+                                                <div><strong>[導入成功]</strong></div>
+                                                <div>({{projectURLs}})</div>
+                                              </div>
+
                                             </h4>
 
                                         </td>

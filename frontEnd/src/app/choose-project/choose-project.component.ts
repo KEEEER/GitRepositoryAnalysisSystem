@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-
+import {GetProjectInfoService} from './get-project-info.service';
 
 @Component({
   selector: 'app-choose-project',
@@ -8,14 +8,45 @@ import {Router} from '@angular/router';
   styleUrls: ['./choose-project.component.css']
 })
 export class ChooseProjectComponent implements OnInit {
-  projectNames = ['WWE2020', 'WWE2019', 'WWE2018'];
-  projectIntroduction = '專案內容敘述';
+  projectNames = [];
+  projectIntroduction = [];
+  projectMemberNumbers = [];
+  Projectduration = [];
+  userID:any;
+  datas: any;
+  item:any;
+  totalProject:any;
+
+  getTotalProjectInfo() {
+    // const UserData = {
+    //     userID:undefined,
+    //   };
+    //   UserData.userID  = this.userID;
+
+    //   const data = JSON.stringify(UserData);
+
+    //   this.getProjectInfoService.getUserProjectData(data).subscribe(
+    //     request => {
+    //       this.datas = request;
+    //       if (this.datas.redirect){
+    //         this.totalProject = TotalProjectList.TotalProjectsInfo;
+    //         for (item in totalProject) {
+    //             this.projectNames.push(item.NumberofProject);
+    //             this.projectIntroduction.push(item.DescriptionofProject);
+    //             this.projectMemberNumbers.push(item.NumberofMembers);
+    //             this.Projectduration.push(item.durationofProject);
+    //         }
+    //       }
+    //       else{
+    //         console.log("Project of User is NULL");
+    //       }
+    //     }
+    //   );
+  }
 
 
 
-
-
-  constructor(private router: Router) { }
+  constructor(private router: Router ,  private getProjectInfoService: GetProjectInfoService) { }
 
   ngOnInit(): void {
     // if (window.location.hash === '#readMore') {

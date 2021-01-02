@@ -1,3 +1,4 @@
+
 <app-header></app-header>
 <div class="row" style="padding:10px 100px 10px 100px;">
   <div class="col-4">
@@ -10,13 +11,15 @@
     <br>
     <div>
       <table>
-        <section *ngFor="let projectName of projectNames">
+        <section *ngFor="let Projectitem of totalProject">
           <tr>
             <div>
 
               <button class="myButton" (click)="choose_repo()">
                 <div>{{projectName}}</div>
                 <div>({{projectIntroduction}})</div>
+                <div>({{projectMemberNumbers}})</div>
+                <div>({{Projectduration}})</div>
               </button>
             </div>
           </tr>
