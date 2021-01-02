@@ -76,7 +76,7 @@
     //網頁載入後立刻執行的動作
     window.onload = function() {
         var TotalProjectList = {
-            "Username": "George",
+            "UserID": "George",
             "NumbersOfTotalProject": 3,
             "TotalProjectsInfo": [{
                 "NumberofProject": "Project1",

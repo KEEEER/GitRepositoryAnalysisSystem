@@ -41,30 +41,25 @@
                                 <table>
                                     <tr>
                                         <td rowspan="3" width="25%" style="text-align:left;">
-                                            <h4 class="display-4">Project Name: <br><input type="text" name="FullNameofUser" placeholder="專案名稱" required></h4>
+                                            <h4 class="display-4">Project Name: <br><input type="text" name="FullNameofUser" placeholder="專案名稱" required [(ngModel)]="NameofProject" ></h4>
                                         </td>
                                         <td colspan="1" width="25%" style="text-align:right;">
-                                            <h4 class="display-4">Add Github Repo Link : <br>
-                                              <input type="text" name="FullNameofUser" placeholder="Input Repo url:" [(ngModel)]="InputGitRepoUrl" ><span class="  text-black display-4" href="#"></span>
-                                              <button type="submit" (click)="CheckGitRepoUrlVaild()">Add</button>
-                                            </h4>
-
-                                            <h4>
-                                              <div>
-                                                <div><strong>[導入成功]</strong></div>
-                                                <div>({{projectURLs}})</div>
-                                              </div>
-
-                                            </h4>
+                                          <h4 class="display-4">Add Github Repo Link : <br>
+                                            <input type="text" name="FullNameofUser" placeholder="Input Repo url:" [(ngModel)]="InputGitRepoUrl" ><span class="  text-black display-4" href="#"></span>
+                                            <button type="submit" (click)="CheckGitRepoUrlVaild()">Add</button>
+                                          </h4>
+                                          <h3  style="color:red; " >{{badImportMsg}}</h3>
+                                          <h4><div style="text-align:left;">{{projectImportMsg}}</div></h4>
 
                                         </td>
                                     </tr>
                                 </table>
-                                <h4 class="display-4 ">Project Description(optional):<br><textarea class="ProjectDescription" id="ProjectDescriptionInputText" name="ProjectDescriptionInputTextArea" rows="10" cols="50" size="50%" maxlength="80" placeholder="長度限制:300字" type="text"
+                                <h4 class="display-4 ">Project Description(optional):<br>
+                                  <textarea [(ngModel)]="DesciptionOfProject" class="ProjectDescription" id="ProjectDescriptionInputText" name="ProjectDescriptionInputTextArea" rows="10" cols="50" size="50%" maxlength="80" placeholder="長度限制:300字" type="text"
                                         onkeyup=""></textarea></h4>
                             </div>
                             <div style="text-align:center;" class="display-4">
-                                <button type="submit" class = "ProjectCreation">Create Project</button>
+                                <button type="submit" class = "ProjectCreation" (click)="CreatProject()" >Create Project</button>
                             </div>
                         </form>
 

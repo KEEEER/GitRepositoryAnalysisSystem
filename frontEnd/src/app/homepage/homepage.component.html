@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <app-header [UserNametitle] = "childTitle"></app-header>
+    <app-header [UserNametitle] = "childTitle" [UserID] = "UserID"></app-header>
 
     <section class="features4 cid-sk3LZFoTHC" id="features4-k">
 
@@ -46,7 +46,7 @@
                             <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">Creating your own project</h6>
                             <p class="mbr-text mbr-fonts-style mt-3 display-7">You can add a new project and import the Github Repo url,and can prepare to start to understand the whole team working status.</p>
                         </div>
-                        <div class="mbr-section-btn item-footer mt-2"><a href="{{ProjectCreatpageurl}}" class="btn item-btn btn-black display-7" target="_self">Start Now &gt;</a></div>
+                        <div class="mbr-section-btn item-footer mt-2"><a (click) = "NavitoCreateProject()" class="btn item-btn btn-black display-7" target="_self">Start Now &gt;</a></div>
                     </div>
                 </div>
                 <div class="item features-image сol-12 col-md-6 col-lg-4">

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router,ActivatedRoute} from '@angular/router';
 import { VerifyGitRepoService } from './verify-git-repo.service';
+import { CreateProjectService } from './create-project.service';
+
 
 @Component({
   selector: 'app-add-project',
@@ -8,33 +10,99 @@ import { VerifyGitRepoService } from './verify-git-repo.service';
   styleUrls: ['./add-project.component.css']
 })
 export class AddProjectComponent implements OnInit {
-  InputGitRepoUrl = '';
+  projectImportMsg = '';
+  InputGitRepoUrl: '';
+  badImportMsg = '';
   datas: any;
-  projectURLs:string[];
-  constructor(private router: Router, private verifygitreposervice: VerifyGitRepoService) { }
+  NameofProject = '';
+  DesciptionOfProject= '';
+  UserID = '';
+  projectURLs: Array<string>;
+  IDofProject:'';
+  InputGitRepoUrlList = new Array();
+  ProjectOverviewpageurl = "choose-project";
+
+  constructor(private router: Router, private verifygitreposervice: VerifyGitRepoService,private createprojectservice: CreateProjectService ,private activerouter:ActivatedRoute) {
+
+   }
   ngOnInit(): void {
+    this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
+               this.UserID  = Inputvalue['userID'];
+               console.log(this.UserID);
+           });
   }
 
   CheckGitRepoUrlVaild(){
     const GitRepoUrlData = {
-              GithubUrl:undefined
-            };
-            GitRepoUrlData.GithubUrl  = this.InputGitRepoUrl;
+              githubUrl:undefined
+    };
+            GitRepoUrlData.githubUrl  = this.InputGitRepoUrl;
     const data = JSON.stringify(GitRepoUrlData);
     this.verifygitreposervice.verifyGitUrlVaild(data).subscribe(
-
       request => {
         this.datas = request;
-        if (this.datas.isUrlVaild){
-          //alert("驗證成功!轉至登入頁面")
-          this.projectURLs.push(this.InputGitRepoUrl);
+        console.log(this.datas);
+        if (this.datas.isUrlVaild == "true"){
+          this.projectImportMsg += '\n' + " [導入成功] "+this.InputGitRepoUrl + '\n';
+          this.InputGitRepoUrlList.push(this.InputGitRepoUrl);
+          if(this.badImportMsg != null ){
+            this.badImportMsg = null;
+          }
         }
         else{
-          //this.badRequest = "此網址無效，請重新輸入";
+          this.badImportMsg = "此網址無效，請重新輸入";
         }
       }
     );
-
-
   }
+
+  CreatProject(){
+    const CreateUserProjectData = {
+      userId:undefined,
+      projectName:undefined,
+      projectDescription:undefined
+    };
+    CreateUserProjectData.userId  =  this.UserID;
+    CreateUserProjectData.projectName  =  this.NameofProject;
+    CreateUserProjectData.projectDescription = this.DesciptionOfProject;
+    const data = JSON.stringify(CreateUserProjectData);
+    this.createprojectservice.createProject(data).subscribe(
+      request => {
+        this.datas = request;
+        console.log(this.datas);
+        if (this.datas.projectId != ""){
+          this.IDofProject = this.datas.projectId;
+          console.log("CreateProjectSuccess",this.IDofProject);
+          for(var index in this.InputGitRepoUrlList){
+            this.AppendRepo(index);
+          }
+          this.router.navigate([this.ProjectOverviewpageurl], { queryParams:{userid: this.UserID}}); //create project ok ,navi to projectoverview
+
+        }
+      }
+    );
+  }
+
+  AppendRepo(index){
+
+    const RepoDataOfProject = {
+          projectId:undefined,
+          githubUrl:undefined
+    };
+     RepoDataOfProject.projectId  =  this.IDofProject;
+     RepoDataOfProject.githubUrl  =  this.InputGitRepoUrlList[index];
+
+     const repodata = JSON.stringify(RepoDataOfProject);
+     this.createprojectservice.appendRepotoProject(repodata).subscribe(
+       request => {
+         this.datas = request;
+         console.log(this.datas);
+         if (this.datas.isSuccess == "true"){
+           this.IDofProject = this.datas.projectId;
+           console.log("appendRepotoProjectSuccess");
+         }
+       }
+     );
+  }
+
 }
