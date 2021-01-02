@@ -8,7 +8,6 @@ import {CommitTrendService} from './commit-trend.service';
 })
 export class CommitTrendComponent implements OnInit {
   repoName = 'WWE2020';
-
   // 畫圖
   datas: any;
   commitList: any;
@@ -22,10 +21,10 @@ export class CommitTrendComponent implements OnInit {
   barChartLabels = [];
   barChartDataIn = [];
   barChartData = [
-    {data: this.barChartDataIn, label: 'Series A'}
+    {data: this.barChartDataIn, label: 'Commit Trend'}
     // {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
-  commitCounts = 65;
+  commitCounts: any;
 
 
   constructor(private commitTrendService: CommitTrendService) {
@@ -44,7 +43,6 @@ export class CommitTrendComponent implements OnInit {
     commitData.owner = 'KEEEER';
     commitData.repo = 'GitRepositoryAnalysisSystem';
     const data = JSON.stringify(commitData);
-    // this.datas = 'abcdasd';
     this.commitTrendService.getCommit(data).subscribe(
       request => {
 
@@ -57,13 +55,14 @@ export class CommitTrendComponent implements OnInit {
           this.barChartLabels.push(s.toLocaleDateString() );
           this.barChartDataIn.push(+temp.commits.toString());
         }
+        this.commitCounts = this.datas[0].total_commits;
 
 
       }
     );
 
 
-  }
+}
 
 
 }
