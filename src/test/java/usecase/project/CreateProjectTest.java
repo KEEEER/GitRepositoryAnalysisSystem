@@ -40,16 +40,22 @@ public class CreateProjectTest {
 
         CreateProjectInput input = new CreateProjectInputImpl();
         CreateProjectOutput output = new CreateProjectOutputImpl();
+
         input.setName("MakeBigMoney");
+        input.setDescription("abc");
+
         CreateProjectUseCase createProjectUseCase = new CreateProjectUseCase(projectRepository);
         createProjectUseCase.execute(input, output);
 
         String id = output.getId();
         Project project = projectRepository.getProjectById(id);
         Assert.assertEquals(output.getName(), project.getName());
+        Assert.assertEquals("abc", project.getDescription());
+        Assert.assertNotNull(project.getStartTime());
 
         account.addProject(project.getId());
         accountRepository.updateAccountOwnProject(account);
+
         Account accountInDB = accountRepository.getAccountById(account.getId());
         Assert.assertEquals(1, accountInDB.getProjects().size());
 
