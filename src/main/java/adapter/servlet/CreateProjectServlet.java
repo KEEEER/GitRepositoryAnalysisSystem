@@ -34,10 +34,10 @@ public class CreateProjectServlet extends HttpServlet {
         JSONObject jsonObject = new JSONObject();
         JSONObject requestBody = new JSONObject(request.getReader().readLine());
 
-        String userName = requestBody.getString("userId");
+        String userId = requestBody.getString("userId");
         String projectName = requestBody.getString("projectName");
-        String id = createProjectAndReturnId(userName, projectName);
-        
+        String id = createProjectAndReturnId(userId, projectName);
+
         jsonObject.put("projectId", id);
 
         PrintWriter out = response.getWriter();
@@ -45,20 +45,18 @@ public class CreateProjectServlet extends HttpServlet {
         out.close();
     }
 
-    private String createProjectAndReturnId(String userName, String repoName){
+    private String createProjectAndReturnId(String userId, String projectName){
         ProjectRepository projectRepository = new ProjectRepositoryImpl();
         AccountRepository accountRepository = new AccountRepositoryImpl();
         CreateProjectInput input = new CreateProjectInputImpl();
         CreateProjectOutput output = new CreateProjectOutputImpl();
-        input.setName(repoName);
+        input.setName(projectName);
         CreateProjectUseCase createProjectUseCase = new CreateProjectUseCase(projectRepository);
         createProjectUseCase.execute(input, output);
-
         String id = output.getId();
-        Project project = projectRepository.getProjectById(id);
 
-        Account account = accountRepository.getAccountById(output.getId());
-        account.addProject(project.getId());
+        Account account = accountRepository.getAccountById(userId);
+        account.addProject(id);
 
         accountRepository.updateAccountOwnProject(account);
         return output.getId();
