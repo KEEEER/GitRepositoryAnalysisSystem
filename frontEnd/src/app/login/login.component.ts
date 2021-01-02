@@ -33,15 +33,14 @@ export class LoginComponent implements OnInit {
     };
     UserLoginData.account  = this.accountInput;
     UserLoginData.password = this.passwordInput;
+
     const data = JSON.stringify(UserLoginData);
     this.loginService.verifyUserLoginData(data).subscribe(
       request => {
         this.datas = request;
         if (this.datas.redirect){
-          this.router.navigate([this.datas.redirect.toString()], { queryParams:{Username: this.datas.userName ,UserID: this.datas.userId}});
-          console.log(this.datas.redirect)
-          console.log(this.datas.userName)
-          console.log(this.datas.userId)
+          this.router.navigate([this.datas.redirect.toString()], { queryParams:{Username: this.datas.userName.toString() ,UserID: this.datas.userId.toString()}});
+          console.log("userId =",this.datas.userId.toString())
         }
         else{
           this.badRequest = "帳號或密碼錯誤";

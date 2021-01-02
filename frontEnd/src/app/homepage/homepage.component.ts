@@ -20,10 +20,10 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
     this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
-        this.childTitle  = Inputvalue['Username'];
-        this.UserID  = Inputvalue['UserID'];
-        console.log(this.childTitle);
-        console.log(this.UserID);
+        this.childTitle  = Inputvalue['Username'].toString();
+        this.UserID  = Inputvalue['UserID'].toString();
+        console.log(this.childTitle.toString());
+        console.log(this.UserID.toString());
     });
   }
 

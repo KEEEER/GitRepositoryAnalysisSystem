@@ -28,7 +28,7 @@ export class AddProjectComponent implements OnInit {
   ngOnInit(): void {
     this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
                this.UserID  = Inputvalue['userID'];
-               console.log(this.UserID);
+               console.log(this.UserID.toString());
            });
   }
 
@@ -62,9 +62,9 @@ export class AddProjectComponent implements OnInit {
       projectName:undefined,
       projectDescription:undefined
     };
-    CreateUserProjectData.userId  =  this.UserID;
-    CreateUserProjectData.projectName  =  this.NameofProject;
-    CreateUserProjectData.projectDescription = this.DesciptionOfProject;
+    CreateUserProjectData.userId  =  this.UserID.toString();
+    CreateUserProjectData.projectName  =  this.NameofProject.toString();
+    CreateUserProjectData.projectDescription = this.DesciptionOfProject.toString();
     const data = JSON.stringify(CreateUserProjectData);
     this.createprojectservice.createProject(data).subscribe(
       request => {
@@ -89,8 +89,8 @@ export class AddProjectComponent implements OnInit {
           projectId:undefined,
           githubUrl:undefined
     };
-     RepoDataOfProject.projectId  =  this.IDofProject;
-     RepoDataOfProject.githubUrl  =  this.InputGitRepoUrlList[index];
+     RepoDataOfProject.projectId  =  this.IDofProject.toString();
+     RepoDataOfProject.githubUrl  =  this.InputGitRepoUrlList[index].toString();
 
      const repodata = JSON.stringify(RepoDataOfProject);
      this.createprojectservice.appendRepotoProject(repodata).subscribe(

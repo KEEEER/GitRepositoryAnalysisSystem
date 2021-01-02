@@ -47,12 +47,22 @@ public class GetUserProjectServlet extends HttpServlet {
             jsonObject.put("projectName", project.getName());
             jsonObject.put("projectDescription", project.getDescription());
             jsonObject.put("projectStartTime", project.getStartTime());
-            jsonObject.put("gitRepoCount", project.getGitRepositories().size());
+            int gitRepoCount = repoCountAfterFilterEmptyRepoId(project);
+            jsonObject.put("gitRepoCount", gitRepoCount);
             jsonArray.put(jsonObject);
         }
         System.out.println(jsonArray);
         PrintWriter out = response.getWriter();
         out.println(jsonArray) ;
         out.close();
+    }
+
+    private int repoCountAfterFilterEmptyRepoId(Project project){
+        int result = 0;
+        for (String repoId : project.getGitRepositories()){
+            if(!repoId.equals("")) result++;
+        }
+
+        return result;
     }
 }

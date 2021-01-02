@@ -15,7 +15,7 @@ export class GetProjectInfoService {
       const options = {
         headers
       };
-      return this.httpClient.post<any>('/GitRepositoryAnalysisSystem/GetUserProjectInfo', body, options);
+      return this.httpClient.post<any>('/GitRepositoryAnalysisSystem/getUserProject', body, options);
     }
 
 
