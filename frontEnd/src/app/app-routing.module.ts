@@ -15,7 +15,7 @@ import {CodeBaseComponent} from './code-base/code-base.component';
 import {IssueTrackComponent} from './issue-track/issue-track.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {ProjectoverviewComponent} from './projectoverview/projectoverview.component';
-import {CommitLogComponent} from './commit-log/commit-log.component';
+
 
 const routes: Routes = [
   {path: 'homepage', component: HomepageComponent},
@@ -33,7 +33,6 @@ const routes: Routes = [
   {path: 'commit-trend', component: CommitTrendComponent},
   {path: 'code-base', component: CodeBaseComponent},
   {path: 'issue-track', component: IssueTrackComponent},
-  {path: 'commit-log', component: CommitLogComponent},
   {path: 'projectoverview', component: ProjectoverviewComponent},
   {path: '**', component: LoginComponent}
 

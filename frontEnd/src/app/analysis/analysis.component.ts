@@ -37,7 +37,8 @@ export class AnalysisComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   goToIssueTrackPage() {
-    this.router.navigateByUrl('issue-track');
+    // this.router.navigateByUrl('issue-track');
+    this.router.navigate(['issue-track'], {queryParams: {repoName: this.repoName}});
   }
 
   // tslint:disable-next-line:typedef

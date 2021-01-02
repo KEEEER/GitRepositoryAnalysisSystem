@@ -11,7 +11,6 @@ import {CommitTrendComponent} from './commit-trend/commit-trend.component';
 import {AnalysisComponent} from './analysis/analysis.component';
 import {CodeBaseComponent} from './code-base/code-base.component';
 import {IssueTrackComponent} from './issue-track/issue-track.component';
-import {CommitLogComponent} from './commit-log/commit-log.component';
 import {AddRepoComponent} from './add-repo/add-repo.component';
 import {AddProjectComponent} from './add-project/add-project.component';
 import {AddRepoFromGithubComponent} from './add-repo-from-github/add-repo-from-github.component';
@@ -38,7 +37,6 @@ import { ProjectoverviewComponent } from './projectoverview/projectoverview.comp
     AnalysisComponent,
     CodeBaseComponent,
     IssueTrackComponent,
-    CommitLogComponent,
     AddRepoComponent,
     AddProjectComponent,
     AddRepoFromGithubComponent,
