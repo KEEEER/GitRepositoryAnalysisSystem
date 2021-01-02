@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
         if (isAccountValid){
             jsonObject.append("valid", "true");
             jsonObject.append("userName", account.getName());
+            jsonObject.append("userId", account.getId());
             jsonObject.append("redirect", "homepage");
         }
         else{
