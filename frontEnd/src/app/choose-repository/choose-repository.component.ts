@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-choose-repository',
@@ -8,16 +8,17 @@ import {Router} from '@angular/router';
 })
 export class ChooseRepositoryComponent implements OnInit {
 
-  repoNames = ['REPO1', 'REPO2', 'REPO3'];
+  repoNames = ['cpython', 'REPO2', 'REPO3'];
 
-  constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  constructor(private router: Router, private acrouter: ActivatedRoute) {}
+
+  ngOnInit(): void {}
 
   // tslint:disable-next-line:typedef
   goToAnalysisPage() {
-    this.router.navigateByUrl('analysis');
+    // this.router.navigateByUrl('analysis');
+    this.router.navigate(['analysis'], {queryParams: {repoName: this.repoNames[0]}});
   }
 
   // tslint:disable-next-line:typedef

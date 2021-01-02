@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CommitTrendService} from './commit-trend.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-commit-trend',
@@ -25,11 +26,20 @@ export class CommitTrendComponent implements OnInit {
     // {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
   commitCounts: any;
+  owner = 'python';
+  repo: any;
 
 
-  constructor(private commitTrendService: CommitTrendService) {}
+  constructor(private commitTrendService: CommitTrendService, private acrouter: ActivatedRoute) {
 
-  ngOnInit(): void {}
+  }
+
+  ngOnInit(): void {
+    this.acrouter.queryParams.subscribe((Inputvalue: any) => {
+      this.repo = Inputvalue.repoName;
+      console.log(this.repo);
+    });
+  }
 
   // tslint:disable-next-line:typedef
   getCommitTrend() {
@@ -38,8 +48,8 @@ export class CommitTrendComponent implements OnInit {
       repo: undefined
     };
 
-    commitData.owner = 'python';
-    commitData.repo = 'cpython';
+    commitData.owner = this.owner;
+    commitData.repo = this.repo;
     const data = JSON.stringify(commitData);
     this.commitTrendService.getCommit(data).subscribe(
       request => {
@@ -50,7 +60,7 @@ export class CommitTrendComponent implements OnInit {
         for (let temp of this.datas[0].weeks_stats) {
           const s = new Date(+temp.start_week * 1000);
           // clear?
-          this.barChartLabels.push(s.toLocaleDateString() );
+          this.barChartLabels.push(s.toLocaleDateString());
           this.barChartDataIn.push(+temp.commits.toString());
         }
         this.commitCounts = this.datas[0].total_commits;
@@ -60,7 +70,7 @@ export class CommitTrendComponent implements OnInit {
     );
 
 
-}
+  }
 
 
 }

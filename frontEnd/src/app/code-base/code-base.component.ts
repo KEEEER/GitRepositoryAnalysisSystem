@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CodeBaseService} from './code-base.service';
+import {CommitTrendService} from "../commit-trend/commit-trend.service";
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -23,11 +25,19 @@ export class CodeBaseComponent implements OnInit {
     {data: this.barChartDataIn, label: 'Code lines'}
   ];
   codeCounts: any;
+  owner = 'python';
+  repo: any;
 
-  constructor(private codeBaseService: CodeBaseService) {}
+  constructor(private codeBaseService: CodeBaseService, private acrouter: ActivatedRoute) {
+  }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.acrouter.queryParams.subscribe((Inputvalue: any) => {
+      this.repo = Inputvalue.repoName;
+      console.log(this.repo);
+    });
+  }
 
   // tslint:disable-next-line:typedef
   getCodeBase() {
@@ -35,8 +45,8 @@ export class CodeBaseComponent implements OnInit {
       owner: undefined,
       repo: undefined
     };
-    codebaseData.owner = 'python';
-    codebaseData.repo = 'cpython';
+    codebaseData.owner = this.owner;
+    codebaseData.repo = this.repo;
     const data = JSON.stringify(codebaseData);
     this.codeBaseService.getCodeBaseService(data).subscribe(
       request => {
@@ -44,7 +54,7 @@ export class CodeBaseComponent implements OnInit {
         for (const temp of this.datas[0].weeks_stats) {
           const s = new Date(+temp.start_week * 1000);
           // clear?
-          this.barChartLabels.push(s.toLocaleDateString() );
+          this.barChartLabels.push(s.toLocaleDateString());
           this.barChartDataIn.push(+temp.lines_count.toString());
         }
         this.codeCounts = this.datas[0].lines_count;
