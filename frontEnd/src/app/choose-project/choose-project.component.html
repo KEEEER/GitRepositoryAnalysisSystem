@@ -11,15 +11,16 @@
     <br>
     <div>
       <table>
-        <section *ngFor="let Projectitem of totalProject">
+        <section *ngFor="let item of datas">
           <tr>
             <div>
-
               <button class="myButton" (click)="choose_repo()">
-                <div>{{projectName}}</div>
-                <div>({{projectIntroduction}})</div>
-                <div>({{projectMemberNumbers}})</div>
-                <div>({{Projectduration}})</div>
+                <div style = "text-align:left;"><h4>專案名稱:{{item.projectName}}</h4></div>
+                <div style = "text-align:left;"><h5>專案敘述:{{item.projectDescription}}</h5></div>
+                <div style = "text-align:right;"><h5>Repo個數:{{item.gitRepoCount}}</h5></div>
+                <div style = "text-align:right;"><h5>開始時間:{{item.projectStartTime}}</h5></div>
+
+
               </button>
             </div>
           </tr>

@@ -8,10 +8,10 @@ import {GetProjectInfoService} from './get-project-info.service';
   styleUrls: ['./choose-project.component.css']
 })
 export class ChooseProjectComponent implements OnInit {
-  projectNames = [];
-  projectIntroduction = [];
-  projectMemberNumbers = [];
-  Projectduration = [];
+  projectNames = new Array();
+  projectIntroduction = new Array();
+  projectRepoNumbers = new Array();
+  ProjectStartTime = new Array();
   datas: any;
   item:any;
   totalProject:any;
@@ -25,7 +25,6 @@ export class ChooseProjectComponent implements OnInit {
     this.UserID  = Inputvalue['userid'].toString();
     console.log(this.UserID);
     });
-
     this.getTotalProjectInfo();
   }
 
@@ -39,6 +38,12 @@ export class ChooseProjectComponent implements OnInit {
         request => {
           this.datas = request;
           console.log(this.datas);
+          for(let item of this.datas){
+            this.projectNames.push(item.projectName);
+            this.projectIntroduction.push(item.projectDescription);
+            this.projectRepoNumbers.push(item.gitRepoCount);
+            this.ProjectStartTime.push(item.projectStartTime);
+          }
         }
       );
   }
@@ -46,7 +51,7 @@ export class ChooseProjectComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   choose_repo() {
-    this.router.navigateByUrl('choose-repository');
+    this.router.navigate(['choose-repository'], { queryParams:{userID:  this.UserID}});
   }
 
   // tslint:disable-next-line:typedef
