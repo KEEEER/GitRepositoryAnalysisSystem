@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-repo-imformation',
@@ -6,16 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./repo-imformation.component.css']
 })
 export class RepoImformationComponent implements OnInit {
-  imgURL = 'https://assets.juksy.com/files/articles/53296/800x_100_w-5720399b28484.jpg';
-  projectName = 'WWE2020';
-  RepoName = 'Repo1';
-  RepoMemberCounts = 50;
-  location = 'Japan';
-  repoIntroduction = 'Web Ui Design Team';
+  owner: any;
+  repoName = 'Repo1';
 
-  constructor() { }
+
+  constructor(private activerouter: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
+    this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
+      this.owner  = Inputvalue['owner'].toString();
+      this.repoName  = Inputvalue['repoName'].toString();
+    });
   }
 
 }
