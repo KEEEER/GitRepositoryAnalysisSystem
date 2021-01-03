@@ -26,7 +26,7 @@ public class RepoInformationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         JSONObject requestBody = new JSONObject(request.getReader().readLine());
-        String requestRepo = requestBody.getString("repoid");
+        String requestRepo = requestBody.getString("repoId");
 
         JSONObject returnJson = new JSONObject();
 
