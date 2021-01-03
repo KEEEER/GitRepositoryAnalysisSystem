@@ -26,7 +26,7 @@ public class IssuesServlet extends HttpServlet {
         JSONArray issuesInfo = getIssuesInfoJsonArray(owner, repo);
         request.setAttribute("issues_info", issuesInfo);
 
-        response.setContentType("text/json;charset=UTF-8");
+        response.setContentType("text/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         out.println(issuesInfo);
