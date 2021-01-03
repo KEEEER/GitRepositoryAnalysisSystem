@@ -9,10 +9,10 @@
     <table>
       <tr class="tableHead">
         <td>Title</td>
-        <td>Body</td>
         <td>StartDate</td>
         <td>CloseDate</td>
         <td>State</td>
+        <td>Body</td>
 
       </tr>
       <tr>
@@ -21,12 +21,6 @@
             <div class="mydiv">{{title}}</div>
           </ng-container>
         </td>
-        <td>
-          <ng-container *ngFor="let body of bodys">
-            <div class="mydiv">{{body}}</div>
-          </ng-container>
-        </td>
-
         <td>
           <ng-container *ngFor="let startDate of startDates">
             <div class="mydiv">{{startDate}}</div>
@@ -40,6 +34,11 @@
         <td>
           <ng-container *ngFor="let State of States">
             <div class="mydiv">{{State}}</div>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container *ngFor="let body of bodys">
+            <div class="mydiv">{{body}}</div>
           </ng-container>
         </td>
 

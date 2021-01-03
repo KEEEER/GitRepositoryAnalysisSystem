@@ -9,12 +9,13 @@
   cursor:pointer;
   /*字color*/
   color: #000000;
-
+  font-size: 25px;
+  text-align:left;
   font-family:Arial;
-  font-size:17px;
   padding:32px 300px;
   text-decoration:none;
   text-shadow:0px 1px 0px #2f6627;
+  word-wrap: break-word;
 }
 .myButton:hover {
   background-color:#5cbf2a;
