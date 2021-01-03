@@ -33,7 +33,7 @@ public class CreateProjectServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         JSONObject jsonObject = new JSONObject();
         JSONObject requestBody = new JSONObject(request.getReader().readLine());
-
+        System.out.println(requestBody);
         String userId = String.valueOf(requestBody.get("userId"));
         String projectName = String.valueOf(requestBody.get("projectName"));
         String projectDescription = String.valueOf(requestBody.get("projectDescription"));
