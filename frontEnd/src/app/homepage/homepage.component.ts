@@ -9,27 +9,24 @@ export class HomepageComponent implements OnInit {
 
   ProjectCreatpageurl = "createproject";
   ProjectOverviewpageurl = "choose-project";
-
   //header
-  childTitle = "";
+  Username = "";
   UserID = "";
   val:any;
-  constructor(private router:Router, private activerouter:ActivatedRoute) {
 
+  constructor(private router:Router, private activerouter:ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
-        this.childTitle  = Inputvalue['Username'].toString();
-        this.UserID  = Inputvalue['UserID'].toString();
-        console.log(this.childTitle.toString());
-        console.log(this.UserID.toString());
-    });
+    this.Username = window.sessionStorage.getItem('Username');
+    this.UserID = window.sessionStorage.getItem('UserID');
+    console.log("session_username",this.Username);
+    console.log("session_UserID",this.UserID);
+
   }
 
   NavitoCreateProject(){
-    console.log("#",this.UserID);
-    this.router.navigate([this.ProjectCreatpageurl], { queryParams:{userID: this.UserID}});
+    this.router.navigate([this.ProjectCreatpageurl]);
   }
 
 }

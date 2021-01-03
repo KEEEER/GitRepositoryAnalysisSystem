@@ -26,17 +26,14 @@ export class AddProjectComponent implements OnInit {
 
    }
   ngOnInit(): void {
-    this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
-               this.UserID  = Inputvalue['userID'];
-               console.log(this.UserID.toString());
-           });
+    this.UserID = window.sessionStorage.getItem('UserID');
   }
 
   CheckGitRepoUrlVaild(){
     const GitRepoUrlData = {
-              githubUrl:undefined
+      githubUrl:undefined
     };
-            GitRepoUrlData.githubUrl  = this.InputGitRepoUrl;
+    GitRepoUrlData.githubUrl  = this.InputGitRepoUrl;
     const data = JSON.stringify(GitRepoUrlData);
     this.verifygitreposervice.verifyGitUrlVaild(data).subscribe(
       request => {
@@ -76,7 +73,7 @@ export class AddProjectComponent implements OnInit {
           for(var index in this.InputGitRepoUrlList){
             this.AppendRepo(index);
           }
-          this.router.navigate([this.ProjectOverviewpageurl], { queryParams:{userid: this.UserID}}); //create project ok ,navi to projectoverview
+          this.router.navigate([this.ProjectOverviewpageurl]); //create project ok ,navi to projectoverview
 
         }
       }

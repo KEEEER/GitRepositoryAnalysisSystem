@@ -15,6 +15,6 @@ export class SignupService {
       const options = {
         headers
       };
-      return this.httpClient.post<any>('/GitRepositoryAnalysisSystem/SignupCheck', body, options);
+      return this.httpClient.post<any>('/GitRepositoryAnalysisSystem/signUp', body, options);
     }
 }

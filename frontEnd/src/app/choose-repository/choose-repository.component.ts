@@ -16,16 +16,11 @@ export class ChooseRepositoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
-     this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
-      this.ProjectID  = Inputvalue['ChosenProjectID'].toString();
-      console.log(this.ProjectID);
-      });
-      this.getTotalRepoInfoOfProject();
+     this.ProjectID = window.sessionStorage.getItem('ChosenProjectID');
+     this.getTotalRepoInfoOfProject();
 
   }
-   getTotalRepoInfoOfProject() {
+  getTotalRepoInfoOfProject() {
         const UserRepoData = {
           projectId:undefined,
         };
@@ -43,13 +38,13 @@ export class ChooseRepositoryComponent implements OnInit {
         );
     }
 
-
-
-  // tslint:disable-next-line:typedef
   goToAnalysisPage(event) {
     const chosenRepoName: string = event.target.id.toString();
     const chosenRepoIndex = this.repoNames.findIndex((element) => (element) == chosenRepoName);
-    this.router.navigate(['analysis'], {queryParams: {owner: this.owner[chosenRepoIndex], repoName: chosenRepoName}});
+    sessionStorage.setItem('repoName', chosenRepoName);
+    sessionStorage.setItem('owner', this.owner[chosenRepoIndex]);
+
+    this.router.navigate(['analysis']);
   }
 
   // tslint:disable-next-line:typedef

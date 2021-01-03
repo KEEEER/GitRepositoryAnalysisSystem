@@ -31,10 +31,9 @@ export class CodeBaseComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.acrouter.queryParams.subscribe((Inputvalue: any) => {
-      this.owner = Inputvalue.owner;
-      this.repo = Inputvalue.repoName;
-    });
+    this.repo = window.sessionStorage.getItem('repoName');
+    this.owner = window.sessionStorage.getItem('owner');
+
     this.getCodeBase();
   }
 

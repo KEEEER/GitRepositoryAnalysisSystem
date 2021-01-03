@@ -20,27 +20,26 @@ export class AnalysisComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
-      this.owner  = Inputvalue['owner'].toString();
-      this.repoName  = Inputvalue['repoName'].toString();
-      });
+      this.repoName = window.sessionStorage.getItem('repoName');
+      this.owner = window.sessionStorage.getItem('owner');
+
   }
 
   // tslint:disable-next-line:typedef
   goToCommitTrendPage() {
     // this.router.navigateByUrl('commit-trend');
-    this.router.navigate(['commit-trend'], {queryParams: {owner: this.owner, repoName: this.repoName}});
+    this.router.navigate(['commit-trend']);
   }
 
   // tslint:disable-next-line:typedef
   goToCodeBasePage() {
     // this.router.navigateByUrl('code-base');
-    this.router.navigate(['code-base'], {queryParams: {owner: this.owner, repoName: this.repoName}});
+    this.router.navigate(['code-base']);
   }
 
   // tslint:disable-next-line:typedef
   goToIssueTrackPage() {
     // this.router.navigateByUrl('issue-track');
-    this.router.navigate(['issue-track'], {queryParams: {owner: this.owner, repoName: this.repoName}});
+    this.router.navigate(['issue-track']);
   }
 }

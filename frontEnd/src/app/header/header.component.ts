@@ -7,22 +7,33 @@ import {Router,ActivatedRoute } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Input() UserNametitle: string; //value from homepage
-  @Input() UserID: string; //value from homepage
-  @Input() myVar: number;
   homepageurl = "homepage";
   ProjectCreatwpageurl = "createproject";
   ProjectOverviewpageurl = "choose-project";
   Logoutpageurl = "LoginPage";
-  datas: any;
-  username:any;
-  userid:any;
+  UserName:any;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.UserName = window.sessionStorage.getItem('Username');
+  }
+
+  redirectTo(url){
+    this.router.navigateByUrl(url.toString());
   }
   NavitoCreateProject(){
-    this.router.navigate([this.ProjectCreatwpageurl], { queryParams:{username: this.UserNametitle ,userid: this.UserID}});
+    this.redirectTo("createproject");
   }
+
+  NavitoProjectOverview(){
+    this.redirectTo("choose-project");
+  }
+  NavitoLogout(){
+    this.redirectTo("LoginPage");
+    window.sessionStorage.clear();
+
+  }
+
+
 }

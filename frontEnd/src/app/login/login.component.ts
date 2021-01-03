@@ -25,12 +25,14 @@ export class LoginComponent implements OnInit {
   redirectTo(url){
     this.router.navigateByUrl(url.toString());
   }
+
   // tslint:disable-next-line
   logInCheck() {
     const UserLoginData = {
       account: undefined,
       password: undefined
     };
+
     UserLoginData.account  = this.accountInput;
     UserLoginData.password = this.passwordInput;
 
@@ -39,8 +41,10 @@ export class LoginComponent implements OnInit {
       request => {
         this.datas = request;
         if (this.datas.redirect){
-          this.router.navigate([this.datas.redirect.toString()], { queryParams:{Username: this.datas.userName.toString() ,UserID: this.datas.userId.toString()}});
+          this.router.navigate([this.datas.redirect.toString()]);
           console.log("userId =",this.datas.userId.toString())
+          sessionStorage.setItem('Username', this.datas.userName.toString());
+          sessionStorage.setItem('UserID', this.datas.userId.toString());
         }
         else{
           this.badRequest = "帳號或密碼錯誤";

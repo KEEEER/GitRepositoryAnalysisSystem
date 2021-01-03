@@ -18,19 +18,15 @@ export class ChooseProjectComponent implements OnInit {
   UserID = '';
   ChosenProjectID = '';
 
-  constructor(private router: Router ,  private getProjectInfoService: GetProjectInfoService,private activerouter:ActivatedRoute ) {
-      this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
-        this.UserID  = Inputvalue['userid'].toString();
-        console.log(this.UserID);
-      });
-      this.getTotalProjectInfo();
-  }
+  constructor(private router: Router ,  private getProjectInfoService: GetProjectInfoService,private activerouter:ActivatedRoute ) {}
 
   ngOnInit(): void {
-
+    this.UserID = window.sessionStorage.getItem('UserID');
+    this.getTotalProjectInfo();
   }
 
    getTotalProjectInfo() {
+
       const UserProjectData = {
         userId:undefined,
       };
@@ -47,13 +43,13 @@ export class ChooseProjectComponent implements OnInit {
   choose_repo(event) {
     console.log(event);
     const chosenId: string = event.target.id.toString();
-    //var chosenId = target.attributes.id;
+    sessionStorage.setItem('ChosenProjectID', chosenId);
     console.log("chosenid:",chosenId)
-    this.router.navigate(['choose-repository'], { queryParams:{userID:  this.UserID , ChosenProjectID:chosenId}});
+    this.router.navigate(['choose-repository']);
   }
 
   // tslint:disable-next-line:typedef
   goToAddProjectPage() {
-    this.router.navigate(['createproject'], { queryParams:{userID:  this.UserID }});
+    this.router.navigate(['createproject']);
   }
 }

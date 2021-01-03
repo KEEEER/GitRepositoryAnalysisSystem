@@ -28,11 +28,11 @@ export class SignupComponent implements OnInit {
   }
   SignUpCheck(){
       const UserSignUpData = {
-          Username:undefined,
+          userName:undefined,
           account: undefined,
           password: undefined
         };
-        UserSignUpData.Username  = this.UserInput;
+        UserSignUpData.userName  = this.UserInput;
         UserSignUpData.account  = this.accountInput;
         UserSignUpData.password = this.passwordInput;
 
@@ -40,9 +40,9 @@ export class SignupComponent implements OnInit {
         this.signupService.verifySignUpUserAccount(data).subscribe(
           request => {
             this.datas = request;
-            if (this.datas.redirect){
+            if (this.datas.isSuccess == "true"){
               alert("註冊成功!轉至登入頁面")
-              this.redirectTo(this.datas.redirect);
+              this.redirectTo("LoginPage");
               console.log(this.datas.redirect);
             }
             else{
