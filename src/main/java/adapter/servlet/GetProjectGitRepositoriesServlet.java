@@ -37,6 +37,7 @@ public class GetProjectGitRepositoriesServlet extends HttpServlet{
         Project project = projectRepository.getProjectById(projectId);
         JSONArray jsonArray = new JSONArray();
         for(String repoId : project.getGitRepositories()){
+            if(repoId.equals("")) continue;
             GitRepository gitRepository = gitRepositoryRepository.getGitRepositoryById(repoId);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("ownerName", gitRepository.getOwnerName());
