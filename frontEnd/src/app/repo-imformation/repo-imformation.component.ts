@@ -15,10 +15,12 @@ export class RepoImformationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
-      this.owner  = Inputvalue['owner'].toString();
-      this.repoName  = Inputvalue['repoName'].toString();
-    });
+    // this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
+    //   this.owner  = Inputvalue['owner'].toString();
+    //   this.repoName  = Inputvalue['repoName'].toString();
+    // });
+    this.repoName = window.sessionStorage.getItem('repoName');
+    this.owner = window.sessionStorage.getItem('owner');
   }
 
 }
