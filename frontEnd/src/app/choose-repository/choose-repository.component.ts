@@ -8,8 +8,8 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class ChooseRepositoryComponent implements OnInit {
 
-  owner = '109598087';
-  repoNames = ['quorum', 'REPO2', 'REPO3'];
+  owner = 'tensorflow';
+  repoNames = ['tensorflow', 'REPO2', 'REPO3'];
 
 
   constructor(private router: Router, private acrouter: ActivatedRoute) {

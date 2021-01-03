@@ -18,16 +18,12 @@ export class CommitTrendComponent implements OnInit {
   };
   barChartType = 'line';
   barChartLegend = true;
-  barChartLabels = [];
-  barChartDataIn = [[], [], [], [], []];
 
-  userNames = [];
+  barChartLabels = [];
+  barChartDataIn = [];
   barChartData = [
-    {data: this.barChartDataIn[0], label: 'Commit Trend'},
-    {data: this.barChartDataIn[1], label: '1'},
-    {data: this.barChartDataIn[2], label: '2'},
-    {data: this.barChartDataIn[3], label: '3'},
-    {data: this.barChartDataIn[4], label: '4'},
+    {data: this.barChartDataIn, label: 'Commit Trend'}
+    // {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
   commitCounts: any;
   owner: any;
@@ -35,6 +31,7 @@ export class CommitTrendComponent implements OnInit {
 
 
   constructor(private commitTrendService: CommitTrendService, private acrouter: ActivatedRoute) {
+
   }
 
   ngOnInit(): void {
@@ -59,21 +56,13 @@ export class CommitTrendComponent implements OnInit {
       request => {
 
         this.datas = request;
-        // for (let i = 1; i < 5; i++) {
-        //   this.userNames.push(this.datas[i].user_name);
-        //   console.log(this.datas[i].user_name);
-        // }
-        // 取data
-        for (let i = 0; i < this.datas.length; i++) {
-          for (const temp of this.datas[i].weeks_stats) {
-            this.barChartDataIn[i].push(+temp.commits.toString());
-          }
-        }
 
-        // y軸
-        for (const temp of this.datas[0].weeks_stats) {
+        // tslint:disable-next-line:prefer-const
+        for (let temp of this.datas[0].weeks_stats) {
           const s = new Date(+temp.start_week * 1000);
+          // clear?
           this.barChartLabels.push(s.toLocaleDateString());
+          this.barChartDataIn.push(+temp.commits.toString());
         }
         this.commitCounts = this.datas[0].total_commits;
 
