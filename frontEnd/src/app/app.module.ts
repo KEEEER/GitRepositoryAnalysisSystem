@@ -23,6 +23,7 @@ import {HomepageComponent} from './homepage/homepage.component';
 import {ChartsModule} from 'ng2-charts';
 import {HttpClientModule} from '@angular/common/http';
 import { ProjectoverviewComponent } from './projectoverview/projectoverview.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -47,6 +48,7 @@ import { ProjectoverviewComponent } from './projectoverview/projectoverview.comp
     HeaderComponent,
     HomepageComponent,
     ProjectoverviewComponent,
+    FooterComponent,
 
 
   ],
