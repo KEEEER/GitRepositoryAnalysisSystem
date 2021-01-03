@@ -16,19 +16,21 @@ export class ChooseProjectComponent implements OnInit {
   item:any;
   totalProject:any;
   UserID = '';
+  ChosenProjectID = '';
 
-
-  constructor(private router: Router ,  private getProjectInfoService: GetProjectInfoService,private activerouter:ActivatedRoute) { }
-
-  ngOnInit(): void {
-    this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
-    this.UserID  = Inputvalue['userid'].toString();
-    console.log(this.UserID);
-    });
-    this.getTotalProjectInfo();
+  constructor(private router: Router ,  private getProjectInfoService: GetProjectInfoService,private activerouter:ActivatedRoute ) {
+      this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
+        this.UserID  = Inputvalue['userid'].toString();
+        console.log(this.UserID);
+      });
+      this.getTotalProjectInfo();
   }
 
-  getTotalProjectInfo() {
+  ngOnInit(): void {
+
+  }
+
+   getTotalProjectInfo() {
       const UserProjectData = {
         userId:undefined,
       };
@@ -38,24 +40,20 @@ export class ChooseProjectComponent implements OnInit {
         request => {
           this.datas = request;
           console.log(this.datas);
-          for(let item of this.datas){
-            this.projectNames.push(item.projectName);
-            this.projectIntroduction.push(item.projectDescription);
-            this.projectRepoNumbers.push(item.gitRepoCount);
-            this.ProjectStartTime.push(item.projectStartTime);
-          }
         }
       );
   }
 
-
-  // tslint:disable-next-line:typedef
-  choose_repo() {
-    this.router.navigate(['choose-repository'], { queryParams:{userID:  this.UserID}});
+  choose_repo(event) {
+    console.log(event);
+    const chosenId: string = event.target.id.toString();
+    //var chosenId = target.attributes.id;
+    console.log("chosenid:",chosenId)
+    this.router.navigate(['choose-repository'], { queryParams:{userID:  this.UserID , ChosenProjectID:chosenId}});
   }
 
   // tslint:disable-next-line:typedef
   goToAddProjectPage() {
-    this.router.navigate(['createproject'], { queryParams:{userID:  this.UserID}});
+    this.router.navigate(['createproject'], { queryParams:{userID:  this.UserID }});
   }
 }

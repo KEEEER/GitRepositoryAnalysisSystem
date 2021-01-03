@@ -14,13 +14,11 @@
         <section *ngFor="let item of datas">
           <tr>
             <div>
-              <button class="myButton" (click)="choose_repo()">
-                <div style = "text-align:left;"><h4>專案名稱:{{item.projectName}}</h4></div>
-                <div style = "text-align:left;"><h5>專案敘述:{{item.projectDescription}}</h5></div>
-                <div style = "text-align:right;"><h5>Repo個數:{{item.gitRepoCount}}</h5></div>
-                <div style = "text-align:right;"><h5>開始時間:{{item.projectStartTime}}</h5></div>
-
-
+              <button class="myButton" (click)="choose_repo($event)" id = "{{item.projectId}}" >
+                專案名稱:{{item.projectName}}<br/>
+                專案敘述:{{item.projectDescription}}<br/>
+                Repo個數:{{item.gitRepoCount}}<br/>
+                開始時間:{{item.projectStartTime}}<br/>
               </button>
             </div>
           </tr>

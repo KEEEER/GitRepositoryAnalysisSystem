@@ -11,18 +11,19 @@ export class AnalysisComponent implements OnInit {
   projectName = 'WWE2020';
   owner: any;
   repoName: any;
-
   RepoMemberCounts = 50;
 
 
-  constructor(private router: Router, private acrouter: ActivatedRoute) {
+  constructor(private router: Router, private activerouter: ActivatedRoute) {
+
+
   }
 
   ngOnInit(): void {
-    this.acrouter.queryParams.subscribe((Inputvalue: any) => {
-      this.owner = Inputvalue.owner;
-      this.repoName = Inputvalue.repoName;
-    });
+      this.activerouter.queryParams.subscribe( (Inputvalue:any) => {
+      this.owner  = Inputvalue['owner'].toString();
+      this.repoName  = Inputvalue['repoName'].toString();
+      });
   }
 
   // tslint:disable-next-line:typedef

@@ -10,11 +10,10 @@
     <div>
       <table>
         <tr>
-          <td *ngFor="let repoName of repoNames">
-
-            <button class="myButton" (click)="goToAnalysisPage()">
-              <div>{{repoName}}</div>
-
+          <td *ngFor="let item of datas">
+            <button class="myButton" (click)="goToAnalysisPage($event)" id = "{{item.repoName}}">
+              Repo Name:{{item.repoName}}<br/>
+              Owner:{{item.ownerName}}<br/>
             </button>
           </td>
         </tr>
@@ -22,10 +21,6 @@
 
 
     </div>
-    <button class="myButton2" (click)="goToAddRepoPage()">
-      <div>ADD REPO</div>
-    </button>
-
 
     <!--    <button (click)="goToDeleteRepoPage()"><div>DELETE REPO</div></button>-->
     <!--    <button (click)="chooseMuti()"><div>CHOOSE MUTI</div></button>-->
