@@ -9,9 +9,9 @@
     <h2>COMMIT TREND</h2>
     <h5>Total Commits: {{commitCounts}}</h5>
     <table width="75%">
-      <thead>
-      <tr >
-        <th colspan="2">
+
+      <tr>
+        <td colspan="2">
           <canvas baseChart
                   [datasets]="barChartData"
                   [labels]="barChartLabels"
@@ -19,15 +19,13 @@
                   [legend]="barChartLegend"
                   [chartType]="barChartType">
           </canvas>
-        </th>
+        </td>
       </tr>
 
-      </thead>
-      <tbody>
-
       <td>
+        <tr>
+        </tr>
         <caption style="text-align:center; color:blue" *ngFor="let barChar of leftTatolbarCharlist">{{barChar[5]}}
-          <tr>
             <canvas baseChart width="500%"
                     [datasets]="barChar[4]"
                     [labels]="barChar[3]"
@@ -35,13 +33,11 @@
                     [legend]="barChar[2]"
                     [chartType]="barChar[1]">
             </canvas>
-          </tr>
         </caption>
       </td>
 
       <td>
         <caption style="text-align:center; color:blue" *ngFor="let barChar of rightTatolbarCharlist">{{barChar[5]}}
-          <tr>
             <canvas baseChart  width="500%"
                     [datasets]="barChar[4]"
                     [labels]="barChar[3]"
@@ -49,14 +45,10 @@
                     [legend]="barChar[2]"
                     [chartType]="barChar[1]">
             </canvas>
-          </tr>
         </caption>
       </td>
-      </tbody>
+
     </table>
-
-
   </div>
-
 </div>
 <app-footer></app-footer>
