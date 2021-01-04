@@ -10,7 +10,7 @@
     <h5>Total Commits: {{commitCounts}}</h5>
     <table>
       <thead>
-      <tr width="0%">
+      <tr width="100%">
         <th colspan="2">
           <canvas baseChart
                   [datasets]="barChartData"
@@ -25,20 +25,32 @@
       </thead>
       <tbody>
 
-      <td *ngFor="let barChar of tatolbarCharlist">
-        <canvas baseChart
-                [datasets]="barChar[4]"
-                [labels]="barChar[3]"
-                [options]="barChar[0]"
-                [legend]="barChar[2]"
-                [chartType]="barChar[1]">
-        </canvas>
+      <td>
+        <tr *ngFor="let barChar of leftTatolbarCharlist; index as i">
+          <canvas baseChart
+                  [datasets]="barChar[4]"
+                  [labels]="barChar[3]"
+                  [options]="barChar[0]"
+                  [legend]="barChar[2]"
+                  [chartType]="barChar[1]">
+          </canvas>
+        </tr>
+      </td>
+      <td>
+        <tr *ngFor="let barChar of rightTatolbarCharlist">
+          <canvas baseChart
+                  [datasets]="barChar[4]"
+                  [labels]="barChar[3]"
+                  [options]="barChar[0]"
+                  [legend]="barChar[2]"
+                  [chartType]="barChar[1]">
+          </canvas>
+        </tr>
       </td>
 
 
       </tbody>
     </table>
-
 
 
   </div>
