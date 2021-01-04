@@ -16,12 +16,13 @@ public class GitRepositoryRepositoryImpl implements GitRepositoryRepository {
 
     public GitRepositoryRepositoryImpl(){
         gitRepositories = new ArrayList<>();
+        conn = Database.getConnection();
     }
     public GitRepository getGitRepositoryById(String id){
         final String query = "SELECT reponame, ownername FROM gitrepository WHERE id=?";
         GitRepository gitRepository;
         try{
-            conn = Database.getConnection();
+
             assert conn!= null;
             ResultSet resultSet;
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -33,12 +34,10 @@ public class GitRepositoryRepositoryImpl implements GitRepositoryRepository {
                     resultSet.getString("reponame"),
                     resultSet.getString("ownername")
             );
-            closeConnection(conn);
             return gitRepository;
         }catch(Exception e){
             e.printStackTrace();
         }
-        closeConnection(conn);
         return null;
     }
 
@@ -46,7 +45,6 @@ public class GitRepositoryRepositoryImpl implements GitRepositoryRepository {
         gitRepositories.add(gitRepository);
         final String insert = " INSERT INTO gitrepository(id, reponame, ownername) VALUES(?,?,?) ";
         try {
-            conn = Database.getConnection();
             assert conn != null;
             PreparedStatement preparedStatement = conn.prepareStatement(insert);
             preparedStatement.setString (1,gitRepository.getId());
@@ -56,7 +54,6 @@ public class GitRepositoryRepositoryImpl implements GitRepositoryRepository {
         }catch (Exception e){
             e.printStackTrace();
         }
-        closeConnection(conn);
     }
 
     @Override
@@ -67,14 +64,7 @@ public class GitRepositoryRepositoryImpl implements GitRepositoryRepository {
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
         }catch (Exception e){e.printStackTrace();}
-        closeConnection(conn);
     }
 
-    
-    private void closeConnection(Connection conn){
-        try{
-            assert conn != null;
-            conn.close();
-        }catch (Exception e){e.printStackTrace();}
-    }
+
 }
