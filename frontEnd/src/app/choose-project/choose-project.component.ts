@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router,ActivatedRoute} from '@angular/router';
 import {GetProjectInfoService} from './get-project-info.service';
+import {DeleteProjectService} from './delete-project.service';
 
 @Component({
   selector: 'app-choose-project',
@@ -13,12 +14,13 @@ export class ChooseProjectComponent implements OnInit {
   projectRepoNumbers = new Array();
   ProjectStartTime = new Array();
   datas: any;
+  responsedata: any;
   item:any;
   totalProject:any;
   UserID = '';
   ChosenProjectID = '';
 
-  constructor(private router: Router ,  private getProjectInfoService: GetProjectInfoService,private activerouter:ActivatedRoute ) {}
+  constructor(private router: Router, private getProjectInfoService: GetProjectInfoService, private delProjectService: DeleteProjectService, private activerouter:ActivatedRoute ) {}
 
   ngOnInit(): void {
     this.UserID = window.sessionStorage.getItem('UserID');
@@ -48,8 +50,39 @@ export class ChooseProjectComponent implements OnInit {
     this.router.navigate(['choose-repository']);
   }
 
+
+  delete_repo(delId) {
+    const deletedprojectId: string = delId.toString();
+    console.log("choose to delete id:",deletedprojectId);
+    const DeleteProject = {
+          userId:undefined,
+          projectId:undefined
+        };
+    DeleteProject.userId  = this.UserID;
+    DeleteProject.projectId = deletedprojectId;
+    const deldata = JSON.stringify(DeleteProject);
+
+    this.delProjectService.deleteChosenProject(DeleteProject).subscribe(
+      request => {
+      this.responsedata = request;
+      console.log(this.responsedata);
+        if(this.responsedata.isSuccess == "true"){
+          alert("刪除專案成功")
+          this.router.navigate(['choose-project']);
+
+        }
+        else{
+          alert("刪除專案失敗")
+        }
+      }
+    );
+  }
+
   // tslint:disable-next-line:typedef
   goToAddProjectPage() {
     this.router.navigate(['createproject']);
   }
+
+
+
 }

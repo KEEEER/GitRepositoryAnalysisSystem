@@ -14,12 +14,13 @@
         <section *ngFor="let item of datas">
           <tr>
             <div>
-              <button class="myButton" (click)="choose_repo($event)" id = "{{item.projectId}}" >
+              <button  class="myButton" (click)="choose_repo($event)" id = "{{item.projectId}}" >
                 專案名稱:{{item.projectName}}<br/>
                 專案敘述:{{item.projectDescription}}<br/>
                 Repo個數:{{item.gitRepoCount}}<br/>
-                開始時間:{{item.projectStartTime}}<br/>
-              </button>
+                開始時間:{{item.projectStartTime}}
+              </button><button style=" text-align:right;" (click)="delete_repo([item.projectId])" ><img src="./assets/images/trash.png" >刪除專案</button>
+<!--              上面binding的變數可以透過"[]"來傳入函數!!!!  -->
             </div>
           </tr>
 
