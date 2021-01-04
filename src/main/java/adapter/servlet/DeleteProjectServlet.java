@@ -31,7 +31,6 @@ public class DeleteProjectServlet extends HttpServlet {
         String userId = String.valueOf(requestBody.get("userId"));
         String projectId = String.valueOf(requestBody.get("projectId"));
 
-        Account account = accountRepository.getAccountById(userId);
         accountRepository.deleteProjectRelations(userId, projectId);
         projectRepository.deleteProject(projectId);
         if (projectRepository.getProjectById(projectId) == null
