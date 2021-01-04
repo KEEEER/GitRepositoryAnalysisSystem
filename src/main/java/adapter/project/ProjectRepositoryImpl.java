@@ -1,7 +1,6 @@
 package adapter.project;
 
 import database.Database;
-import domain.GitRepository;
 import domain.Project;
 import usecase.project.ProjectRepository;
 
@@ -18,6 +17,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 
     public ProjectRepositoryImpl(){
         projects = new ArrayList<>();
+        conn = Database.getConnection();
     }
 
     public void createProject(Project project){
@@ -33,7 +33,6 @@ public class ProjectRepositoryImpl implements ProjectRepository {
         projectInDB = projectInDB == null ? new Project("empty", "empty") : projectInDB;
 
         final String insert = " INSERT INTO project(id, name, description, repoid) VALUES(?,?,?,?) ";
-        conn = Database.getConnection();
         for(String url : project.getGitRepositories()){
             if(projectInDB.getGitRepositories().contains(url)) continue;
             try{
@@ -48,16 +47,13 @@ public class ProjectRepositoryImpl implements ProjectRepository {
                 e.printStackTrace();
             }
         }
-        try{
-            assert conn != null;
-            conn.close();
-        }catch (Exception e){e.printStackTrace();}
     }
 
     @Override
     public boolean deleteProject(String id) {
         final String delete = "DELETE FROM project WHERE id=?";
         try{
+            assert conn!= null;
             PreparedStatement preparedStatement = conn.prepareStatement(delete);
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
@@ -71,7 +67,6 @@ public class ProjectRepositoryImpl implements ProjectRepository {
         Project project;
         List<String> gitRepositories = new ArrayList<>();
         try{
-            conn = Database.getConnection();
             assert conn!= null;
             ResultSet resultSet;
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -92,13 +87,11 @@ public class ProjectRepositoryImpl implements ProjectRepository {
                     startTime,
                     gitRepositories
             );
-
             return project;
         }catch(Exception e){
             e.printStackTrace();
         }
         return null;
     }
-
 
 }
