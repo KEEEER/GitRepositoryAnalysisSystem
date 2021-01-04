@@ -93,8 +93,6 @@ export class CommitTrendComponent implements OnInit {
             this.barChartDataIn[i].push(+temp.commits.toString());
           }
         }
-        console.log(this.barChartDataIn[0]);
-        console.log(this.barChartDataIn[1]);
 
         for (let i = 1; i < this.datas.length; i++) {
           let temp: any[];
@@ -123,10 +121,10 @@ export class CommitTrendComponent implements OnInit {
 
           this.tatolbarCharlist.push(temp);
         }
-        for (let i = 0; i < this.tatolbarCharlist.length / 2; i++) {
+        for (let i = 0; i < Math.round(this.tatolbarCharlist.length / 2); i++) {
           this.leftTatolbarCharlist.push(this.tatolbarCharlist[i]);
         }
-        for (let i = this.tatolbarCharlist.length / 2; i < this.tatolbarCharlist.length; i++) {
+        for (let i = Math.round(this.tatolbarCharlist.length / 2); i < this.tatolbarCharlist.length; i++) {
           this.rightTatolbarCharlist.push(this.tatolbarCharlist[i]);
         }
       }
