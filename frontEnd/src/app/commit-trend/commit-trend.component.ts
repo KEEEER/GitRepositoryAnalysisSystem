@@ -25,8 +25,9 @@ export class CommitTrendComponent implements OnInit {
 
   barChartLabels = [];
   barChartData = [
-    {data: [], label: 'Commit Trend'}
-    // {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    {data: [], label: 'Commit Trend'},
+    {data: [], label: 'Additions'},
+    {data: [], label: 'Deletions'}
   ];
 
   // 個人圖
@@ -38,7 +39,7 @@ export class CommitTrendComponent implements OnInit {
   barChartType2 = 'line';
   barChartLegend2 = true;
 
-  barChartDataIn = [[10, 20, 30, 40, 50], [1, 2, 3, 4, 5], [10, 20, 30, 40, 50], [10, 20, 30, 40, 50]];
+  barChartDataIn = [[]];
   // tslint:disable-next-line:max-line-length
   tatolbarCharlist = [];
   leftTatolbarCharlist = [];
@@ -79,6 +80,8 @@ export class CommitTrendComponent implements OnInit {
           // clear?
           this.barChartLabels.push(s.toLocaleDateString());
           this.barChartData[0].data.push(+temp.commits.toString());
+          this.barChartData[1].data.push(+temp.additions.toString());
+          this.barChartData[2].data.push(+temp.deletions.toString());
         }
         this.commitCounts = this.datas[0].total_commits;
 
@@ -98,7 +101,9 @@ export class CommitTrendComponent implements OnInit {
           temp = [];
           const barChartLabels2 = [];
           const barChartData2 = [
-            {data: [], label: ''}
+            {data: [], label: 'Commit Trend'},
+            {data: [], label: 'Additions'},
+            {data: [], label: 'Deletions'}
           ];
           temp.push(this.barChartOptions2);
           temp.push(this.barChartType2);
@@ -109,9 +114,12 @@ export class CommitTrendComponent implements OnInit {
             // clear?
             barChartLabels2.push(s.toLocaleDateString());
             barChartData2[0].data.push(temp.commits);
+            barChartData2[1].data.push(temp.additions);
+            barChartData2[2].data.push(temp.deletions);
           }
           temp.push(barChartLabels2);
           temp.push(barChartData2);
+          temp.push(this.datas[i].user_name);
 
           this.tatolbarCharlist.push(temp);
         }

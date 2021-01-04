@@ -2,15 +2,15 @@
 <br>
 <br>
 <div class="row" style="padding:10px 100px 10px 100px;">
-  <div class="col-4">
+  <div class="col-3">
     <app-repo-imformation></app-repo-imformation>
   </div>
   <div class="col-8">
     <h2>COMMIT TREND</h2>
     <h5>Total Commits: {{commitCounts}}</h5>
-    <table>
+    <table width="75%">
       <thead>
-      <tr width="100%">
+      <tr >
         <th colspan="2">
           <canvas baseChart
                   [datasets]="barChartData"
@@ -26,26 +26,31 @@
       <tbody>
 
       <td>
-        <tr *ngFor="let barChar of leftTatolbarCharlist; index as i">
-          <canvas baseChart
-                  [datasets]="barChar[4]"
-                  [labels]="barChar[3]"
-                  [options]="barChar[0]"
-                  [legend]="barChar[2]"
-                  [chartType]="barChar[1]">
-          </canvas>
-        </tr>
+        <caption style="text-align:center; color:blue" *ngFor="let barChar of leftTatolbarCharlist">{{barChar[5]}}
+          <tr>
+            <canvas baseChart width="500%"
+                    [datasets]="barChar[4]"
+                    [labels]="barChar[3]"
+                    [options]="barChar[0]"
+                    [legend]="barChar[2]"
+                    [chartType]="barChar[1]">
+            </canvas>
+          </tr>
+        </caption>
       </td>
+
       <td>
-        <tr *ngFor="let barChar of rightTatolbarCharlist">
-          <canvas baseChart
-                  [datasets]="barChar[4]"
-                  [labels]="barChar[3]"
-                  [options]="barChar[0]"
-                  [legend]="barChar[2]"
-                  [chartType]="barChar[1]">
-          </canvas>
-        </tr>
+        <caption style="text-align:center; color:blue" *ngFor="let barChar of rightTatolbarCharlist">{{barChar[5]}}
+          <tr>
+            <canvas baseChart  width="500%"
+                    [datasets]="barChar[4]"
+                    [labels]="barChar[3]"
+                    [options]="barChar[0]"
+                    [legend]="barChar[2]"
+                    [chartType]="barChar[1]">
+            </canvas>
+          </tr>
+        </caption>
       </td>
 
 
