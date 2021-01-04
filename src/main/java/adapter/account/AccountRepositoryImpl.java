@@ -165,7 +165,9 @@ public class AccountRepositoryImpl implements AccountRepository {
             preparedStatement.setString(1, userId);
             preparedStatement.setString(2, projectId);
             preparedStatement.executeUpdate();
+            return true;
         }catch (Exception e){e.printStackTrace();}
+        return false;
     }
 
     private List<String> getAccountProjects(String id){
