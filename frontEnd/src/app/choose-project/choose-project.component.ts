@@ -54,28 +54,35 @@ export class ChooseProjectComponent implements OnInit {
   delete_repo(delId) {
     const deletedprojectId: string = delId.toString();
     console.log("choose to delete id:",deletedprojectId);
-    const DeleteProject = {
-          userId:undefined,
-          projectId:undefined
-        };
-    DeleteProject.userId  = this.UserID;
-    DeleteProject.projectId = deletedprojectId;
-    const deldata = JSON.stringify(DeleteProject);
-
-    this.delProjectService.deleteChosenProject(DeleteProject).subscribe(
-      request => {
-      this.responsedata = request;
-      console.log(this.responsedata);
-        if(this.responsedata.isSuccess == "true"){
-          alert("刪除專案成功")
-          this.router.navigate(['choose-project']);
+    if(confirm("確認要刪除此專案嗎?"))
+    {
+      const DeleteProject = {
+            userId:undefined,
+            projectId:undefined
+          };
+      DeleteProject.userId  = this.UserID;
+      DeleteProject.projectId = deletedprojectId;
+      const deldata = JSON.stringify(DeleteProject);
+      this.delProjectService.deleteChosenProject(DeleteProject).subscribe(
+        request => {
+        this.responsedata = request;
+        console.log(this.responsedata);
+          if(this.responsedata.isSuccess == "true"){
+            alert("刪除專案成功")
+            //this.router.navigate(['choose-project']);
+          }
+          else{
+            alert("刪除專案失敗")
+          }
 
         }
-        else{
-          alert("刪除專案失敗")
-        }
-      }
-    );
+      );
+    }else{
+      //this.router.navigate(['choose-project']);
+
+    }
+    window.location.reload();
+
   }
 
   // tslint:disable-next-line:typedef

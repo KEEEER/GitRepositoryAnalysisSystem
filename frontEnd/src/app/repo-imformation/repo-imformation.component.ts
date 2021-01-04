@@ -11,7 +11,7 @@ export class RepoImformationComponent implements OnInit {
   repoName = 'Repo1';
 
 
-  constructor(private activerouter: ActivatedRoute) {
+  constructor(private router: Router,private activerouter: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -22,5 +22,7 @@ export class RepoImformationComponent implements OnInit {
     this.repoName = window.sessionStorage.getItem('repoName');
     this.owner = window.sessionStorage.getItem('owner');
   }
-
+  NavitoAnalysis(){
+    this.router.navigateByUrl('analysis');
+  }
 }
