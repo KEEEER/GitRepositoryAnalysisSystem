@@ -100,7 +100,6 @@ export class CommitTrendComponent implements OnInit {
           temp.push(this.barChartOptions2);
           temp.push(this.barChartType2);
           temp.push(this.barChartLegend2);
-          // tslint:disable-next-line:no-shadowed-variable
           for (const temp of this.datas[i].weeks_stats) {
             const s = new Date(+temp.start_week * 1000);
             // clear?
