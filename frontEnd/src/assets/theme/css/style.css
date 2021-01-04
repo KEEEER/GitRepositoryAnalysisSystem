@@ -182,7 +182,7 @@ section .mbr-background-video-preview {
       align-content: center;
   -webkit-box-align: start;
       -ms-flex-align: start;
-          align-items: start;
+          align-items: flex-start;
 }
 
 .media-container-row .media-size-item {
@@ -753,9 +753,9 @@ input[type="range"] {
 }
 
 .navbar-toggler {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
+  -webkit-align-self: flex-flex-start;
+  -ms-flex-item-align: flex-start;
+  align-self: flex-flex-start;
   padding: 0.25rem 0.75rem;
   font-size: 1.25rem;
   line-height: 1;

@@ -182,7 +182,7 @@ section .mbr-background-video-preview {
       align-content: center;
   -webkit-box-align: start;
       -ms-flex-align: start;
-          align-items: start;
+          align-items: flex-start;
 }
 
 .media-container-row .media-size-item {

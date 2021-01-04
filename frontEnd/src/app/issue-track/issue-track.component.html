@@ -3,49 +3,38 @@
   <div class="col-4">
     <app-repo-imformation></app-repo-imformation>
   </div>
+
   <div class="col-8">
     <br>
     <h2>ISSUE TRACK</h2>
-    <table>
-      <tr class="tableHead">
-        <td>Title</td>
-        <td>StartDate</td>
-        <td>CloseDate</td>
-        <td>State</td>
-        <td>Body</td>
+    <mat-accordion class="example-headers-align">
+      <ng-container *ngFor="let title of titles ; let i = index">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{States[i]}}
+            </mat-panel-title>
 
-      </tr>
-      <tr>
-        <td>
-          <ng-container *ngFor="let title of titles">
-            <div style="height: 50px;border-bottom-style: dashed;">{{title}}</div>
-          </ng-container>
-        </td>
-        <td>
-          <ng-container *ngFor="let startDate of startDates">
-            <div class="mydiv">{{startDate}}</div>
-          </ng-container>
-        </td>
-        <td>
-          <ng-container *ngFor="let closeDate of closeDates">
-            <div style="width: 150px;height: 50px;border-bottom-style: dashed">{{closeDate}}</div>
-          </ng-container>
-        </td>
-        <td>
-          <ng-container *ngFor="let State of States">
-            <div class="mydiv">{{State}}</div>
-          </ng-container>
-        </td>
-        <td>
-          <ng-container *ngFor="let body of bodys">
-            <div style="height: 50px;border-bottom-style: dashed;">{{body}}</div>
-          </ng-container>
-        </td>
+            <mat-panel-description>
+              {{title}}
+            </mat-panel-description>
 
-      </tr>
-    </table>
+<!--            <mat-icon>done_outline</mat-icon>-->
+          </mat-expansion-panel-header>
 
+          <br>
+          <p class="dateP">Since:{{startDates[i]}}</p>
+          <br>
+          <p class="dateP">Close:{{closeDates[i]}}</p>
 
+          <br>
+
+          <pre class="bodyPre">{{bodys[i]}}</pre>
+          <br>
+        </mat-expansion-panel>
+
+      </ng-container>
+    </mat-accordion>
   </div>
 
 </div>

@@ -24,6 +24,10 @@ import {ChartsModule} from 'ng2-charts';
 import {HttpClientModule} from '@angular/common/http';
 import { ProjectoverviewComponent } from './projectoverview/projectoverview.component';
 import { FooterComponent } from './footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -57,7 +61,10 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule,
     FormsModule,
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    MatIconModule,
   ],
   providers: [], // 宣告要註冊的服務元件
   bootstrap: [AppComponent]

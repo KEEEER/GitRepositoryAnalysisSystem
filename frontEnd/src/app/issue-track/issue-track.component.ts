@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {IssueTrackService} from './issue-track.service';
 import {ActivatedRoute} from '@angular/router';
 
-
 @Component({
   selector: 'app-issue-track',
   templateUrl: './issue-track.component.html',
@@ -18,9 +17,32 @@ export class IssueTrackComponent implements OnInit {
   States = [];
   owner: any;
   repo: any;
-
+  step = 0;
+  // issue: {
+  //   title: any,
+  //   body: any,
+  //   startDate: any,
+  //   closeDate: any,
+  //   State: any
+  // };
+  // issues = [];
 
   constructor(private issueTrackService: IssueTrackService, private acrouter: ActivatedRoute) {
+  }
+
+  // tslint:disable-next-line:typedef
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  // tslint:disable-next-line:typedef
+  nextStep() {
+    this.step++;
+  }
+
+  // tslint:disable-next-line:typedef
+  prevStep() {
+    this.step--;
   }
 
   ngOnInit(): void {
@@ -29,7 +51,6 @@ export class IssueTrackComponent implements OnInit {
 
     this.getIssueTrack();
   }
-
 
   // tslint:disable-next-line:typedef
   getIssueTrack() {
@@ -40,8 +61,6 @@ export class IssueTrackComponent implements OnInit {
     issueTrackData.owner = this.owner;
     issueTrackData.repo = this.repo;
     const data = JSON.stringify(issueTrackData);
-    // console.log(issueTrackData.owner);
-    // console.log(issueTrackData.repo);
     this.issueTrackService.getIssueTrackService(data).subscribe(
       request => {
         this.datas = request;
@@ -52,7 +71,13 @@ export class IssueTrackComponent implements OnInit {
           this.startDates.push(temp.created_at);
           this.closeDates.push(temp.closed_at);
 
-
+          // this.issue.body(temp.title, temp.body, temp.state, temp.created_at, temp.closed_at)
+          // this.issue.title = temp.title;
+          // this.issue.body = temp.body;
+          // this.issue.State = temp.state;
+          // this.issue.startDate = temp.created_at;
+          // this.issue.closeDate = temp.closed_at;
+          // this.issues.push(this.issue);
         }
 
 

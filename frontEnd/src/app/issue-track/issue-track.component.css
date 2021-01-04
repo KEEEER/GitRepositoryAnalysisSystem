@@ -1,8 +1,36 @@
-.mydiv{
-  height: 50px;
-  width: 150px;
-  border-bottom-style: dashed;
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 3px;
+
+  overflow: hidden;
+
 }
-.tableHead{
-  border-bottom-style: solid;
+.example-headers-align .mat-expansion-panel-header{
+
+
+}
+
+.dateP{
+  font-size: 32px;
+  color: red;
+}
+
+.example-headers-align .mat-expansion-panel-header-title{
+  color: green;
+  align-items: center;
+}
+
+.example-headers-align .mat-icon{
+  align-items: center;
+}
+.bodyPre{
+  font-size: 16px;
+}
+.example-headers-align .mat-expansion-panel-header-description {
+  align-items: start;
+  color: #353535;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 20px;
 }
