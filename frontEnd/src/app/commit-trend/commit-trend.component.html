@@ -8,16 +8,36 @@
   <div class="col-8">
     <h2>COMMIT TREND</h2>
     <h5>Total Commits: {{commitCounts}}</h5>
-    <div style="display: block;width: 80%;">
+    <table>
+      <thead>
+      <tr width="0%">
+        <th colspan="2">
+          <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType">
+          </canvas>
+        </th>
+      </tr>
 
-      <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [legend]="barChartLegend"
-              [chartType]="barChartType">
-      </canvas>
-    </div>
+      </thead>
+      <tbody>
+
+      <td *ngFor="let barChar of tatolbarCharlist">
+        <canvas baseChart
+                [datasets]="barChar[4]"
+                [labels]="barChar[3]"
+                [options]="barChar[0]"
+                [legend]="barChar[2]"
+                [chartType]="barChar[1]">
+        </canvas>
+      </td>
+
+
+      </tbody>
+    </table>
 
 
 

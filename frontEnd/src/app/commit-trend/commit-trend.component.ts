@@ -9,6 +9,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class CommitTrendComponent implements OnInit {
 
+  constructor(private commitTrendService: CommitTrendService, private acrouter: ActivatedRoute) {
+
+  }
+
   // 畫圖
   datas: any;
   commitList: any;
@@ -20,19 +24,29 @@ export class CommitTrendComponent implements OnInit {
   barChartLegend = true;
 
   barChartLabels = [];
-  barChartDataIn = [];
   barChartData = [
-    {data: this.barChartDataIn, label: 'Commit Trend'}
+    {data: [], label: 'Commit Trend'}
     // {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
+
+  // 個人圖
+
+
+  barChartOptions2 = {
+    responsive: true
+  };
+  barChartType2 = 'line';
+  barChartLegend2 = true;
+
+  barChartDataIn = [[10, 20, 30, 40, 50], [1, 2, 3, 4, 5], [10, 20, 30, 40, 50], [10, 20, 30, 40, 50]];
+  // tslint:disable-next-line:max-line-length
+  tatolbarCharlist = [];
+
   commitCounts: any;
   owner: any;
   repo: any;
 
-
-  constructor(private commitTrendService: CommitTrendService, private acrouter: ActivatedRoute) {
-
-  }
+  // tslint:disable-next-line:typedef
 
   ngOnInit(): void {
     this.repo = window.sessionStorage.getItem('repoName');
@@ -56,21 +70,49 @@ export class CommitTrendComponent implements OnInit {
 
         this.datas = request;
 
-        // tslint:disable-next-line:prefer-const
-        for (let temp of this.datas[0].weeks_stats) {
+        // all 圖
+        for (const temp of this.datas[0].weeks_stats) {
           const s = new Date(+temp.start_week * 1000);
           // clear?
           this.barChartLabels.push(s.toLocaleDateString());
-          this.barChartDataIn.push(+temp.commits.toString());
+          this.barChartData[0].data.push(+temp.commits.toString());
         }
         this.commitCounts = this.datas[0].total_commits;
 
+        // 個別圖
 
+        for (let i = 1; i < this.datas.length; i++) {
+          for (const temp of this.datas[i].weeks_stats) {
+            this.barChartDataIn.push([]);
+            this.barChartDataIn[i].push(+temp.commits.toString());
+          }
+        }
+        console.log(this.barChartDataIn[0]);
+        console.log(this.barChartDataIn[1]);
+
+        for (let i = 1; i < this.datas.length; i++) {
+          let temp: any[];
+          temp = [];
+          const barChartLabels2 = [];
+          const barChartData2 = [
+            {data: [], label: ''}
+          ];
+          temp.push(this.barChartOptions2);
+          temp.push(this.barChartType2);
+          temp.push(this.barChartLegend2);
+          // tslint:disable-next-line:no-shadowed-variable
+          for (const temp of this.datas[i].weeks_stats) {
+            const s = new Date(+temp.start_week * 1000);
+            // clear?
+            barChartLabels2.push(s.toLocaleDateString());
+            barChartData2[0].data.push(temp.commits);
+          }
+          temp.push(barChartLabels2);
+          temp.push(barChartData2);
+
+          this.tatolbarCharlist.push(temp);
+        }
       }
     );
-
-
   }
-
-
 }
