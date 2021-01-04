@@ -48,21 +48,22 @@ public class ProjectRepositoryImpl implements ProjectRepository {
                 e.printStackTrace();
             }
         }
-        try{
-            assert conn != null;
-            conn.close();
-        }catch (Exception e){e.printStackTrace();}
+        closeConnection(conn);
     }
 
     @Override
     public boolean deleteProject(String id) {
         final String delete = "DELETE FROM project WHERE id=?";
         try{
+            conn = Database.getConnection();
+            assert conn!= null;
             PreparedStatement preparedStatement = conn.prepareStatement(delete);
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
+            closeConnection(conn);
             return true;
         }catch (Exception e){e.printStackTrace();}
+        closeConnection(conn);
         return false;
     }
 
@@ -92,13 +93,19 @@ public class ProjectRepositoryImpl implements ProjectRepository {
                     startTime,
                     gitRepositories
             );
-
+            closeConnection(conn);
             return project;
         }catch(Exception e){
             e.printStackTrace();
         }
+        closeConnection(conn);
         return null;
     }
 
-
+    private void closeConnection(Connection conn){
+        try{
+            assert conn != null;
+            conn.close();
+        }catch (Exception e){e.printStackTrace();}
+    }
 }
