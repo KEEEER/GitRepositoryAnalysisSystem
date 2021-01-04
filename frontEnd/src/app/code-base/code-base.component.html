@@ -7,45 +7,16 @@
     <br>
     <h2>CODE BASE</h2>
     <h4>Total Code lines:{{codeCounts}}</h4>
+    <div style="display: block;width: 80%;">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
 
-    <table>
-      <thead>
-      <tr width="80%">
-        <th colspan="2">
-          <canvas baseChart
-                  [datasets]="barChartData"
-                  [labels]="barChartLabels"
-                  [options]="barChartOptions"
-                  [legend]="barChartLegend"
-                  [chartType]="barChartType">
-          </canvas>
-        </th>
-      </tr>
-
-      </thead>
-      <tbody>
-      <tr>
-        <td>
-          <canvas baseChart
-                    [datasets]="barChartData"
-                    [labels]="barChartLabels"
-                    [options]="barChartOptions"
-                    [legend]="barChartLegend"
-                    [chartType]="barChartType">
-          </canvas>
-        </td>
-        <td>
-          <canvas baseChart
-                  [datasets]="barChartData"
-                  [labels]="barChartLabels"
-                  [options]="barChartOptions"
-                  [legend]="barChartLegend"
-                  [chartType]="barChartType">
-          </canvas>
-        </td>
-      </tr>
-      </tbody>
-    </table>
   </div>
+</div>
 <app-footer></app-footer>
-

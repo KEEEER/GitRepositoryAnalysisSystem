@@ -41,6 +41,8 @@ export class CommitTrendComponent implements OnInit {
   barChartDataIn = [[10, 20, 30, 40, 50], [1, 2, 3, 4, 5], [10, 20, 30, 40, 50], [10, 20, 30, 40, 50]];
   // tslint:disable-next-line:max-line-length
   tatolbarCharlist = [];
+  leftTatolbarCharlist = [];
+  rightTatolbarCharlist = [];
 
   commitCounts: any;
   owner: any;
@@ -54,6 +56,7 @@ export class CommitTrendComponent implements OnInit {
 
     this.getCommitTrend();
   }
+
 
   // tslint:disable-next-line:typedef
   getCommitTrend() {
@@ -100,6 +103,7 @@ export class CommitTrendComponent implements OnInit {
           temp.push(this.barChartOptions2);
           temp.push(this.barChartType2);
           temp.push(this.barChartLegend2);
+          // tslint:disable-next-line:no-shadowed-variable
           for (const temp of this.datas[i].weeks_stats) {
             const s = new Date(+temp.start_week * 1000);
             // clear?
@@ -111,7 +115,15 @@ export class CommitTrendComponent implements OnInit {
 
           this.tatolbarCharlist.push(temp);
         }
+        for (let i = 0; i < this.tatolbarCharlist.length / 2; i++) {
+          this.leftTatolbarCharlist.push(this.tatolbarCharlist[i]);
+        }
+        for (let i = this.tatolbarCharlist.length / 2; i < this.tatolbarCharlist.length; i++) {
+          this.rightTatolbarCharlist.push(this.tatolbarCharlist[i]);
+        }
       }
     );
+
+
   }
 }

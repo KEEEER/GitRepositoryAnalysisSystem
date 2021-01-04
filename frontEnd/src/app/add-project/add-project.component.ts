@@ -40,8 +40,10 @@ export class AddProjectComponent implements OnInit {
         this.datas = request;
         console.log(this.datas);
         if (this.datas.isUrlVaild == "true"){
-          this.projectImportMsg += '\n' + " [導入成功] "+this.InputGitRepoUrl + '\n';
+
+          //this.projectImportMsg += '\n' + " [導入成功] "+this.InputGitRepoUrl + '\n';
           this.InputGitRepoUrlList.push(this.InputGitRepoUrl);
+          this.InputGitRepoUrl = null;
           if(this.badImportMsg != null ){
             this.badImportMsg = null;
           }
