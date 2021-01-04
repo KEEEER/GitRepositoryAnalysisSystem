@@ -13,6 +13,7 @@ public interface AccountRepository {
     boolean verifyAccount(Account account);
     void deleteAccount(String id);
     void deleteAccountRelations(String id);
+    boolean deleteProjectRelations(String userId, String projectId);
 
 
 

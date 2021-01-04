@@ -158,6 +158,15 @@ public class AccountRepositoryImpl implements AccountRepository {
             preparedStatement.executeUpdate();
         }catch (Exception e){e.printStackTrace();}
     }
+    public boolean deleteProjectRelations(String userId, String projectId) {
+        final String delete = "DELETE FROM user_project WHERE userid=? AND projectId=?";
+        try{
+            PreparedStatement preparedStatement = conn.prepareStatement(delete);
+            preparedStatement.setString(1, userId);
+            preparedStatement.setString(2, projectId);
+            preparedStatement.executeUpdate();
+        }catch (Exception e){e.printStackTrace();}
+    }
 
     private List<String> getAccountProjects(String id){
         final String query = " SELECT projectid FROM user_project WHERE userid=? ";

@@ -1,7 +1,10 @@
 package adapter.servlet;
 
+import adapter.account.AccountRepositoryImpl;
 import adapter.project.ProjectRepositoryImpl;
+import domain.Account;
 import org.json.JSONObject;
+import usecase.account.AccountRepository;
 import usecase.project.ProjectRepository;
 
 import javax.servlet.ServletException;
@@ -23,11 +26,19 @@ public class DeleteProjectServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         JSONObject jsonObject = new JSONObject();
         JSONObject requestBody = new JSONObject(request.getReader().readLine());
+        AccountRepository accountRepository = new AccountRepositoryImpl();
         ProjectRepository projectRepository = new ProjectRepositoryImpl();
         String userId = String.valueOf(requestBody.get("userId"));
-        String projectId = String.valueOf(requestBody.get("userId"));
-        if (projectRepository.deleteProject(projectId)) jsonObject.put("isSuccess", "true");
-        else jsonObject.put("isSuccess", "false");
+        String projectId = String.valueOf(requestBody.get("projectId"));
+
+        Account account = accountRepository.getAccountById(userId);
+        accountRepository.deleteProjectRelations(userId, projectId);
+        projectRepository.deleteProject(projectId);
+        if (projectRepository.getProjectById(projectId) == null
+            && !accountRepository.getAccountById(userId).getProjects().contains(projectId))
+            jsonObject.put("isSuccess", "true");
+        else
+            jsonObject.put("isSuccess", "false");
 
         PrintWriter out = response.getWriter();
         out.println(jsonObject);
