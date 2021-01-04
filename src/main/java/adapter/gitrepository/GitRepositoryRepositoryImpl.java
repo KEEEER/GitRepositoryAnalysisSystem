@@ -33,10 +33,12 @@ public class GitRepositoryRepositoryImpl implements GitRepositoryRepository {
                     resultSet.getString("reponame"),
                     resultSet.getString("ownername")
             );
+            closeConnection(conn);
             return gitRepository;
         }catch(Exception e){
             e.printStackTrace();
         }
+        closeConnection(conn);
         return null;
     }
 
@@ -51,10 +53,10 @@ public class GitRepositoryRepositoryImpl implements GitRepositoryRepository {
             preparedStatement.setString (2, gitRepository.getRepoName());
             preparedStatement.setString (3, gitRepository.getOwnerName());
             preparedStatement.execute();
-            conn.close();
         }catch (Exception e){
             e.printStackTrace();
         }
+        closeConnection(conn);
     }
 
     @Override
@@ -64,6 +66,15 @@ public class GitRepositoryRepositoryImpl implements GitRepositoryRepository {
             PreparedStatement preparedStatement = conn.prepareStatement(delete);
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
+        }catch (Exception e){e.printStackTrace();}
+        closeConnection(conn);
+    }
+
+    
+    private void closeConnection(Connection conn){
+        try{
+            assert conn != null;
+            conn.close();
         }catch (Exception e){e.printStackTrace();}
     }
 }

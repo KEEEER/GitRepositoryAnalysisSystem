@@ -33,6 +33,7 @@ public class AccountRepositoryImpl implements AccountRepository {
         }catch (Exception e){
             e.printStackTrace();
         }
+        closeConnection(conn);
     }
 
     @Override
@@ -56,10 +57,12 @@ public class AccountRepositoryImpl implements AccountRepository {
             for(String projectId : getAccountProjects(id)){
                 account.addProject(projectId);
             }
+            closeConnection(conn);
             return account;
         }catch(Exception e){
             e.printStackTrace();
         }
+        closeConnection(conn);
         return null;
     }
 
@@ -88,6 +91,7 @@ public class AccountRepositoryImpl implements AccountRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        closeConnection(conn);
         return queryAccount;
     }
 
@@ -111,10 +115,8 @@ public class AccountRepositoryImpl implements AccountRepository {
                 e.printStackTrace();
             }
         }
-        try{
-            assert conn != null;
-            conn.close();
-        }catch (Exception e){e.printStackTrace();}
+        closeConnection(conn);
+
     }
 
     @Override
@@ -132,10 +134,15 @@ public class AccountRepositoryImpl implements AccountRepository {
             ps.setString(2,account.getPassword());
             resultSet = ps.executeQuery();
             resultSet.last();
-            if(resultSet.getRow() == 1) return true;
+            if(resultSet.getRow() == 1) {
+                closeConnection(conn);
+                return true;
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        closeConnection(conn);
         return false;
     }
 
@@ -147,6 +154,7 @@ public class AccountRepositoryImpl implements AccountRepository {
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
         }catch (Exception e){e.printStackTrace();}
+        closeConnection(conn);
     }
 
     @Override
@@ -157,6 +165,7 @@ public class AccountRepositoryImpl implements AccountRepository {
             preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
         }catch (Exception e){e.printStackTrace();}
+        closeConnection(conn);
     }
     public boolean deleteProjectRelations(String userId, String projectId) {
         final String delete = "DELETE FROM user_project WHERE userid=? AND projectId=?";
@@ -165,8 +174,10 @@ public class AccountRepositoryImpl implements AccountRepository {
             preparedStatement.setString(1, userId);
             preparedStatement.setString(2, projectId);
             preparedStatement.executeUpdate();
+            closeConnection(conn);
             return true;
         }catch (Exception e){e.printStackTrace();}
+        closeConnection(conn);
         return false;
     }
 
@@ -187,7 +198,15 @@ public class AccountRepositoryImpl implements AccountRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        closeConnection(conn);
         return projects;
 
+    }
+
+    private void closeConnection(Connection conn){
+        try{
+            assert conn != null;
+            conn.close();
+        }catch (Exception e){e.printStackTrace();}
     }
 }
