@@ -1,4 +1,5 @@
 <app-header></app-header>
+<meta charset="UTF-8" />
 <div class="row" style="padding:10px 100px 10px 100px;">
   <div class="col-4">
     <app-repo-imformation></app-repo-imformation>
@@ -10,32 +11,43 @@
     <mat-accordion class="example-headers-align">
       <ng-container *ngFor="let title of titles ; let i = index">
         <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-          <mat-expansion-panel-header>
+
+          <mat-expansion-panel-header [collapsedHeight]="'auto'" [expandedHeight]="'auto'">
             <mat-panel-title>
-              {{States[i]}}
+              <div>
+                <mat-icon>face</mat-icon>
+                {{posters[i]}}
+              </div>
             </mat-panel-title>
 
             <mat-panel-description>
-              {{title}}
+              <tr>
+                <p>{{title}}</p>
+                  <ng-container *ngFor="let label of labels[i] ; let j = index">
+                    <td>
+                      <mat-basic-chip [style.background-color]= label.color>  &nbsp;{{label.name}}&nbsp;</mat-basic-chip>
+                    </td>
+                  </ng-container>
+              </tr>
+
+              <p class="status">{{States[i]}}</p>
+
             </mat-panel-description>
-
-<!--            <mat-icon>done_outline</mat-icon>-->
           </mat-expansion-panel-header>
+          <br>
+          <br>
+          <br>
+          <p>Since: {{startDates[i]}}</p>
+          <p>Update: {{updateDates[i]}}</p>
+          <p>Close: {{closeDates[i]}}</p>
 
-          <br>
-          <p class="dateP">Since:{{startDates[i]}}</p>
-          <br>
-          <p class="dateP">Close:{{closeDates[i]}}</p>
-
-          <br>
 
           <pre class="bodyPre">{{bodys[i]}}</pre>
-          <br>
-        </mat-expansion-panel>
 
+
+        </mat-expansion-panel>
       </ng-container>
     </mat-accordion>
   </div>
-
 </div>
 <app-footer></app-footer>

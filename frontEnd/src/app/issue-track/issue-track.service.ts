@@ -18,7 +18,7 @@ export class IssueTrackService {
     const options = {
       headers
     };
-    return this.httpClient.post<any>('/GitRepositoryAnalysisSystem/issuesServlet', body, options);
+    return this.httpClient.post<any>('/GitRepositoryAnalysisSystem/issueWithQuery', body, options);
 
   }
 }

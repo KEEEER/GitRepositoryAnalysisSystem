@@ -1,36 +1,51 @@
+.example-headers-align .mat-expansion-panel-header-description.mat-toolbar,
 .example-headers-align .mat-expansion-panel-header-title,
 .example-headers-align .mat-expansion-panel-header-description {
-  flex-basis: 3px;
+  flex-basis: 0  ;
+  justify-content: space-between;
+}
 
-  overflow: hidden;
+.example-headers-align .mat-expansion-panel{
+  padding: 14px;
 
 }
+
 .example-headers-align .mat-expansion-panel-header{
-
-
+  font-size: 16px;
 }
 
 .dateP{
-  font-size: 32px;
+  width: 100%;
+  justify-content: space-between;
   color: red;
 }
 
 .example-headers-align .mat-expansion-panel-header-title{
-  color: green;
   align-items: center;
+  color: green;
+  font-size: 20px;
+}
+.status{
+
+  align-items: center;
+  color: red;
+  border-radius: 10px;
+
 }
 
-.example-headers-align .mat-icon{
-  align-items: center;
-}
 .bodyPre{
   font-size: 16px;
 }
 .example-headers-align .mat-expansion-panel-header-description {
-  align-items: start;
-  color: #353535;
+  font-size: 20px;
+  color: #005cbf;
 }
 
-.example-headers-align .mat-form-field + .mat-form-field {
-  margin-left: 20px;
+.mat-basic-chip{
+
+  padding: 5px 0px;
+  border-radius: 10px;
+  flex-basis: 0;
+  font-size: 16px;
+  color: black;
 }

@@ -38,6 +38,6 @@ public class QueryUserProjectTest {
             jsonObject.put("gitRepoCount", project.getGitRepositories().size());
             jsonArray.put(jsonObject);
         }
-        Assert.assertEquals(4, jsonArray.length());
+        Assert.assertEquals(6, jsonArray.length());
     }
 }

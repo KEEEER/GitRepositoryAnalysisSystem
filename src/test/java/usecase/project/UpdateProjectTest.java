@@ -18,6 +18,7 @@ public class UpdateProjectTest {
         CreateProjectInput input = new CreateProjectInputImpl();
         CreateProjectOutput output = new CreateProjectOutputImpl();
         input.setName("MakeBigMoney");
+        input.setDescription("big!");
         CreateProjectUseCase createProjectUseCase = new CreateProjectUseCase(projectRepository);
         createProjectUseCase.execute(input, output);
         String id = output.getId();

@@ -10,23 +10,19 @@ import {ActivatedRoute} from '@angular/router';
 export class IssueTrackComponent implements OnInit {
 
   datas: any;
+  labels = [];
   titles = [];
+  posters = [];
+  posterIds = [];
   bodys = [];
   startDates = [];
+  updateDates = [];
   closeDates = [];
   States = [];
+  StatusColor = [];
   owner: any;
   repo: any;
   step = 0;
-  // issue: {
-  //   title: any,
-  //   body: any,
-  //   startDate: any,
-  //   closeDate: any,
-  //   State: any
-  // };
-  // issues = [];
-
   constructor(private issueTrackService: IssueTrackService, private acrouter: ActivatedRoute) {
   }
 
@@ -68,16 +64,15 @@ export class IssueTrackComponent implements OnInit {
           this.titles.push(temp.title);
           this.bodys.push(temp.body);
           this.States.push(temp.state);
-          this.startDates.push(temp.created_at);
-          this.closeDates.push(temp.closed_at);
 
-          // this.issue.body(temp.title, temp.body, temp.state, temp.created_at, temp.closed_at)
-          // this.issue.title = temp.title;
-          // this.issue.body = temp.body;
-          // this.issue.State = temp.state;
-          // this.issue.startDate = temp.created_at;
-          // this.issue.closeDate = temp.closed_at;
-          // this.issues.push(this.issue);
+          if (temp.state === 'open') { this.StatusColor.push('red'); }
+          else { this.StatusColor.push('gray'); }
+          this.labels.push(temp.labels);
+          this.posters.push(temp.issuePoster);
+          this.startDates.push(temp.created_at);
+          this.updateDates.push(temp.updated_at);
+          this.closeDates.push(temp.closed_at);
+          this.posterIds.push(temp.issuePosterId);
         }
 
 
