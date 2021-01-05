@@ -15,6 +15,7 @@ import {CodeBaseComponent} from './code-base/code-base.component';
 import {IssueTrackComponent} from './issue-track/issue-track.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {ProjectoverviewComponent} from './projectoverview/projectoverview.component';
+import {ComparemultiprojectComponent} from './comparemultiproject/comparemultiproject.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'code-base', component: CodeBaseComponent},
   {path: 'issue-track', component: IssueTrackComponent},
   {path: 'projectoverview', component: ProjectoverviewComponent},
+  {path: 'multiproject', component: ComparemultiprojectComponent},
   {path: '**', component: LoginComponent}
 
 

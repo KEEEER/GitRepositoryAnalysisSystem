@@ -11,3 +11,7 @@ ng add @angular/materia
 to use Angular materia
 
 npm install @angular/cdk --save
+
+如果build完發現頁面均無變化
+>>加入--outputHashing=all
+使用ng build --watch --outputHashing=all --base-href /GitRepositoryAnalysisSystem/frontEnd/

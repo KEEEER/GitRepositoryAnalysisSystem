@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {GetRepoInfoOfChosenProjectService} from './get-repo-info-of-chosen-project.service';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-choose-repository',
@@ -12,6 +14,8 @@ export class ChooseRepositoryComponent implements OnInit {
   datas: any;
   owner = new Array();
   repoNames = new Array();
+  totalRepoData = new Map<string, string>();
+
   constructor(private router: Router, private getrepoinfoofchosenproject: GetRepoInfoOfChosenProjectService,private activerouter:ActivatedRoute) {
   }
 
@@ -36,6 +40,12 @@ export class ChooseRepositoryComponent implements OnInit {
             }
           }
         );
+        console.log(this.repoNames);
+        console.log(this.owner);
+
+        sessionStorage.setItem('totalrepo', JSON.stringify(this.repoNames));
+        sessionStorage.setItem('totalowner', JSON.stringify(this.owner));
+
     }
 
   goToAnalysisPage(event) {
@@ -50,5 +60,8 @@ export class ChooseRepositoryComponent implements OnInit {
   // tslint:disable-next-line:typedef
   goToAddRepoPage() {
     this.router.navigateByUrl('add-repo');
+  }
+  goToAnalysisMultiPage(){
+    this.router.navigateByUrl('multiproject');
   }
 }

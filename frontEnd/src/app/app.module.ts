@@ -30,6 +30,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
+import { ComparemultiprojectComponent } from './comparemultiproject/comparemultiproject.component';
 
 
 
@@ -57,6 +58,7 @@ import {MatChipsModule} from '@angular/material/chips';
     HomepageComponent,
     ProjectoverviewComponent,
     FooterComponent,
+    ComparemultiprojectComponent,
 
 
   ],

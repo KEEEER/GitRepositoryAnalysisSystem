@@ -14,14 +14,20 @@
             <button class="myButton" (click)="goToAnalysisPage($event)" id = "{{item.repoName}}">Repo_Name:{{item.repoName}}<br/>Owner:{{item.ownerName}}<br/>
             </button>
           </td>
+
+
         </tr>
+        <tr>
+          <td>
+            <button mat-raised-button class="multipageButton" (click)="goToAnalysisMultiPage()">比較多個Repo</button>
+          </td>
+        </tr>
+
       </table>
 
 
     </div>
 
-    <!--    <button (click)="goToDeleteRepoPage()"><div>DELETE REPO</div></button>-->
-    <!--    <button (click)="chooseMuti()"><div>CHOOSE MUTI</div></button>-->
 
   </div>
 </div>
