@@ -19,9 +19,11 @@ export class CodeBaseComponent implements OnInit {
   barChartLegend = true;
 
   barChartLabels = [];
-  barChartDataIn = [];
+  barChartDataIn = [[],[],[]];
   barChartData = [
-    {data: this.barChartDataIn, label: 'Code lines'}
+    {data: this.barChartDataIn[0], label: 'Code lines'},
+    {data: this.barChartDataIn[1], label: 'Additions'},
+    {data: this.barChartDataIn[2], label: 'Deletions'}
   ];
   codeCounts: any;
   owner: any;
@@ -53,7 +55,9 @@ export class CodeBaseComponent implements OnInit {
           const s = new Date(+temp.start_week * 1000);
           // clear?
           this.barChartLabels.push(s.toLocaleDateString());
-          this.barChartDataIn.push(+temp.lines_count.toString());
+          this.barChartDataIn[0].push(temp.lines_count.toString());
+          this.barChartDataIn[1].push(temp.additions.toString());
+          this.barChartDataIn[2].push(temp.deletions.toString());
         }
         this.codeCounts = this.datas[0].lines_count;
       }
