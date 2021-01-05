@@ -48,9 +48,9 @@ public class IssueWithQueryServlet extends HttpServlet {
             for (Object labelsObject : labels){
                 JSONObject labelsJsonObject = (JSONObject) labelsObject;
                 JSONObject labelsForResultElem = new JSONObject();
-                labelsForResultElem.put("name", labelsJsonObject.getString("name"));
-                labelsForResultElem.put("description", labelsJsonObject.getString("description"));
-                labelsForResultElem.put("color", "#" + labelsJsonObject.getString("color"));
+                labelsForResultElem.put("name", labelsJsonObject.get("name").toString());
+                labelsForResultElem.put("description", labelsJsonObject.get("description").toString());
+                labelsForResultElem.put("color", "#" + labelsJsonObject.get("color").toString());
                 labelsForResult.put(labelsForResultElem);
             }
 
