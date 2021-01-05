@@ -22,6 +22,9 @@ export class RepoImformationComponent implements OnInit {
     this.repoName = window.sessionStorage.getItem('repoName');
     this.owner = window.sessionStorage.getItem('owner');
   }
+
+
+
   NavitoAnalysis(){
     this.router.navigateByUrl('analysis');
   }
