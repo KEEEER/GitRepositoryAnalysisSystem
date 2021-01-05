@@ -22,8 +22,9 @@
 
 .example-headers-align .mat-expansion-panel-header-title{
   align-items: center;
+  font-style: oblique;
   color: green;
-  font-size: 20px;
+  font-size: 24px;
 }
 .status{
 
@@ -37,7 +38,7 @@
   font-size: 16px;
 }
 .example-headers-align .mat-expansion-panel-header-description {
-  font-size: 20px;
+  font-size: 28px;
   color: #005cbf;
 }
 

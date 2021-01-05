@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {IssueTrackService} from './issue-track.service';
-import {ActivatedRoute} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-issue-track',
@@ -19,11 +19,14 @@ export class IssueTrackComponent implements OnInit {
   updateDates = [];
   closeDates = [];
   States = [];
+  avatars = [];
   StatusColor = [];
+  // tslint:disable-next-line:variable-name
+  html_urls = [];
   owner: any;
   repo: any;
   step = 0;
-  constructor(private issueTrackService: IssueTrackService, private acrouter: ActivatedRoute) {
+  constructor(private router: Router, private issueTrackService: IssueTrackService, private acrouter: ActivatedRoute) {
   }
 
   // tslint:disable-next-line:typedef
@@ -47,7 +50,6 @@ export class IssueTrackComponent implements OnInit {
 
     this.getIssueTrack();
   }
-
   // tslint:disable-next-line:typedef
   getIssueTrack() {
     const issueTrackData = {
@@ -64,7 +66,7 @@ export class IssueTrackComponent implements OnInit {
           this.titles.push(temp.title);
           this.bodys.push(temp.body);
           this.States.push(temp.state);
-
+          this.avatars.push(temp.avatar);
           if (temp.state === 'open') { this.StatusColor.push('red'); }
           else { this.StatusColor.push('gray'); }
           this.labels.push(temp.labels);
@@ -73,9 +75,8 @@ export class IssueTrackComponent implements OnInit {
           this.updateDates.push(temp.updated_at);
           this.closeDates.push(temp.closed_at);
           this.posterIds.push(temp.issuePosterId);
+          this.html_urls.push(temp.html_url);
         }
-
-
       }
     );
   }

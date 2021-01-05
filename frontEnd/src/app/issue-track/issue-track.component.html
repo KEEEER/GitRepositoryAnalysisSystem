@@ -11,11 +11,10 @@
     <mat-accordion class="example-headers-align">
       <ng-container *ngFor="let title of titles ; let i = index">
         <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-
           <mat-expansion-panel-header [collapsedHeight]="'auto'" [expandedHeight]="'auto'">
             <mat-panel-title>
               <div>
-                <mat-icon>face</mat-icon>
+                <img [src]="avatars[i]" height="45">
                 {{posters[i]}}
               </div>
             </mat-panel-title>
@@ -40,12 +39,10 @@
           <p>Since: {{startDates[i]}}</p>
           <p>Update: {{updateDates[i]}}</p>
           <p>Close: {{closeDates[i]}}</p>
-
-
+          <p>Link: {{html_urls[i]}}</p>
           <pre class="bodyPre">{{bodys[i]}}</pre>
-
-
         </mat-expansion-panel>
+
       </ng-container>
     </mat-accordion>
   </div>

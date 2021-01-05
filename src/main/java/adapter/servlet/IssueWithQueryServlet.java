@@ -56,6 +56,9 @@ public class IssueWithQueryServlet extends HttpServlet {
 
             JSONObject issuesResultElem = new JSONObject();
             JSONObject issuePoster = (JSONObject)issuesJsonObject.get("user");
+
+            issuesResultElem.put("avatar", issuePoster.get("avatar_url"));
+            issuesResultElem.put("html_url", issuePoster.get("html_url"));
             issuesResultElem.put("issuePoster", issuePoster.get("login"));
             issuesResultElem.put("issuePosterId", issuePoster.get("id"));
             GithubRepositoryAccessor commentAccessor = new GithubRepositoryAccessor();
