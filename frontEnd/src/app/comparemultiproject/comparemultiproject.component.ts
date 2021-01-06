@@ -18,7 +18,7 @@ export class ComparemultiprojectComponent implements OnInit {
 
   ngOnInit(): void {
        this.ProjectID = window.sessionStorage.getItem('ChosenProjectID');
-       this.getTotalRepoInfoOfProject();
+       //this.getTotalRepoInfoOfProject();
 
   }
   getTotalRepoInfoOfProject() {

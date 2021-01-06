@@ -27,7 +27,7 @@ export class CodeBaseComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.totalRepoInfo = [["KEEEER", "GitRepositoryAnalysisSystem"],["kasoarcat", "super-jetbot"]]
+    this.totalRepoInfo = [["KEEEER", "GitRepositoryAnalysisSystem"],["kasoarcat", "super-jetbot"]];
     this.getCodeBase();
   }
 
