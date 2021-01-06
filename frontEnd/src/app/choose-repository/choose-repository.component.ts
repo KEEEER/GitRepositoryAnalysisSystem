@@ -16,6 +16,7 @@ export class ChooseRepositoryComponent implements OnInit {
   repoNames = new Array();
   totalData = new Array();
 
+
   constructor(private router: Router, private getrepoinfoofchosenproject: GetRepoInfoOfChosenProjectService,private activerouter:ActivatedRoute) {
   }
 
@@ -33,20 +34,18 @@ export class ChooseRepositoryComponent implements OnInit {
         this.getrepoinfoofchosenproject.getRepoDataOfProject(data).subscribe(
           request => {
             this.datas = request;
+            console.log(this.datas);
             for(let item of this.datas){
-              const repoitem = {
-                  owner:undefined,
-                  repoName:undefined
-                };
-              repoitem.owner = item.ownerName;
-              repoitem.repoName = item.repoName;
-              this.totalData.push(repoitem);
-              console.log("getrepo:",repoitem);
+              this.repoNames.push(item.repoName);
+              this.owner.push(item.ownerName);
             }
           }
         );
-        console.log("totaldata:",this.totalData);
-        console.log("totaldata json:",JSON.stringify(this.totalData,["owner","repoName"]));
+        console.log(this.repoNames);
+        console.log(this.owner);
+
+        sessionStorage.setItem('totalrepo', JSON.stringify(this.repoNames));
+        sessionStorage.setItem('totalowner', JSON.stringify(this.owner));
 
     }
 
