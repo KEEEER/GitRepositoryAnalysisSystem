@@ -9,13 +9,14 @@ export class GetRepoInfoOfChosenProjectService {
   constructor(private httpClient: HttpClient) { }
 
 
-  public getRepoDataOfProject(body) {
+  getRepoDataOfProject(body) {
       const headers = new HttpHeaders({
         'Content-Type': 'text/json'
       });
       const options = {
         headers
       };
-      return this.httpClient.post<any>('/GitRepositoryAnalysisSystem/getProjectGitRepositories', body, options);
+      const r = this.httpClient.post<any>('/GitRepositoryAnalysisSystem/getProjectGitRepositories', body, options);
+      return r;
     }
 }

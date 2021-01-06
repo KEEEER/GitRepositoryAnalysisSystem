@@ -18,4 +18,16 @@ export class CodeBaseService {
     return this.httpClient.post<any>('/GitRepositoryAnalysisSystem/commitServlet', body, options);
 
   }
+
+  public getRepoDataOfProject(body) {
+      const headers = new HttpHeaders({
+        'Content-Type': 'text/json'
+      });
+      const options = {
+        headers
+      };
+      return this.httpClient.post<any>('/GitRepositoryAnalysisSystem/getProjectGitRepositories', body, options);
+    }
+
+
 }

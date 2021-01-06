@@ -18,21 +18,56 @@ export class CodeBaseComponent implements OnInit {
   barChartType = 'line';
   barChartLegend = true;
 
-  totalRepoInfo :any;
+  //totalRepoInfo :string[][] = new Array();
+  r = "not yet"
   chartDatasetLabel =["Commit", "Additions", "Deletions", "Code Lines"];
   chartDataset =[];
   chartDataMap :any;
-
+  //--repo
+  totalRepoInfo =  [];
+  totalRepoInfo_ano=new Array();
+  owner = new Array();
+  repoNames = new Array();
+  totalData = new Array();
+  //repoitem = new Array();
+  reporequestdata:any;
+  ProjectID = '';
+  i: number = 0;
   constructor(private codeBaseService: CodeBaseService, private acrouter: ActivatedRoute) {}
 
 
   ngOnInit(): void {
-    this.totalRepoInfo = [["KEEEER", "GitRepositoryAnalysisSystem"],["kasoarcat", "super-jetbot"]];
-    this.getCodeBase();
+    this.ProjectID = window.sessionStorage.getItem('ChosenProjectID');
+     this.getTotalRepoInfoOfProject();
+    //this.totalRepoInfo = [["KEEEER", "GitRepositoryAnalysisSystem"],["kasoarcat", "super-jetbot"]];
+    setTimeout(() =>this.getCodeBase(), 4000);
   }
 
+
+  getTotalRepoInfoOfProject() {
+    const UserRepoData = {
+      projectId:undefined,
+    };
+    UserRepoData.projectId  = this.ProjectID;
+    const data = JSON.stringify(UserRepoData);
+    this.codeBaseService.getRepoDataOfProject(data).subscribe(
+       request => {
+        this.reporequestdata = request;
+        for(let item of this.reporequestdata){
+          let repoitem = []
+          repoitem.push(item.ownerName);
+          repoitem.push(item.repoName);
+          this.totalRepoInfo.push(repoitem);
+          console.log(this.totalRepoInfo.length);
+        }
+      }
+    );
+    // console.log(this.repoNames);
+    // console.log(this.owner);
+  }
   getCodeBase() {
     this.chartDataMap = new Map();
+    console.log(this.totalRepoInfo.length);
     for(let i = 0; i<this.totalRepoInfo.length; i++){
       const repoInfo = {
         owner: undefined,
@@ -40,6 +75,7 @@ export class CodeBaseComponent implements OnInit {
       };
       repoInfo.owner = this.totalRepoInfo[i][0];
       repoInfo.repo = this.totalRepoInfo[i][1];
+      console.log("repoInfo:",repoInfo);
       const data = JSON.stringify(repoInfo);
       this.codeBaseService.getCodeBaseService(data).subscribe(
         request => {
@@ -95,7 +131,9 @@ export class CodeBaseComponent implements OnInit {
           }
         }
       );
+
     }
+
   }
 
 }
