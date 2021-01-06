@@ -1,22 +1,21 @@
 <app-header></app-header>
 <div class="row" style="padding:10px 100px 10px 100px;">
-  <div class="col-2">
+  <div class="col-3">
     <app-repo-imformation></app-repo-imformation>
   </div>
-  <div class="col-10">
+  <div class="col-9">
     <br>
-    <h2>CODE BASE</h2>
-    <h4>Total Code lines:{{codeCounts}}</h4>
-    <div style="display: block;width: 80%;">
+    <h2>COMPARE PROJECT</h2>
+    <div style="display: block;width: 80%;" *ngFor="let ChartDataElem of chartDataset; let i = index">
+      <br><p style="text-align:center; color:blue">{{chartDatasetLabel[i]}}</p>
       <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
+              [datasets]="ChartDataElem[1]"
+              [labels]="ChartDataElem[0]"
               [options]="barChartOptions"
               [legend]="barChartLegend"
               [chartType]="barChartType">
       </canvas>
     </div>
-
   </div>
 </div>
 <app-footer></app-footer>

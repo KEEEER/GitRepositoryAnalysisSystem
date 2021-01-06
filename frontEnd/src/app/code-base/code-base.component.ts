@@ -18,50 +18,84 @@ export class CodeBaseComponent implements OnInit {
   barChartType = 'line';
   barChartLegend = true;
 
-  barChartLabels = [];
-  barChartDataIn = [[],[],[]];
-  barChartData = [
-    {data: this.barChartDataIn[0], label: 'Code lines'},
-    {data: this.barChartDataIn[1], label: 'Additions'},
-    {data: this.barChartDataIn[2], label: 'Deletions'}
-  ];
-  codeCounts: any;
-  owner: any;
-  repo: any;
+  totalRepoInfo :any;
+  chartDatasetLabel =["Commit", "Additions", "Deletions", "Code Lines"];
+  chartDataset =[];
+  chartDataMap :any;
 
   constructor(private codeBaseService: CodeBaseService, private acrouter: ActivatedRoute) {}
 
 
   ngOnInit(): void {
-    this.repo = window.sessionStorage.getItem('repoName');
-    this.owner = window.sessionStorage.getItem('owner');
-
+    this.totalRepoInfo = [["KEEEER", "GitRepositoryAnalysisSystem"],["kasoarcat", "super-jetbot"]]
     this.getCodeBase();
   }
 
-  // tslint:disable-next-line:typedef
   getCodeBase() {
-    const codebaseData = {
-      owner: undefined,
-      repo: undefined
-    };
-    codebaseData.owner = this.owner;
-    codebaseData.repo = this.repo;
-    const data = JSON.stringify(codebaseData);
-    this.codeBaseService.getCodeBaseService(data).subscribe(
-      request => {
-        this.datas = request;
-        for (const temp of this.datas[0].weeks_stats) {
-          const s = new Date(+temp.start_week * 1000);
-          // clear?
-          this.barChartLabels.push(s.toLocaleDateString());
-          this.barChartDataIn[0].push(temp.lines_count.toString());
-          this.barChartDataIn[1].push(temp.additions.toString());
-          this.barChartDataIn[2].push(temp.deletions.toString());
+    this.chartDataMap = new Map();
+    for(let i = 0; i<this.totalRepoInfo.length; i++){
+      const repoInfo = {
+        owner: undefined,
+        repo: undefined
+      };
+      repoInfo.owner = this.totalRepoInfo[i][0];
+      repoInfo.repo = this.totalRepoInfo[i][1];
+      const data = JSON.stringify(repoInfo);
+      this.codeBaseService.getCodeBaseService(data).subscribe(
+        request => {
+          this.datas = request;
+          for (let temp of this.datas[0].weeks_stats) {
+            let s = temp.start_week.toString();
+            let chartData;
+            if (this.chartDataMap.has(s)){
+              chartData = this.chartDataMap.get(s);
+            }else{
+              chartData = [];
+              for (let j = 0; j<4; j++){
+                chartData.push([]);
+                for (let k = 0; k<this.totalRepoInfo.length; k++)
+                  chartData[j].push("0");
+              }
+            }
+            chartData[0][i] = temp.commits.toString();
+            chartData[1][i] = temp.additions.toString();
+            chartData[2][i] = temp.deletions.toString();
+            chartData[3][i] = temp.lines_count.toString();
+            this.chartDataMap.set(s, chartData);
+
+          }
+          if(i == this.totalRepoInfo.length-1){
+            let chartDataArray=Array.from(this.chartDataMap);
+            chartDataArray.sort(function(a,b){return a[0].localeCompare(b[0])});
+            for(let j=0; j<=4; j++){
+              const barChartLabels = [];
+              const barChartData = [];
+
+              for (let elem of chartDataArray) {
+                const s = new Date(+elem[0] * 1000);
+                barChartLabels.push(s.toLocaleDateString());
+              }
+              for(let k = 0; k<this.totalRepoInfo.length; k++){
+                const barChartDataElem = {
+                  data: [],
+                  label: undefined
+                };
+                barChartDataElem.label = this.totalRepoInfo[k][0] + " - " + this.totalRepoInfo[k][1];
+                for (let elem of chartDataArray)
+                  barChartDataElem.data.push(elem[1][j][k]);
+                barChartData.push(barChartDataElem);
+              }
+
+              let chartDatasetElem: any[];
+              chartDatasetElem = [];
+              chartDatasetElem.push(barChartLabels);
+              chartDatasetElem.push(barChartData);
+              this.chartDataset.push(chartDatasetElem);
+            }
+          }
         }
-        this.codeCounts = this.datas[0].lines_count;
-      }
-    );
+      );
+    }
   }
 
 }

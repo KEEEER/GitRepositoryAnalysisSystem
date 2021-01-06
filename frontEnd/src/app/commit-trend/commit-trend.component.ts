@@ -27,7 +27,8 @@ export class CommitTrendComponent implements OnInit {
   barChartData = [
     {data: [], label: 'Commit Trend'},
     {data: [], label: 'Additions'},
-    {data: [], label: 'Deletions'}
+    {data: [], label: 'Deletions'},
+    {data: [], label: 'Code Lines'}
   ];
 
   // 個人圖
@@ -82,6 +83,7 @@ export class CommitTrendComponent implements OnInit {
           this.barChartData[0].data.push(+temp.commits.toString());
           this.barChartData[1].data.push(+temp.additions.toString());
           this.barChartData[2].data.push(+temp.deletions.toString());
+          this.barChartData[3].data.push(+temp.lines_count.toString());
         }
         this.commitCounts = this.datas[0].total_commits;
 
