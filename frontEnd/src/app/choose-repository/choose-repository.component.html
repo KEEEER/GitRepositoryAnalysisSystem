@@ -10,6 +10,7 @@
     <div>
       <table>
         <tr>
+
           <td *ngFor="let item of datas">
             <button class="myButton" (click)="goToAnalysisPage($event)" id = "{{item.repoName}}">Repo_Name:{{item.repoName}}<br/>Owner:{{item.ownerName}}<br/>
             </button>

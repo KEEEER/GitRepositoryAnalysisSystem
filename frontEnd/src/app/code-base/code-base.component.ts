@@ -40,7 +40,7 @@ export class CodeBaseComponent implements OnInit {
     this.ProjectID = window.sessionStorage.getItem('ChosenProjectID');
      this.getTotalRepoInfoOfProject();
     //this.totalRepoInfo = [["KEEEER", "GitRepositoryAnalysisSystem"],["kasoarcat", "super-jetbot"]];
-    setTimeout(() =>this.getCodeBase(), 4000);
+    setTimeout(() =>this.getCodeBase(), 5000);
   }
 
 

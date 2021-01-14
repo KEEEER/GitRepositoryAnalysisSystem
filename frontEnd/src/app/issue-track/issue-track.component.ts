@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {IssueTrackService} from './issue-track.service';
 import {Router, ActivatedRoute} from '@angular/router';
+// tslint:disable-next-line:import-spacing
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-issue-track',
@@ -23,12 +25,15 @@ export class IssueTrackComponent implements OnInit {
   StatusColor = [];
   // tslint:disable-next-line:variable-name
   html_urls = [];
+  // tslint:disable-next-line:variable-name
+  all_labels = [];
   owner: any;
   repo: any;
+  myControl = new FormControl();
+  options: string[] = ['ByLabel'];
   step = 0;
   constructor(private router: Router, private issueTrackService: IssueTrackService, private acrouter: ActivatedRoute) {
   }
-
   // tslint:disable-next-line:typedef
   setStep(index: number) {
     this.step = index;

@@ -6,7 +6,7 @@ import {ChooseProjectComponent} from './choose-project/choose-project.component'
 import {BrowserModule} from '@angular/platform-browser';
 import {ChooseRepositoryComponent} from './choose-repository/choose-repository.component';
 import {LoginComponent} from './login/login.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommitTrendComponent} from './commit-trend/commit-trend.component';
 import {AnalysisComponent} from './analysis/analysis.component';
 import {CodeBaseComponent} from './code-base/code-base.component';
@@ -31,6 +31,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
 import { ComparemultiprojectComponent } from './comparemultiproject/comparemultiproject.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -73,7 +76,11 @@ import { ComparemultiprojectComponent } from './comparemultiproject/comparemulti
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
-    MatChipsModule
+    MatChipsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatSelectModule
 
 
   ],
