@@ -13,6 +13,5 @@ GitRepositoryAnalysisSystem\src\main\webapp\frontEnd\
 
 6. 使用連結 http://localhost:8080/GitRepositoryAnalysisSystem/frontEnd/userLogin 即可進入GRAS魔幻世界，HAVE FUN
 
-PS: 如果build完發現頁面均無變化
->>加入--outputHashing=all
-使用ng build --watch --outputHashing=all --base-href /GitRepositoryAnalysisSystem/frontEnd/
+PS: 如果build完發現頁面均無變化，加入--outputHashing=all
+>>使用ng build --watch --outputHashing=all --base-href /GitRepositoryAnalysisSystem/frontEnd/
